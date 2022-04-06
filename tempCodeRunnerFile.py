@@ -1,0 +1,6 @@
+app.setApplicationName(f"{__name__}")
+text = QPlainTextEdit()
+window = Mainframe()
+window.setCentralWidget(text)
+window.show()
+app.exec_()
