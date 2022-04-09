@@ -28,6 +28,12 @@ QLabel {
     qproperty-alignment: AlignCenter;
 }
 
+QLineEdit {
+    background-color: #ebf0f1;
+    padding: 15px;
+    font-size: 15px;
+}
+
 QPushButton {
     background-color: #2899b6;
     padding: 15px;
