@@ -1,0 +1,15 @@
+{
+    "buttons": {
+        "encrypt_text": "Salaa tekstiä",
+        "encrypt_files": "Salaa tiedostoja",
+        "decrypt_text": "Pura tekstien salaus",
+        "decrypt_files": "Pura tiedostojen salaus"
+    },
+    "prompts": {
+        "settings_menu": "Asetukset",
+        "in_progress": "Meneillään",
+        "choose_lang": "Valitse kieli",
+        "startup_lang": "Valitse kieli ohjelmalle",
+        "language_selection_info": "Kieli vaihdetaan seuraavan käynnistyksen yhteydessä"
+    }
+}

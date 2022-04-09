@@ -1,0 +1,15 @@
+{
+    "buttons": {
+        "encrypt_text": "Kryptera text",
+        "encrypt_files": "Kryptera filer",
+        "decrypt_text": "Dekryptera text",
+        "decrypt_files": "Dekryptera filer"
+    },
+    "prompts": {
+        "settings_menu": "inställningar",
+        "in_progress": "Pågående",
+        "choose_lang": "Välj ett språk",
+        "startup_lang": "Välj det språk som används för applikationen",
+        "language_selection_info": "Språket ändras vid omstart av programmet"
+    }
+}
