@@ -17,6 +17,7 @@
         "language_selection_info": "Language is changed during restart of the application",
         "default_encrypt": "Set default encryption settings",
         "close_button": "Save and Exit the default settings page",
-        "password_mismatch": "Passwords do not match, Try again!"
+        "password_mismatch": "Passwords do not match, Try again!",
+        "dark_mode": "Toggle dark mode"
     }
 }

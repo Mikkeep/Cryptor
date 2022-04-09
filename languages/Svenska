@@ -17,6 +17,7 @@
         "language_selection_info": "Språket ändras vid omstart av programmet",
         "default_encrypt": "Ställ in standardkrypteringsinställningar",
         "close_button": "Spara och avsluta sidan med standardinställningar",
-        "password_mismatch": "Lösenorden matchar inte, försök igen!"
+        "password_mismatch": "Lösenorden matchar inte, försök igen!",
+        "dark_mode": "Växla mellan mörkt läge"
     }
 }

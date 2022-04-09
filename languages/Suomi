@@ -17,6 +17,7 @@
         "language_selection_info": "Kieli vaihdetaan seuraavan käynnistyksen yhteydessä",
         "default_encrypt": "Aseta oletusasetukset salaukselle",
         "close_button": "Tallenna ja poistu oletusasetussivulta",
-        "password_mismatch": "Salasanat eivät täsmää, yritä uudelleen!"
+        "password_mismatch": "Salasanat eivät täsmää, yritä uudelleen!",
+        "dark_mode": "Vaihda tummaan tilaan"
     }
 }
