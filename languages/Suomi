@@ -3,13 +3,20 @@
         "encrypt_text": "Salaa tekstiä",
         "encrypt_files": "Salaa tiedostoja",
         "decrypt_text": "Pura tekstien salaus",
-        "decrypt_files": "Pura tiedostojen salaus"
+        "decrypt_files": "Pura tiedostojen salaus",
+        "encryption_key_prompt": "Salausavain",
+        "encryption_key_confirm": "Vahvista salausavain",
+        "algorithm": "Algoritmi",
+        "salt": "Suola"
     },
     "prompts": {
         "settings_menu": "Asetukset",
         "in_progress": "Meneillään",
         "choose_lang": "Valitse kieli",
         "startup_lang": "Valitse kieli ohjelmalle",
-        "language_selection_info": "Kieli vaihdetaan seuraavan käynnistyksen yhteydessä"
+        "language_selection_info": "Kieli vaihdetaan seuraavan käynnistyksen yhteydessä",
+        "default_encrypt": "Aseta oletusasetukset salaukselle",
+        "close_button": "Tallenna ja poistu oletusasetussivulta",
+        "password_mismatch": "Salasanat eivät täsmää, yritä uudelleen!"
     }
 }

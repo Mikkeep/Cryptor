@@ -3,13 +3,20 @@
         "encrypt_text": "Encrypt text",
         "encrypt_files": "Encrypt file(s)",
         "decrypt_text": "Decrypt text",
-        "decrypt_files": "Decypt file(s)"
+        "decrypt_files": "Decypt file(s)",
+        "encryption_key_prompt": "Encryption key",
+        "encryption_key_confirm": "Confirm encryption key",
+        "algorithm": "Algorithm",
+        "salt": "Salt"
     },
     "prompts": {
         "settings_menu": "Settings",
         "in_progress": "In_progress",
         "choose_lang": "Choose a language",
         "startup_lang": "Select used language for the application",
-        "language_selection_info": "Language is changed during restart of the application"
+        "language_selection_info": "Language is changed during restart of the application",
+        "default_encrypt": "Set default encryption settings",
+        "close_button": "Save and Exit the default settings page",
+        "password_mismatch": "Passwords do not match, Try again!"
     }
 }

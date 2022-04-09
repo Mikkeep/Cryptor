@@ -3,13 +3,20 @@
         "encrypt_text": "Kryptera text",
         "encrypt_files": "Kryptera filer",
         "decrypt_text": "Dekryptera text",
-        "decrypt_files": "Dekryptera filer"
+        "decrypt_files": "Dekryptera filer",
+        "encryption_key_prompt": "krypteringsnyckel",
+        "encryption_key_confirm": "bekräfta krypteringsnyckeln",
+        "algorithm": "Algoritm",
+        "salt": "Salt"
     },
     "prompts": {
         "settings_menu": "inställningar",
         "in_progress": "Pågående",
         "choose_lang": "Välj ett språk",
         "startup_lang": "Välj det språk som används för applikationen",
-        "language_selection_info": "Språket ändras vid omstart av programmet"
+        "language_selection_info": "Språket ändras vid omstart av programmet",
+        "default_encrypt": "Ställ in standardkrypteringsinställningar",
+        "close_button": "Spara och avsluta sidan med standardinställningar",
+        "password_mismatch": "Lösenorden matchar inte, försök igen!"
     }
 }
