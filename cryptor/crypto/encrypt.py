@@ -36,6 +36,9 @@ class Secrects():
             print("file encrypted")
             print("File named: " + file_name + ".enc")
 
+    #TODO:
+    #Add decrypt for this encryption
+
 
 secret = Secrects()
 secret.encrypt_file(str(input("Please input a file to encrypt: ")))
