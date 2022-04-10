@@ -18,6 +18,8 @@
         "default_encrypt": "Ställ in standardkrypteringsinställningar",
         "close_button": "Spara och avsluta sidan med standardinställningar",
         "password_mismatch": "Lösenorden matchar inte, försök igen!",
-        "dark_mode": "Växla mellan mörkt läge"
+        "dark_mode": "Växla mellan mörkt läge",
+        "no_enc_key": "Ingen krypteringsnyckel inställd",
+        "confirm_no_password": "Ingen standardkrypteringsnyckel inställd, vill du fortsätta ändå?\nEndast standardvärden för algoritm och salt kommer att sparas"
     }
 }
