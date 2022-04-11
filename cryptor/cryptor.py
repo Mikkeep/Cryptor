@@ -4,12 +4,10 @@
     decryption of files."""
 
 
-from cProfile import label
 import sys
 import json
 from PyQt5.QtWidgets import *
-from PyQt5 import QtGui, QtCore, Qt, QtWidgets
-from qtwidgets import PasswordEdit
+from PyQt5 import QtGui, QtCore
 from constants import *
 from utils import *
 from pages import settings, encryption, decryption, settings_page
@@ -58,8 +56,9 @@ class Window(QMainWindow):
 
         # add tabs
         self._encryption = encryption.Encrypt_page(self.translations)
+        self._decryption = decryption.Decrypt_page(self.translations)
         self.tab1 = self._encryption.encryption()
-        self.tab2 = decryption.decryption(self)
+        self.tab2 = self._decryption.decryption()
         self.tab3 = settings_page.settings(self)
 
         self.initUI()
@@ -127,10 +126,10 @@ class Window(QMainWindow):
         self.right_widget.setCurrentIndex(2)
 
     def button_dec_t(self):
-        self.bottom_widget_dec.setCurrentIndex(0)
+        self._decryption.button_dec_t()
 
     def button_dec_f(self):
-        self.bottom_widget_dec.setCurrentIndex(1)
+        self._decryption.button_dec_f()
 
     def button_enc_t(self):
         self._encryption.button_enc_t()
@@ -169,6 +168,7 @@ class Window(QMainWindow):
     def close_subwindow(self):
         self.mdi.close()
 
+<<<<<<< HEAD
     # def tab_dec_text(self):
     #     bottom_layout = QVBoxLayout()
     #     bottom_layout.addWidget(QLabel(":)"))
@@ -186,6 +186,8 @@ class Window(QMainWindow):
     #     return main
 
 
+=======
+>>>>>>> 47f922e76587b404600185aacfa1dc5823b20fb5
 check_db(db_location)
 
 cryptor = QApplication(sys.argv)
