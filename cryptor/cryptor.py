@@ -133,10 +133,10 @@ class Window(QMainWindow):
 
     def button_enc_t(self):
         self._encryption.button_enc_t()
-    
+
     def button_enc_f(self):
         self._encryption.button_enc_f()
-        
+
     def button_choose_lang(self, language):
         start_up_lang_info = self.translations["prompts"]["language_selection_info"]
         self.translations = self.read_translation(self.lang_list.currentText())
@@ -167,6 +167,7 @@ class Window(QMainWindow):
 
     def close_subwindow(self):
         self.mdi.close()
+
 
 check_db(db_location)
 
