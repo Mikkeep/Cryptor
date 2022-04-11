@@ -168,26 +168,6 @@ class Window(QMainWindow):
     def close_subwindow(self):
         self.mdi.close()
 
-<<<<<<< HEAD
-    # def tab_dec_text(self):
-    #     bottom_layout = QVBoxLayout()
-    #     bottom_layout.addWidget(QLabel(":)"))
-    #     #        bottom_layout.addStretch(5)
-    #     main = QWidget()
-    #     main.setLayout(bottom_layout)
-    #     return main
-
-    # def tab_dec_files(self):
-    #     bottom_actions = QVBoxLayout()
-    #     bottom_actions.addWidget(QLabel("(:"))
-    #     bottom_actions.addStretch(5)
-    #     main = QWidget()
-    #     main.setLayout(bottom_actions)
-    #     return main
-
-
-=======
->>>>>>> 47f922e76587b404600185aacfa1dc5823b20fb5
 check_db(db_location)
 
 cryptor = QApplication(sys.argv)
