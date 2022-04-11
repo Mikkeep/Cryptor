@@ -59,7 +59,8 @@ class Window(QMainWindow):
         # add tabs
         _encryption = encryption.Encrypt_page(self.translations)
         self.tab1 = _encryption.encryption()
-        self.tab2 = decryption.decryption(self)
+        _decryption = decryption.dec_perkele(self.translations)
+        self.tab2 = _decryption.decryption()
         self.tab3 = settings_page.settings(self)
 
         self.initUI()
@@ -164,21 +165,21 @@ class Window(QMainWindow):
     def close_subwindow(self):
         self.mdi.close()
 
-    def tab_dec_text(self):
-        bottom_layout = QVBoxLayout()
-        bottom_layout.addWidget(QLabel(":)"))
-        #        bottom_layout.addStretch(5)
-        main = QWidget()
-        main.setLayout(bottom_layout)
-        return main
+    # def tab_dec_text(self):
+    #     bottom_layout = QVBoxLayout()
+    #     bottom_layout.addWidget(QLabel(":)"))
+    #     #        bottom_layout.addStretch(5)
+    #     main = QWidget()
+    #     main.setLayout(bottom_layout)
+    #     return main
 
-    def tab_dec_files(self):
-        bottom_actions = QVBoxLayout()
-        bottom_actions.addWidget(QLabel("(:"))
-        bottom_actions.addStretch(5)
-        main = QWidget()
-        main.setLayout(bottom_actions)
-        return main
+    # def tab_dec_files(self):
+    #     bottom_actions = QVBoxLayout()
+    #     bottom_actions.addWidget(QLabel("(:"))
+    #     bottom_actions.addStretch(5)
+    #     main = QWidget()
+    #     main.setLayout(bottom_actions)
+    #     return main
 
 
 check_db(db_location)
