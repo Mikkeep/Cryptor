@@ -1,84 +1,65 @@
-import tarfile
 from Crypto.Cipher import AES
-from base64 import b64decode, b64encode
+from Crypto.PublicKey import RSA
 from Crypto.Protocol.KDF import PBKDF2
+from Crypto.Cipher import AES, PKCS1_OAEP
+from Crypto.Random import get_random_bytes
 
 
 class Encryption:
-    def __init__(self, key=None, algorithm=None, salt=""):
+    def __init__(self, password="", algorithm=None, salt="", pwdLen=32):
         self.block_size = AES.block_size
-        self.key = key
+        self.password = password
         self.algo = algorithm
         self.salt = salt
-        print(self.key, self.algo, self.salt)
-        self.enc_key = PBKDF2(self.key, self.salt, dkLen=32)
-        print("self.enc_key: ", self.enc_key)
+        self.pwdLen = pwdLen
+        # PBKDF2 allows use of any length password provided by user
+        self.enc_key = PBKDF2(self.password, self.salt, dkLen=self.pwdLen)
 
-    def encrypt(self, plain_text):
-        cipher = AES.new(self.enc_key, AES.MODE_CTR)
-        encrypted_text = cipher.encrypt(plain_text)
-        crypted = b64encode(encrypted_text)
-        return crypted
-
-    def decrypt(self, ciphertext):
-        ciphertext = b64decode(ciphertext)
-        cipher = AES.new(self.enc_key, AES.MODE_CTR)
-        cleartext = cipher.decrypt(ciphertext)
-        decrypted = b64decode(cleartext)
-        return decrypted
-
-    def encrypt_file(self, file_name):
+    def read_file(self, file_name):
         with open(file_name, "rb") as file:
             plaintext = file.read()
-        enc = self.encrypt(plaintext)
-        with open("encrypted_" + file_name, "wb") as file:
-            file.write(enc)
-            print("file encrypted")
-            print("File named: " + file_name + ".enc")
+            return plaintext
 
-    def decrypt_file(self, file_name):
-        with open(file_name, "rb") as file:
-            ciphertext = file.read()
-        dec = self.decrypt(ciphertext)
-        with open("decrypted_" + file_name, "wb") as file:
-            file.write(dec)
-            print("File decrypted")
-            print("File named: " + file_name + ".dec")
+    def encrypt_with_aes(self, filename):
 
+        data = self.read_file(filename)
 
-class Compression:
-    def compress(self, tar_file, filelist):
-        # open file for gzip compression
-        tar = tarfile.open(tar_file, mode="w:gz")
-        print(file_list)
-        for file in filelist:
-            tar.add(file)
-        tar.close()
+        cipher = AES.new(self.enc_key, AES.MODE_EAX)
+        # MAC tag is used for authentication of the encrypted file/text
+        ciphertext, tag = cipher.encrypt_and_digest(data)
 
-    def decompress(self, tar_file, path, members=None):
-        tar = tarfile.open(tar_file, mode="r:gz")
-        if members is None:
-            members = tar.getmembers()
-            print(members)
-        for member in members:
-            tar.extract(member, path=path)
-        tar.close()
+        file_out = open("encrypted_" + filename, "wb")
+        [file_out.write(x) for x in (cipher.nonce, tag, ciphertext)]
+        file_out.close()
+        print("File encrypted as " + "encrypted_" + filename)
 
+    def encrypt_with_rsa(self, filename, pub_key=None):
 
-# secret = Secrects()
-secret_1 = Encryption("avain", "algoritmi", "suola")
-input()
-# secret.encrypt_file(str(input("Please input a file to encrypt: ")))
-# secret.decrypt_file(str(input("Please input a file to encrypt: ")))
-file = input("Give file plez: ")
-file_list = []
-file_list.append(file)
-compresser = Compression()
-compresser.compress("tartest_PDF", file_list)
-secret_1.encrypt_file(str(input("Please input a file to encrypt: ")))
-input("File is now ecnrypted, press Enter")
-secret_1.decrypt(str(input("Please input a file to decrypt: ")))
-compresser.decompress("decrypted_tartest_PDF", "test_deflate/new_folder/")
-# secret.encrypt_file(str(input("Please input a file to encrypt: ")))
-# secret.decrypt_file(str(input("Please input a file to decrypt: ")))
-# decompress("tartest_PDF", "test_deflate/new_folder/")
+        data = self.read_file(filename)
+
+        if pub_key == None:
+            from generate_key import key_generator
+
+            generator = key_generator()
+            generator.generate_public_key()
+            generator.generate_private_key()
+            print("Generated public and private key pair for RSA encryption")
+            pub_key = generator.default_pub
+
+        file_out = open("encrypted_" + filename, "wb")
+        public_key = RSA.import_key(open(pub_key).read())
+        # Session key generation, encrypts data symmetrically
+        session_key = get_random_bytes(16)
+
+        # Encrypt the session key with the public key
+        cipher_rsa = PKCS1_OAEP.new(public_key)
+        enc_session_key = cipher_rsa.encrypt(session_key)
+
+        # Encrypt the data with the AES session key
+        cipher_aes = AES.new(session_key, AES.MODE_EAX)
+        ciphertext, tag = cipher_aes.encrypt_and_digest(data)
+        [
+            file_out.write(x)
+            for x in (enc_session_key, cipher_aes.nonce, tag, ciphertext)
+        ]
+        file_out.close()
