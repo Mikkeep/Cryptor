@@ -2,16 +2,13 @@ from PyQt5.QtWidgets import *
 from qtwidgets import PasswordEdit
 
 class Encrypt_page():
-
     def __init__(self, translations):
         self.translations = translations
 
     def button_enc_t(self):
-        print("Painoit button enc t")
         self.bottom_widget.setCurrentIndex(0)
 
     def button_enc_f(self):
-        print("Painoit button enc f")
         self.bottom_widget.setCurrentIndex(1)
 
     def encryption(self):
