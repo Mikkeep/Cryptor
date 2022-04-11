@@ -83,7 +83,7 @@ class SettingsWindow(QWidget):
         print("Chosen salt: ", self.text_box_salt.text())
         print("Chosen enc key: ", self.text_box_enc_text.text())
         print("Chosen enc key: ", self.text_box_enc_text_confirm.text())
-        if str(self.text_box_enc_text.text()) != str(self.text_box_enc_text_confirm.text()):
+        if self.text_box_enc_text.text() == self.text_box_enc_text_confirm.text():
             if str(self.text_box_enc_text.text()) == "" and str(self.text_box_enc_text_confirm.text()) == "":
                 confirm_no_pwd = QMessageBox.question(self, no_enc_key_prompt, confirm_no_enc_key_set, QMessageBox.Yes | QMessageBox.No)
                 if confirm_no_pwd == QMessageBox.Yes:
