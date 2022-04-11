@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import *
 from qtwidgets import PasswordEdit
 
-class Encrypt_page():
+
+class Encrypt_page:
     def __init__(self, translations):
         self.translations = translations
 
@@ -57,7 +58,7 @@ class Encrypt_page():
         self.text_box_enc_text_confirm = PasswordEdit(self)
         label_1 = QLabel()
         label_1.setText("Encryption here: ")
-#        self.bottom_layout.addWidget(widget)
+        #        self.bottom_layout.addWidget(widget)
         self.bottom_layout.addWidget(self.text_box_enc_text)
         LOL = self.bottom_layout.addWidget(self.text_box_enc_text_confirm)
         main = QWidget()

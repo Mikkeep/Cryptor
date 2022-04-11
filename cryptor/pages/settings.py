@@ -3,6 +3,7 @@ from qtwidgets import PasswordEdit
 from constants import *
 from utils import *
 
+
 class SettingsWindow(QWidget):
     def __init__(self, translation):
         super().__init__()
@@ -69,7 +70,9 @@ class SettingsWindow(QWidget):
         print("Chosen salt: ", self.text_box_salt.text())
         print("Chosen enc key: ", self.text_box_enc_text.text())
         print("Chosen enc key: ", self.text_box_enc_text_confirm.text())
-        if str(self.text_box_enc_text.text()) == str(self.text_box_enc_text_confirm.text()):
+        if str(self.text_box_enc_text.text()) == str(
+            self.text_box_enc_text_confirm.text()
+        ):
             if (
                 str(self.text_box_enc_text.text()) == ""
                 and str(self.text_box_enc_text_confirm.text()) == ""
@@ -86,8 +89,8 @@ class SettingsWindow(QWidget):
                     return
                 return
         if (
-             str(self.text_box_enc_text.text()) == ""
-                and str(self.text_box_enc_text_confirm.text()) == ""
+            str(self.text_box_enc_text.text()) == ""
+            and str(self.text_box_enc_text_confirm.text()) == ""
         ):
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Warning)
