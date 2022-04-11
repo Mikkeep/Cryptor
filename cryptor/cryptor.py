@@ -57,10 +57,9 @@ class Window(QMainWindow):
         self.btn_3.setIconSize(QtCore.QSize(100, 150))
 
         # add tabs
-        _encryption = encryption.Encrypt_page(self.translations)
-        self.tab1 = _encryption.encryption()
-        _decryption = decryption.dec_perkele(self.translations)
-        self.tab2 = _decryption.decryption()
+        self._encryption = encryption.Encrypt_page(self.translations)
+        self.tab1 = self._encryption.encryption()
+        self.tab2 = decryption.decryption(self)
         self.tab3 = settings_page.settings(self)
 
         self.initUI()
@@ -133,6 +132,12 @@ class Window(QMainWindow):
     def button_dec_f(self):
         self.bottom_widget_dec.setCurrentIndex(1)
 
+    def button_enc_t(self):
+        self._encryption.button_enc_t()
+    
+    def button_enc_f(self):
+        self._encryption.button_enc_f()
+        
     def button_choose_lang(self, language):
         start_up_lang_info = self.translations["prompts"]["language_selection_info"]
         self.translations = self.read_translation(self.lang_list.currentText())
@@ -153,7 +158,6 @@ class Window(QMainWindow):
         return language
 
     def default_encrypt_window(self):
-
         if self.w is None:
             self.w = settings.SettingsWindow(self.translations)
         self.w.show()
