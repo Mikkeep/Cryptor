@@ -3,8 +3,8 @@ from Crypto.Cipher import AES
 from base64 import b64decode, b64encode
 from Crypto.Protocol.KDF import PBKDF2
 
-class Encryption():
 
+class Encryption:
     def __init__(self, key=None, algorithm=None, salt=""):
         self.block_size = AES.block_size
         self.key = key
@@ -28,26 +28,25 @@ class Encryption():
         return decrypted
 
     def encrypt_file(self, file_name):
-        with open(file_name, 'rb') as file:
+        with open(file_name, "rb") as file:
             plaintext = file.read()
         enc = self.encrypt(plaintext)
-        with open("encrypted_" + file_name, 'wb') as file:
+        with open("encrypted_" + file_name, "wb") as file:
             file.write(enc)
             print("file encrypted")
             print("File named: " + file_name + ".enc")
 
     def decrypt_file(self, file_name):
-        with open(file_name, 'rb') as file:
+        with open(file_name, "rb") as file:
             ciphertext = file.read()
         dec = self.decrypt(ciphertext)
-        with open("decrypted_" + file_name, 'wb') as file:
+        with open("decrypted_" + file_name, "wb") as file:
             file.write(dec)
             print("File decrypted")
             print("File named: " + file_name + ".dec")
 
 
-class Compression():
-
+class Compression:
     def compress(self, tar_file, filelist):
         # open file for gzip compression
         tar = tarfile.open(tar_file, mode="w:gz")
@@ -65,11 +64,12 @@ class Compression():
             tar.extract(member, path=path)
         tar.close()
 
-#secret = Secrects()
+
+# secret = Secrects()
 secret_1 = Encryption("avain", "algoritmi", "suola")
 input()
-#secret.encrypt_file(str(input("Please input a file to encrypt: ")))
-#secret.decrypt_file(str(input("Please input a file to encrypt: ")))
+# secret.encrypt_file(str(input("Please input a file to encrypt: ")))
+# secret.decrypt_file(str(input("Please input a file to encrypt: ")))
 file = input("Give file plez: ")
 file_list = []
 file_list.append(file)
@@ -79,6 +79,6 @@ secret_1.encrypt_file(str(input("Please input a file to encrypt: ")))
 input("File is now ecnrypted, press Enter")
 secret_1.decrypt(str(input("Please input a file to decrypt: ")))
 compresser.decompress("decrypted_tartest_PDF", "test_deflate/new_folder/")
-#secret.encrypt_file(str(input("Please input a file to encrypt: ")))
-#secret.decrypt_file(str(input("Please input a file to decrypt: ")))
-#decompress("tartest_PDF", "test_deflate/new_folder/")
+# secret.encrypt_file(str(input("Please input a file to encrypt: ")))
+# secret.decrypt_file(str(input("Please input a file to decrypt: ")))
+# decompress("tartest_PDF", "test_deflate/new_folder/")
