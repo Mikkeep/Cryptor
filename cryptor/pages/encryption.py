@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import *
 from qtwidgets import PasswordEdit
+from .file_dialog import FileDialog
 
 
 class Encrypt_page:
@@ -65,10 +66,22 @@ class Encrypt_page:
         main.setLayout(self.bottom_layout)
         return main
 
+    def filedialogopen(self):
+        self._files = FileDialog().fileOpen()
+
+    def filedialogsave(self):
+        self._save = FileDialog().fileSave()
+
     def tab_enc_files(self):
         bottom_actions = QVBoxLayout()
-        bottom_actions.addWidget(QLabel("(:"))
-        #        bottom_actions.addStretch(5)
+        self.open_file_btn = QPushButton("Browse")
+        self.open_file_btn.clicked.connect(self.filedialogopen)
+        bottom_actions.addWidget(self.open_file_btn)
+
+        self.save_file_btn = QPushButton("Save file")
+        self.save_file_btn.clicked.connect(self.filedialogsave)
+        bottom_actions.addWidget(self.save_file_btn)
+
         main = QWidget()
         main.setLayout(bottom_actions)
         return main
