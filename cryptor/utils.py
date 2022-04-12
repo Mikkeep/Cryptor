@@ -18,6 +18,7 @@ def read_used_lang(db_name):
         print("Could not read used language from db")
     return data
 
+
 def insert_to_db(db_name, sql_command):
     connection = sqlite3.connect(db_name)
     cur = connection.cursor()
@@ -29,7 +30,7 @@ def insert_to_db(db_name, sql_command):
         print("Cant insert data")
         return
     print("Data inserted succesfully")
-    
+
 
 def create_db_table(db_name, sql_command):
     connection = sqlite3.connect(db_name)
@@ -65,6 +66,7 @@ def check_db(db_name):
                 insert_to_db(db_name, insert_to_mode)
                 connection.close()
 
+
 def check_dark_mode(db_name):
     """
     Check whetever user has selected to use dark mode
@@ -81,6 +83,7 @@ def check_dark_mode(db_name):
         data = "False"
         print("Could not read used mode from db")
     return data
+
 
 def write_used_mode(db_name, mode):
     # False is used for Non-darkmode
@@ -100,6 +103,7 @@ def write_used_mode(db_name, mode):
         print(f"Changed darkmode to {mode}")
         connection.commit()
         connection.close()
+
 
 def write_used_lang(db_name, language):
     connection = None
