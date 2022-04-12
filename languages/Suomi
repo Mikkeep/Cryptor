@@ -1,6 +1,6 @@
 {
     "buttons": {
-        "encrypt_text": "Salaa tekstiä",
+        "encrypt_text": "Salaa tekstia",
         "encrypt_files": "Salaa tiedostoja",
         "decrypt_text": "Pura tekstien salaus",
         "decrypt_files": "Pura tiedostojen salaus",
@@ -11,15 +11,17 @@
     },
     "prompts": {
         "settings_menu": "Asetukset",
-        "in_progress": "Meneillään",
+        "in_progress": "Meneillan",
         "choose_lang": "Valitse kieli",
         "startup_lang": "Valitse kieli ohjelmalle",
-        "language_selection_info": "Kieli vaihdetaan seuraavan käynnistyksen yhteydessä",
+        "language_selection_info": "Kieli vaihdetaan seuraavan kaynnistyksen yhteydessa",
         "default_encrypt": "Aseta oletusasetukset salaukselle",
         "close_button": "Tallenna ja poistu oletusasetussivulta",
-        "password_mismatch": "Salasanat eivät täsmää, yritä uudelleen!",
+        "password_mismatch": "Salasanat eivat tasma, yrita uudelleen!",
         "dark_mode": "Vaihda tummaan tilaan",
         "no_enc_key": "Oletus salausavainta ei asetettu",
-        "confirm_no_password": "Oletus salausavainta ei ole asetettu, haluatko silti jatkaa?\nVain algoritmin ja suolan oletusarvot tallennetaan"
+        "confirm_no_password": "Oletus salausavainta ei ole asetettu, haluatko silti jatkaa?\nVain algoritmin ja suolan oletusarvot tallennetaan",
+        "dark_mode_selection_info_on": "Tumma tila on asetettu paalle",
+        "dark_mode_selection_info_off": "Tumma tila on asetettu pois paalta"
     }
 }

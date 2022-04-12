@@ -20,6 +20,8 @@
         "password_mismatch": "Lösenorden matchar inte, försök igen!",
         "dark_mode": "Växla mellan mörkt läge",
         "no_enc_key": "Ingen krypteringsnyckel inställd",
-        "confirm_no_password": "Ingen standardkrypteringsnyckel inställd, vill du fortsätta ändå?\nEndast standardvärden för algoritm och salt kommer att sparas"
+        "confirm_no_password": "Ingen standardkrypteringsnyckel inställd, vill du fortsätta ändå?\nEndast standardvärden för algoritm och salt kommer att sparas",
+        "dark_mode_selection_info_on": "Mörkt läge har aktiverats",
+        "dark_mode_selection_info_off": "Mörkt läge har avaktiverats"
     }
 }

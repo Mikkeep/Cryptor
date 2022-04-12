@@ -20,6 +20,8 @@
         "password_mismatch": "Passwords do not match, Try again!",
         "dark_mode": "Toggle dark mode",
         "no_enc_key": "No encryption key set",
-        "confirm_no_password": "No default encryption key set, do you want to continue anyway?\nOnly algorithm and salt default values will be saved"
+        "confirm_no_password": "No default encryption key set, do you want to continue anyway?\nOnly algorithm and salt default values will be saved",
+        "dark_mode_selection_info_on": "Dark mode has been activated",
+        "dark_mode_selection_info_off": "Dark mode has been deactivated"
     }
 }
