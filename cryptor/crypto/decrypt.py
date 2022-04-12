@@ -5,6 +5,7 @@ from Crypto.Cipher import AES, PKCS1_OAEP
 
 
 class Decryption:
+    # When class is called these values are given to it for key management
     def __init__(self, password="", algorithm=None, salt="", pwdLen=32):
         self.block_size = AES.block_size
         self.password = password
@@ -30,32 +31,46 @@ class Decryption:
 
     def decrypt_with_aes(self, filename):
 
-        file_in = open(filename, "rb")
+        try:
+            file_in = open(filename, "rb")
 
-        nonce, tag, ciphertext = [file_in.read(x) for x in (16, 16, -1)]
+            nonce, tag, ciphertext = [file_in.read(x) for x in (16, 16, -1)]
 
-        # let's assume that the key is somehow available again
-        cipher = AES.new(self.dec_key, AES.MODE_EAX, nonce)
-        data = cipher.decrypt_and_verify(ciphertext, tag)
+            # let's assume that the key is somehow available again
+            cipher = AES.new(self.dec_key, AES.MODE_EAX, nonce)
+            data = cipher.decrypt_and_verify(ciphertext, tag)
 
-        self.write_file(filename + ".dec", data.decode())
+            self.write_file(filename + ".dec", data.decode())
+
+            return 0
+
+        except (ValueError, KeyError):
+            print("Failed decryption!")
+            return -1
 
     def decrypt_with_rsa(self, filename, priv_key):
 
-        file_in = self.open_file(filename)
+        try:
+            file_in = self.open_file(filename)
 
-        private_key = RSA.import_key(open(priv_key).read())
+            private_key = RSA.import_key(open(priv_key).read())
 
-        enc_session_key, nonce, tag, ciphertext = [
-            file_in.read(x) for x in (private_key.size_in_bytes(), 16, 16, -1)
-        ]
+            enc_session_key, nonce, tag, ciphertext = [
+                file_in.read(x) for x in (private_key.size_in_bytes(), 16, 16, -1)
+            ]
 
-        # Decrypt the session key with the private RSA key
-        cipher_rsa = PKCS1_OAEP.new(private_key)
-        session_key = cipher_rsa.decrypt(enc_session_key)
+            # Decrypt the session key with the private RSA key
+            cipher_rsa = PKCS1_OAEP.new(private_key)
+            session_key = cipher_rsa.decrypt(enc_session_key)
 
-        # Decrypt the data with the AES session key
-        cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
-        data = cipher_aes.decrypt_and_verify(ciphertext, tag)
+            # Decrypt the data with the AES session key
+            cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
+            data = cipher_aes.decrypt_and_verify(ciphertext, tag)
 
-        self.write_file(filename + ".dec", data.decode())
+            self.write_file(filename + ".dec", data.decode())
+
+            return 0
+
+        except (ValueError, KeyError):
+            print("Failed decryption!")
+            return -1

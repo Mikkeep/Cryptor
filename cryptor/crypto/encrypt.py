@@ -6,6 +6,7 @@ from Crypto.Random import get_random_bytes
 
 
 class Encryption:
+    # Init values are given to the class when called to generarate enc key
     def __init__(self, password="", algorithm=None, salt="", pwdLen=32):
         self.block_size = AES.block_size
         self.password = password
