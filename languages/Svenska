@@ -7,7 +7,9 @@
         "encryption_key_prompt": "krypteringsnyckel",
         "encryption_key_confirm": "bekräfta krypteringsnyckeln",
         "algorithm": "Algoritm",
-        "salt": "Salt"
+        "salt": "Salt",
+        "final_encrypt": "KRYPTERA",
+        "final_decrypt": "DEKRYPTERA"
     },
     "prompts": {
         "settings_menu": "inställningar",

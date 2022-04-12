@@ -48,6 +48,7 @@ class Window(QMainWindow):
         self.btn_3 = QPushButton("", self)
 
         self.btn_1.clicked.connect(self.button1)
+        self.btn_1.setDown(True) # set default tab button to pushed state on program start
         self.btn_1.setIcon(QtGui.QIcon(IMG_LOCATION + "crypt.png"))
         self.btn_1.setIconSize(QtCore.QSize(200, 250))
         self.btn_2.clicked.connect(self.button2)
@@ -118,12 +119,25 @@ class Window(QMainWindow):
 
     def button1(self):
         self.right_widget.setCurrentIndex(0)
+       
+        self.btn_1.setDown(True)
+        self.btn_2.setDown(False)
+        self.btn_3.setDown(False)
+
 
     def button2(self):
         self.right_widget.setCurrentIndex(1)
 
+        self.btn_2.setDown(True)
+        self.btn_1.setDown(False)
+        self.btn_3.setDown(False)
+
     def button3(self):
         self.right_widget.setCurrentIndex(2)
+
+        self.btn_3.setDown(True)
+        self.btn_1.setDown(False)
+        self.btn_2.setDown(False)
 
     def button_dec_t(self):
         self._decryption.button_dec_t()

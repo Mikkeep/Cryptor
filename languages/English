@@ -7,7 +7,9 @@
         "encryption_key_prompt": "Encryption key",
         "encryption_key_confirm": "Confirm encryption key",
         "algorithm": "Algorithm",
-        "salt": "Salt"
+        "salt": "Salt",
+        "final_encrypt": "ENCRYPT",
+        "final_decrypt": "DECRYPT"
     },
     "prompts": {
         "settings_menu": "Settings",

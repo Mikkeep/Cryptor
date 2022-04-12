@@ -7,7 +7,9 @@
         "encryption_key_prompt": "Salausavain",
         "encryption_key_confirm": "Vahvista salausavain",
         "algorithm": "Algoritmi",
-        "salt": "Suola"
+        "salt": "Suola",
+        "final_encrypt": "SALAA",
+        "final_decrypt": "PURA SALAUS"
     },
     "prompts": {
         "settings_menu": "Asetukset",
