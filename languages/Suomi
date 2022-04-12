@@ -11,7 +11,7 @@
     },
     "prompts": {
         "settings_menu": "Asetukset",
-        "in_progress": "Meneillan",
+        "in_progress": "Meneillaan",
         "choose_lang": "Valitse kieli",
         "startup_lang": "Valitse kieli ohjelmalle",
         "language_selection_info": "Kieli vaihdetaan seuraavan kaynnistyksen yhteydessa",
