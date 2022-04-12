@@ -137,16 +137,6 @@ class Window(QMainWindow):
     def button_enc_f(self):
         self._encryption.button_enc_f()
 
-    # def button_choose_lang(self, language):
-    #     start_up_lang_info = self.translations["prompts"]["language_selection_info"]
-    #     self.translations = self.read_translation(self.lang_list.currentText())
-    #     print(self.lang_list.currentText())
-    #     write_used_lang(db_location, (self.lang_list.currentText(),))
-    #     msg = QMessageBox()
-    #     msg.setText(start_up_lang_info)
-    #     display = msg.exec_()
-    #     return language
-
     def button_language(self, language):
         start_up_lang_info = self.translations["prompts"]["language_selection_info"]
         print(language.text())
@@ -157,20 +147,18 @@ class Window(QMainWindow):
         return language
 
     def dark_mode_switch(self, mode):
-        toggle_mode_on = self.translations["prompts"]["dark_mode_selection_info_on"]
-        toggle_mode_off = self.translations["prompts"]["dark_mode_selection_info_off"]
         print(mode.text())
         if mode.text() == "On":
             write_used_mode(db_location, ("True",))
-            msg = QMessageBox()
-            msg.setText(toggle_mode_on)
-            display = msg.exec_()
+            with open("darkstyle.qss", "r") as f:
+                _style = f.read()
+                cryptor.setStyleSheet(_style)
             return
         else:
             write_used_mode(db_location, ("False",))
-            msg = QMessageBox()
-            msg.setText(toggle_mode_off)
-            display = msg.exec_()
+            with open("style.qss", "r") as f:
+                _style = f.read()
+                cryptor.setStyleSheet(_style)
             return
 
     def default_encrypt_window(self):
