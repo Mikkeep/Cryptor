@@ -1,5 +1,6 @@
 from Crypto.PublicKey import RSA
 from Crypto.Protocol.KDF import PBKDF2
+from Crypto.Hash import SHA256, SHA512, SHA3_512, MD5
 from Crypto.Cipher import AES, PKCS1_OAEP, ChaCha20_Poly1305
 from Crypto.Random import get_random_bytes
 
@@ -77,3 +78,27 @@ class Encryption:
         [file_out.write(x) for x in (cipher.nonce, tag, ciphertext)]
         file_out.close()
         print("File encrypted as " + "encrypted_" + filename)
+
+    def hash_with_sha256(self, plaintext):
+
+        hash = SHA256.new()
+        hash.update(plaintext.encode("utf-8"))
+        return hash.hexdigest()
+
+    def hash_with_sha512(self, plaintext):
+
+        hash = SHA512.new()
+        hash.update(plaintext.encode("utf-8"))
+        return hash.hexdigest()
+
+    def hash_with_sha3_512(self, plaintext):
+
+        hash = SHA3_512.new()
+        hash.update(plaintext.encode("utf-8"))
+        return hash.hexdigest()
+
+    def hash_with_md5(self, plaintext):
+
+        hash = MD5.new()
+        hash.update(plaintext.encode("utf-8"))
+        return hash.hexdigest()
