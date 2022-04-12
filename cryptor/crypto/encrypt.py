@@ -68,6 +68,7 @@ class Encryption:
 
         data = self.read_file(filename)
 
+        # Used key must be 32 bytes long
         cipher = ChaCha20_Poly1305.new(key=self.enc_key)
 
         ciphertext, tag = cipher.encrypt_and_digest(data)
