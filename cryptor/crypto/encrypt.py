@@ -1,7 +1,6 @@
-from Crypto.Cipher import AES
 from Crypto.PublicKey import RSA
 from Crypto.Protocol.KDF import PBKDF2
-from Crypto.Cipher import AES, PKCS1_OAEP
+from Crypto.Cipher import AES, PKCS1_OAEP, ChaCha20_Poly1305
 from Crypto.Random import get_random_bytes
 
 
@@ -64,3 +63,16 @@ class Encryption:
             for x in (enc_session_key, cipher_aes.nonce, tag, ciphertext)
         ]
         file_out.close()
+
+    def encrypt_with_chacha(self, filename):
+
+        data = self.read_file(filename)
+
+        cipher = ChaCha20_Poly1305.new(key=self.enc_key)
+
+        ciphertext, tag = cipher.encrypt_and_digest(data)
+
+        file_out = open("encrypted_" + filename, "wb")
+        [file_out.write(x) for x in (cipher.nonce, tag, ciphertext)]
+        file_out.close()
+        print("File encrypted as " + "encrypted_" + filename)

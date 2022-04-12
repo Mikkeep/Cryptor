@@ -1,7 +1,7 @@
 from Crypto.Protocol.KDF import PBKDF2
 from Crypto.Cipher import AES
 from Crypto.PublicKey import RSA
-from Crypto.Cipher import AES, PKCS1_OAEP
+from Crypto.Cipher import AES, PKCS1_OAEP, ChaCha20_Poly1305
 
 
 class Decryption:
@@ -36,7 +36,6 @@ class Decryption:
 
             nonce, tag, ciphertext = [file_in.read(x) for x in (16, 16, -1)]
 
-            # let's assume that the key is somehow available again
             cipher = AES.new(self.dec_key, AES.MODE_EAX, nonce)
             data = cipher.decrypt_and_verify(ciphertext, tag)
 
@@ -66,6 +65,25 @@ class Decryption:
             # Decrypt the data with the AES session key
             cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
             data = cipher_aes.decrypt_and_verify(ciphertext, tag)
+
+            self.write_file(filename + ".dec", data.decode())
+
+            return 0
+
+        except (ValueError, KeyError):
+            print("Failed decryption!")
+            return -1
+
+    def decrypt_with_chacha(self, filename):
+
+        try:
+            file_in = open(filename, "rb")
+
+            # Nonce is 12 bytes in default for ChaCha20_Poly1305
+            nonce, tag, ciphertext = [file_in.read(x) for x in (12, 16, -1)]
+
+            cipher = ChaCha20_Poly1305.new(key=self.dec_key, nonce=nonce)
+            data = cipher.decrypt_and_verify(ciphertext, tag)
 
             self.write_file(filename + ".dec", data.decode())
 
