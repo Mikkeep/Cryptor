@@ -1,0 +1,66 @@
+QMainWindow {
+    background-color: #384a53;
+}
+
+QWidget {
+    background-color: #384a53;
+}
+
+QTabBar::tab {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+QMenu {
+    background-color: #677780;
+}
+
+leftlayout {
+    margin: 0;
+    height: 100;
+}
+
+PasswordEdit {
+    color: #ffffff
+}
+
+QTabWidget {
+    background-color: #384a53;
+}
+
+QVBoxLayout {
+    background-color: #384a53;
+}
+
+QHBoxLayout {
+    background-color: #384a53;
+}
+
+QListWidget {
+    color: #3a3535;
+    background-color: #1c4255;
+    color: #989c9e
+}
+
+QListWidget::item:selected {
+    background-color: #205247;
+}
+
+QLabel {
+    qproperty-alignment: AlignCenter;
+}
+
+QLineEdit {
+    background-color: #3b3838;
+    padding: 15px;
+    font-size: 15px;
+}
+
+QPushButton {
+    background-color: #064858;
+    padding: 15px;
+    font-size: 15px;
+}
