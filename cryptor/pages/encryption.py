@@ -53,11 +53,11 @@ class Encrypt_page:
         return main
 
     def tab_enc_text(self):
-        self.bottom_layout = QVBoxLayout()
+        bottom_layout = QVBoxLayout()
 
-        # INSERT TEXT TO BE ENCRYPTED
+        # INSERT TEXT BOX
         self.text_insert = QLineEdit()
-        self.bottom_layout.addWidget(self.text_insert)
+        bottom_layout.addWidget(self.text_insert)
         
         # ALGORITHM DROPDOWN MENU 
         algo_trans = self.translations["buttons"]["algorithm"]
@@ -67,25 +67,25 @@ class Encrypt_page:
             self.algo_dropdown.addAction(algo)
             self.algo_dropdown.addSeparator()
         self.algo_button.setMenu(self.algo_dropdown)
-        self.bottom_layout.addWidget(self.algo_button)
+        bottom_layout.addWidget(self.algo_button)
 
         # ENCRYPTION KEY INPUT AND CONFIRM 
         self.text_box_enc_text = PasswordEdit(self)
         self.text_box_enc_text_confirm = PasswordEdit(self)
-        self.bottom_layout.addWidget(self.text_box_enc_text)
-        self.bottom_layout.addWidget(self.text_box_enc_text_confirm)
+        bottom_layout.addWidget(self.text_box_enc_text)
+        bottom_layout.addWidget(self.text_box_enc_text_confirm)
 
         # SALT INPUT
         self.salt_insert_box = PasswordEdit(self)
-        self.bottom_layout.addWidget(self.salt_insert_box)
+        bottom_layout.addWidget(self.salt_insert_box)
 
         # ENCRYPT BUTTON
         enc_trans = self.translations["buttons"]["final_encrypt"]
         self.encrypt_button = QPushButton(enc_trans)
-        self.bottom_layout.addWidget(self.encrypt_button)
+        bottom_layout.addWidget(self.encrypt_button)
         
         main = QWidget()
-        main.setLayout(self.bottom_layout)
+        main.setLayout(bottom_layout)
         return main
 
     def filedialogopen(self):
@@ -96,6 +96,8 @@ class Encrypt_page:
 
     def tab_enc_files(self):
         bottom_actions = QVBoxLayout()
+
+        # FILE BROWSE
         self.open_file_btn = QPushButton("Browse")
         self.open_file_btn.clicked.connect(self.filedialogopen)
         bottom_actions.addWidget(self.open_file_btn)
