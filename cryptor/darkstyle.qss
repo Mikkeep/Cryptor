@@ -65,8 +65,8 @@ QPushButton {
     font-size: 15px;
 }
 
-QPushButton::clicked {
-    background-color: #37cff5;
-    font-size: 20px;
+QPushButton::pressed {
+    background-color: #0e6277;
+    font-size: 15px;
     padding: 15px;
 }
