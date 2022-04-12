@@ -1,4 +1,3 @@
-from multiprocessing import connection
 import sqlite3
 from constants import *
 from sqlite3 import Error, IntegrityError
