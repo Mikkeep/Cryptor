@@ -1,13 +1,24 @@
 {
+    "labels": {
+        "browse_file_enc": "Valj en fil att kryptera:",
+        "insert_text_enc": "Infoga text som ska krypteras:",
+        "set_enc_algorithm": "Valj krypteringsalgoritm:",
+        "encryption_key_label": "Krypteringsnyckel:",
+        "encryption_key_confirm_label": "Bekrafta krypteringsnyckeln:",
+        "salt_label": "Lagg i salt:"
+    },
     "buttons": {
         "encrypt_text": "Kryptera text",
         "encrypt_files": "Kryptera filer",
         "decrypt_text": "Dekryptera text",
         "decrypt_files": "Dekryptera filer",
-        "encryption_key_prompt": "krypteringsnyckel",
-        "encryption_key_confirm": "bekräfta krypteringsnyckeln",
         "algorithm": "Algoritm",
-        "salt": "Salt"
+        "salt": "Salt",
+        "encryption_key_prompt": "Krypteringsnyckel",
+        "encryption_key_confirm": "Bekräfta krypteringsnyckeln",
+        "browse files": "Bladdra bland filer",
+        "final_encrypt": "KRYPTERA",
+        "final_decrypt": "DEKRYPTERA"
     },
     "prompts": {
         "settings_menu": "inställningar",

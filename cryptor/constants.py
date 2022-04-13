@@ -4,6 +4,7 @@ USED_LANG = "languages/current_lang.txt"
 LANG_LOCATION = "../languages/"
 IMG_LOCATION = "../images/"
 CURRENT_LANG = ""
+ENC_ALGORITHMS = ['AES', 'RSA', 'Chacha', 'SHA-256', 'SHA-512', 'SHA3-512', 'MD5']
 
 table_lang = """ CREATE TABLE LANG (
             Language VARCHAR(255) NOT NULL

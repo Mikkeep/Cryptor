@@ -6,6 +6,7 @@
 
 import sys
 import json
+from tkinter import CENTER
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui, QtCore
 from constants import *
@@ -25,39 +26,42 @@ class Window(QMainWindow):
 
         self.mdi = QMdiArea()
 
+        # init lang from db
         CURRENT_LANG = read_used_lang(db_location)
         self.translations = self.read_translation(CURRENT_LANG)
 
-        # set the title of main window
+        # set the title and icon of main window
         self.setWindowTitle(f"{__name__} v.{__version__}")
+        self.setWindowIcon(QtGui.QIcon(IMG_LOCATION + "win_icon.png"))
 
         # set the size of window
-        self.Width = 830
+        self.Width = 1200
         self.height = int(0.6 * self.Width)
         self.setFixedSize(self.Width, self.height)
+
         # center the window relative to screensize
         self.center_window()
 
         # add all widgets
-
         self.btn_1 = QPushButton("", self)
         self.btn_2 = QPushButton("", self)
         self.btn_3 = QPushButton("", self)
 
         self.btn_1.clicked.connect(self.button1)
+        self.btn_1.setDown(True) # set default tab button to pushed state on program start
         self.btn_1.setIcon(QtGui.QIcon(IMG_LOCATION + "crypt.png"))
-        self.btn_1.setIconSize(QtCore.QSize(100, 150))
+        self.btn_1.setIconSize(QtCore.QSize(200, 250))
         self.btn_2.clicked.connect(self.button2)
         self.btn_2.setIcon(QtGui.QIcon(IMG_LOCATION + "key.png"))
-        self.btn_2.setIconSize(QtCore.QSize(100, 150))
+        self.btn_2.setIconSize(QtCore.QSize(200, 250))
         self.btn_3.clicked.connect(self.button3)
         self.btn_3.setIcon(QtGui.QIcon(IMG_LOCATION + "settings.png"))
-        self.btn_3.setIconSize(QtCore.QSize(100, 150))
+        self.btn_3.setIconSize(QtCore.QSize(200, 250))
 
         # add tabs
         self._encryption = encryption.Encrypt_page(self.translations)
         self._decryption = decryption.Decrypt_page(self.translations)
-        self.tab1 = self._encryption.encryption()
+        self.tab1 = self._encryption.encryption() 
         self.tab2 = self._decryption.decryption()
         self.tab3 = settings_page.settings(self)
 
@@ -84,9 +88,6 @@ class Window(QMainWindow):
         left_widget = QWidget()
         left_widget.setLayout(left_layout)
         left_widget.setStyleSheet(
-            #                        "background-color: grey;"
-            #                        "selection-color: grey;"
-            #                        "selection-background-color: grey;"
             "padding-top: 0px;"
             "padding-bottom: 0px;"
         )
@@ -118,12 +119,25 @@ class Window(QMainWindow):
 
     def button1(self):
         self.right_widget.setCurrentIndex(0)
+       
+        self.btn_1.setDown(True)
+        self.btn_2.setDown(False)
+        self.btn_3.setDown(False)
+
 
     def button2(self):
         self.right_widget.setCurrentIndex(1)
 
+        self.btn_2.setDown(True)
+        self.btn_1.setDown(False)
+        self.btn_3.setDown(False)
+
     def button3(self):
         self.right_widget.setCurrentIndex(2)
+
+        self.btn_3.setDown(True)
+        self.btn_1.setDown(False)
+        self.btn_2.setDown(False)
 
     def button_dec_t(self):
         self._decryption.button_dec_t()
