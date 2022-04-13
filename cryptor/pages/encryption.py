@@ -53,11 +53,12 @@ class Encrypt_page:
         return main
 
     def tab_enc_text(self):
-        bottom_layout = QVBoxLayout()
+        layout = QGridLayout()
+
 
         # INSERT TEXT BOX
         self.text_insert = QLineEdit()
-        bottom_layout.addWidget(self.text_insert)
+        layout.addWidget(self.text_insert, 0, 1)
         
         # ALGORITHM DROPDOWN MENU 
         algo_trans = self.translations["buttons"]["algorithm"]
@@ -67,25 +68,26 @@ class Encrypt_page:
             self.algo_dropdown.addAction(algo)
             self.algo_dropdown.addSeparator()
         self.algo_button.setMenu(self.algo_dropdown)
-        bottom_layout.addWidget(self.algo_button)
+        layout.addWidget(self.algo_button, 1, 0)
 
         # ENCRYPTION KEY INPUT AND CONFIRM 
         self.text_box_enc_text = PasswordEdit(self)
         self.text_box_enc_text_confirm = PasswordEdit(self)
-        bottom_layout.addWidget(self.text_box_enc_text)
-        bottom_layout.addWidget(self.text_box_enc_text_confirm)
+        layout.addWidget(self.text_box_enc_text)
+        layout.addWidget(self.text_box_enc_text_confirm)
 
         # SALT INPUT
         self.salt_insert_box = PasswordEdit(self)
-        bottom_layout.addWidget(self.salt_insert_box)
+        layout.addWidget(self.salt_insert_box, 1, 2)
 
         # ENCRYPT BUTTON
         enc_trans = self.translations["buttons"]["final_encrypt"]
         self.encrypt_button = QPushButton(enc_trans)
-        bottom_layout.addWidget(self.encrypt_button)
+        layout.addWidget(self.encrypt_button, 3,1)
+
         
         main = QWidget()
-        main.setLayout(bottom_layout)
+        main.setLayout(layout)
         return main
 
     def filedialogopen(self):
