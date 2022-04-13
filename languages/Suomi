@@ -1,13 +1,22 @@
 {
+    "labels": {
+        "browse_file_enc": "Valitse salattava tiedosto:",
+        "insert_text_enc": "Syota salattava teksti:",
+        "set_enc_algorithm": "Valitse salausalgoritmi:",
+        "encryption_key_label": "Salausavain:",
+        "encryption_key_confirm_label": "Vahvista salausavain:",
+        "salt_label": "Syota suola:"
+    },
     "buttons": {
         "encrypt_text": "Salaa tekstia",
         "encrypt_files": "Salaa tiedostoja",
         "decrypt_text": "Pura tekstien salaus",
         "decrypt_files": "Pura tiedostojen salaus",
-        "encryption_key_prompt": "Salausavain",
-        "encryption_key_confirm": "Vahvista salausavain",
         "algorithm": "Algoritmi",
         "salt": "Suola",
+        "encryption_key_prompt": "Salausavain",
+        "encryption_key_confirm": "Vahvista salausavain",
+        "browse_files": "Selaa tiedostoja",
         "final_encrypt": "SALAA",
         "final_decrypt": "PURA SALAUS"
     },

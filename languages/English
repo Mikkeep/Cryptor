@@ -1,13 +1,22 @@
 {
+    "labels": {
+        "browse_file_enc": "Choose a file to encrypt:",
+        "insert_text_enc": "Insert text to encrypt:",
+        "set_enc_algorithm": "Set encryption algorithm:",
+        "encryption_key_label": "Encryption key:",
+        "encryption_key_confirm_label": "Confirm encryption key:",
+        "salt_label": "Insert encryption salt:"
+    },
     "buttons": {
         "encrypt_text": "Encrypt text",
         "encrypt_files": "Encrypt file(s)",
         "decrypt_text": "Decrypt text",
-        "decrypt_files": "Decypt file(s)",
-        "encryption_key_prompt": "Encryption key",
-        "encryption_key_confirm": "Confirm encryption key",
+        "decrypt_files": "Decrypt file(s)",
         "algorithm": "Algorithm",
         "salt": "Salt",
+        "encryption_key_prompt": "Encryption key",
+        "encryption_key_confirm": "Confirm encryption key",
+        "browse_files": "Browse files",
         "final_encrypt": "ENCRYPT",
         "final_decrypt": "DECRYPT"
     },
