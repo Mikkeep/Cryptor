@@ -60,15 +60,13 @@ class Encrypt_page:
         layout.setColumnStretch(3, 2)
 
         # INSERT TEXT BOX
-        text_to_enc_label = QLabel()
-        text_to_enc_label.setText("Insert text to encrypt:") 
+        text_to_enc_label = QLabel("Insert text to encrypt:")
         text_insert = QLineEdit()
         layout.addWidget(text_insert, 0, 1, 1, 3)
         layout.addWidget(text_to_enc_label, 0, 0)
         
         # ALGORITHM DROPDOWN MENU 
-        algo_text_label = QLabel()
-        algo_text_label.setText("Set encryption algorithm:")
+        algo_text_label = QLabel("Set encryption algorithm:")
         layout.addWidget(algo_text_label, 1, 0, 1, 1)
         algo_trans = self.translations["buttons"]["algorithm"]
         self.algo_button = QPushButton(algo_trans)
