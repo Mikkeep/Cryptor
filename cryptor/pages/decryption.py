@@ -1,8 +1,7 @@
 from PyQt5.QtWidgets import *
+from qtwidgets import PasswordEdit
 from .file_dialog import FileDialog
 from constants import ENC_ALGORITHMS
-from qtwidgets import PasswordEdit
-
 
 
 class Decrypt_page:
@@ -52,35 +51,43 @@ class Decrypt_page:
         return main
 
     def tab_dec_text(self):
-        bottom_layout = QVBoxLayout()
+        layout = QGridLayout()
+        layout.setColumnStretch(0, 1)
+        layout.setColumnStretch(1, 2)
+        layout.setColumnStretch(2, 1)
+        layout.setColumnStretch(3, 2)
 
+        # INSERT TEXT LABEL
+        text_ins_label = QLabel(self.translations["labels"]["insert_text_dec"])
+        layout.addWidget(text_ins_label, 0, 0, 1, 1)
         # INSERT TEXT BOX
-        self.text_insert = QLineEdit()
-        bottom_layout.addWidget(self.text_insert)
+        text_insert = QLineEdit()
+        layout.addWidget(text_insert, 0, 1, 1, 3)
         
+
+
         # ALGORITHM DROPDOWN MENU 
-        algo_trans = self.translations["buttons"]["algorithm"]
-        self.algo_button = QPushButton(algo_trans)
+        self.algo_button = QPushButton(self.translations["buttons"]["algorithm"])
         self.algo_dropdown = QMenu()
         for algo in ENC_ALGORITHMS:
             self.algo_dropdown.addAction(algo)
             self.algo_dropdown.addSeparator()
         self.algo_button.setMenu(self.algo_dropdown)
-        bottom_layout.addWidget(self.algo_button)
+        layout.addWidget(self.algo_button)
 
         # ENCRYPTION KEY INPUT AND CONFIRM 
         self.text_box_dec_text = PasswordEdit(self)
         #self.text_box_dec_text_confirm = PasswordEdit(self)
-        bottom_layout.addWidget(self.text_box_dec_text)
+        layout.addWidget(self.text_box_dec_text)
         #bottom_layout.addWidget(self.text_box_dec_text_confirm)
 
         # DECRYPT BUTTON
         dec_trans = self.translations["buttons"]["final_decrypt"]
         self.decrypt_button = QPushButton(dec_trans)
-        bottom_layout.addWidget(self.decrypt_button)
+        layout.addWidget(self.decrypt_button)
         
         main = QWidget()
-        main.setLayout(bottom_layout)
+        main.setLayout(layout)
         return main
 
     def filedialogopen(self):

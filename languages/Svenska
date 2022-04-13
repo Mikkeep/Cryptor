@@ -2,6 +2,8 @@
     "labels": {
         "browse_file_enc": "Valj en fil att kryptera:",
         "insert_text_enc": "Infoga text som ska krypteras:",
+        "insert_text_dec": "Infoga text för att dekryptera:",
+        "insert_file_dec": "Valj en fil at dekryptera:",
         "set_enc_algorithm": "Valj krypteringsalgoritm:",
         "encryption_key_label": "Krypteringsnyckel:",
         "encryption_key_confirm_label": "Bekrafta krypteringsnyckeln:",

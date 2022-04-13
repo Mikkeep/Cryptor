@@ -2,6 +2,8 @@
     "labels": {
         "browse_file_enc": "Choose a file to encrypt:",
         "insert_text_enc": "Insert text to encrypt:",
+        "insert_text_dec": "Insert text to decrypt:",
+        "insert_file_dec": "Choose a file to decrypt:",
         "set_enc_algorithm": "Set encryption algorithm:",
         "encryption_key_label": "Encryption key:",
         "encryption_key_confirm_label": "Confirm encryption key:",

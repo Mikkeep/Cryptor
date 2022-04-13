@@ -2,6 +2,8 @@
     "labels": {
         "browse_file_enc": "Valitse salattava tiedosto:",
         "insert_text_enc": "Syota salattava teksti:",
+        "insert_text_dec": "Syota purettava salattu teksti:",
+        "insert_file_dec": "Valitse purettavaksi salattu tiedosto:",
         "set_enc_algorithm": "Valitse salausalgoritmi:",
         "encryption_key_label": "Salausavain:",
         "encryption_key_confirm_label": "Vahvista salausavain:",
