@@ -55,17 +55,21 @@ class Encrypt_page:
     def tab_enc_text(self):
         layout = QGridLayout()
         layout.setColumnStretch(0, 1)
-        layout.setColumnStretch(1, 1)
+        layout.setColumnStretch(1, 2)
         layout.setColumnStretch(2, 1)
+        layout.setColumnStretch(3, 2)
 
         # INSERT TEXT BOX
         text_to_enc_label = QLabel()
         text_to_enc_label.setText("Insert text to encrypt:") 
         text_insert = QLineEdit()
-        layout.addWidget(text_insert, 0, 1, 1, 2)
+        layout.addWidget(text_insert, 0, 1, 1, 3)
         layout.addWidget(text_to_enc_label, 0, 0)
         
         # ALGORITHM DROPDOWN MENU 
+        algo_text_label = QLabel()
+        algo_text_label.setText("Set encryption algorithm:")
+        layout.addWidget(algo_text_label, 1, 0, 1, 1)
         algo_trans = self.translations["buttons"]["algorithm"]
         self.algo_button = QPushButton(algo_trans)
         self.algo_dropdown = QMenu()
@@ -73,22 +77,28 @@ class Encrypt_page:
             self.algo_dropdown.addAction(algo)
             self.algo_dropdown.addSeparator()
         self.algo_button.setMenu(self.algo_dropdown)
-        layout.addWidget(self.algo_button, 4, 0)
+        layout.addWidget(self.algo_button, 1, 1, 1, 3)
 
         # ENCRYPTION KEY INPUT AND CONFIRM 
+        enc_text_label = QLabel("Set encryption key:")
+        enc_conf_label = QLabel("Confirm key:")
         self.text_box_enc_text = PasswordEdit(self)
         self.text_box_enc_text_confirm = PasswordEdit(self)
-        layout.addWidget(self.text_box_enc_text, 3, 1)
-        layout.addWidget(self.text_box_enc_text_confirm, 5, 1)
+        layout.addWidget(enc_text_label, 2, 0, 1, 1)
+        layout.addWidget(self.text_box_enc_text, 2, 1)
+        layout.addWidget(enc_conf_label, 2, 2)
+        layout.addWidget(self.text_box_enc_text_confirm, 2, 3)
 
         # SALT INPUT
+        salt_label = QLabel("Insert encryption salt:")
         self.salt_insert_box = PasswordEdit(self)
-        layout.addWidget(self.salt_insert_box, 4, 2)
+        layout.addWidget(salt_label, 3, 0, 1, 1)
+        layout.addWidget(self.salt_insert_box, 3, 1, 1, 3)
 
         # ENCRYPT BUTTON
         enc_trans = self.translations["buttons"]["final_encrypt"]
         self.encrypt_button = QPushButton(enc_trans)
-        layout.addWidget(self.encrypt_button, 6, 0)
+        layout.addWidget(self.encrypt_button, 4, 0, 1, 4)
         main = QWidget()
         main.setLayout(layout)
         return main
