@@ -14,6 +14,10 @@ QTabBar::tab {
     border: none;
 }
 
+QTabBar::tab:selected {
+    background: #4b4747
+}
+
 QMenu {
     background-color: #677780;
 }

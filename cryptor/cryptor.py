@@ -12,6 +12,7 @@ from constants import *
 from utils import *
 from pages import settings, encryption, decryption, settings_page
 
+
 __author__ = "Mikael Pennanen & Juho Bruun"
 __version__ = "1.0"
 __name__ = "Cryptor"
