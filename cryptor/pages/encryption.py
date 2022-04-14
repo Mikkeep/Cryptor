@@ -165,12 +165,12 @@ class Encrypt_page:
         enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
         enc_conf_label = QLabel(self.translations["labels"]["encryption_key_confirm_label"])
         layout.addWidget(enc_text_label, 2, 0, 1, 1)
-        layout.addWidget(enc_conf_label, 2, 2)
+        layout.addWidget(enc_conf_label, 2, 2, 1, 1)
         # ENCRYPTION KEY INPUT AND CONFIRM 
         text_box_enc_text = PasswordEdit()
         text_box_enc_text_confirm = PasswordEdit()
-        layout.addWidget(text_box_enc_text, 2, 1)
-        layout.addWidget(text_box_enc_text_confirm, 2, 3)
+        layout.addWidget(text_box_enc_text, 2, 1, 1, 1)
+        layout.addWidget(text_box_enc_text_confirm, 2, 3, 1, 1)
 
         # SALT INPUT LABEL
         salt_label = QLabel(self.translations["labels"]["salt_label"])
