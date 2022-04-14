@@ -71,7 +71,7 @@ class Encrypt_page:
 
         # INSERT TEXT LABEL
         text_to_enc_label = QLabel(self.translations["labels"]["insert_text_enc"])
-        layout.addWidget(text_to_enc_label, 0, 0)
+        layout.addWidget(text_to_enc_label, 0, 0, 1, 1)
         # INSERT TEXT BOX
         text_insert = QLineEdit()
         layout.addWidget(text_insert, 0, 1, 1, 3)
@@ -88,7 +88,7 @@ class Encrypt_page:
             algo_dropdown.addSeparator()
         algo_button.setMenu(algo_dropdown)
         layout.addWidget(algo_button, 1, 1, 1, 3)
-
+        
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
         enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
         enc_conf_label = QLabel(self.translations["labels"]["encryption_key_confirm_label"])
