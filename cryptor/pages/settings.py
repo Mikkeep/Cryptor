@@ -9,15 +9,18 @@ class SettingsWindow(QWidget):
         super().__init__()
         layout = QVBoxLayout()
         self.chosen_algo = ""
+        self.chosen_hash = ""
         self.chosen_salt = ""
         self.chosen_key = ""
         self.settings_translate = translation
         enc_key = self.settings_translate["buttons"]["encryption_key_prompt"]
         enc_key_confirm = self.settings_translate["buttons"]["encryption_key_confirm"]
         algorithm = self.settings_translate["buttons"]["algorithm"]
+        hash = self.settings_translate["buttons"]["hash"]
         salt = self.settings_translate["buttons"]["salt"]
         close_btn = self.settings_translate["prompts"]["close_button"]
 
+        self.hash = QPushButton(hash)
         self.algorithm = QPushButton(algorithm)
         self.text_box_salt = PasswordEdit(self)
         self.text_box_salt.setPlaceholderText(salt)
@@ -27,6 +30,7 @@ class SettingsWindow(QWidget):
         self.text_box_enc_text_confirm.setPlaceholderText(enc_key_confirm)
         self.close_button = QPushButton(close_btn)
         self.close_button.clicked.connect(self.close_settings)
+        # Define Hash functions menu
         self.menu = QMenu(self)
         self.menu.addAction("MD5")
         self.menu.addSeparator()
@@ -35,8 +39,18 @@ class SettingsWindow(QWidget):
         self.menu.addAction("SHA-512")
         self.menu.addSeparator()
         self.menu.addAction("SHA3-512")
-        self.algorithm.setMenu(self.menu)
-        self.menu.triggered.connect(self.algorithms)
+        self.hash.setMenu(self.menu)
+        self.menu.triggered.connect(self.hashes)
+        # Define Algorithms functions menu
+        self.menu_algo = QMenu(self)
+        self.menu_algo.addAction("ChaCha20")
+        self.menu_algo.addSeparator()
+        self.menu_algo.addAction("RSA")
+        self.menu_algo.addSeparator()
+        self.menu_algo.addAction("AES")
+        self.algorithm.setMenu(self.menu_algo)
+        self.menu_algo.triggered.connect(self.algorithms)
+        layout.addWidget(self.hash)
         layout.addWidget(self.algorithm)
         #        layout.addWidget(self.salt)
         layout.addWidget(self.text_box_salt)
@@ -46,7 +60,7 @@ class SettingsWindow(QWidget):
         layout.addWidget(self.close_button)
         self.setLayout(layout)
 
-        self.Width = 570
+        self.Width = 670
         self.height = int(0.6 * self.Width)
         self.setFixedSize(self.Width, self.height)
         # center the window relative to screensize
@@ -54,6 +68,11 @@ class SettingsWindow(QWidget):
         centerOfScreen = QDesktopWidget().availableGeometry().center()
         centering.moveCenter(centerOfScreen)
         self.move(centering.topLeft())
+
+    def hashes(self, language):
+        self.chosen_hash = language.text()
+        print(language.text())
+        return language
 
     def algorithms(self, language):
         self.chosen_algo = language.text()
