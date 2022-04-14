@@ -63,28 +63,29 @@ class Decrypt_page:
         # INSERT TEXT BOX
         text_insert = QLineEdit()
         layout.addWidget(text_insert, 0, 1, 1, 3)
-        
 
-
+        # ALGORITHM LABEL
+        algo_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
+        layout.addWidget(algo_label, 1, 0, 1, 1)
         # ALGORITHM DROPDOWN MENU 
-        self.algo_button = QPushButton(self.translations["buttons"]["algorithm"])
-        self.algo_dropdown = QMenu()
+        algo_button = QPushButton(self.translations["buttons"]["algorithm"])
+        algo_dropdown = QMenu()
         for algo in ENC_ALGORITHMS:
-            self.algo_dropdown.addAction(algo)
-            self.algo_dropdown.addSeparator()
-        self.algo_button.setMenu(self.algo_dropdown)
-        layout.addWidget(self.algo_button)
+            algo_dropdown.addAction(algo)
+            algo_dropdown.addSeparator()
+        algo_button.setMenu(algo_dropdown)
+        layout.addWidget(algo_button, 1, 1, 1, 3)
 
-        # ENCRYPTION KEY INPUT AND CONFIRM 
-        self.text_box_dec_text = PasswordEdit(self)
-        #self.text_box_dec_text_confirm = PasswordEdit(self)
-        layout.addWidget(self.text_box_dec_text)
-        #bottom_layout.addWidget(self.text_box_dec_text_confirm)
+        # ENCRYPTION KEY LABEL
+        enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
+        layout.addWidget(enc_key_label, 2, 0, 1, 1)
+        # ENCRYPTION KEY INPUT 
+        text_box_dec_text = PasswordEdit()
+        layout.addWidget(text_box_dec_text, 2, 1, 1, 3)
 
         # DECRYPT BUTTON
-        dec_trans = self.translations["buttons"]["final_decrypt"]
-        self.decrypt_button = QPushButton(dec_trans)
-        layout.addWidget(self.decrypt_button)
+        decrypt_button = QPushButton(self.translations["buttons"]["final_decrypt"])
+        layout.addWidget(decrypt_button, 3, 0, 1, 4)
         
         main = QWidget()
         main.setLayout(layout)
@@ -97,34 +98,43 @@ class Decrypt_page:
         self._save = FileDialog().fileSave()
 
     def tab_dec_files(self):
-        bottom_layout = QVBoxLayout()
+        layout = QGridLayout()
+        layout.setColumnStretch(0, 1)
+        layout.setColumnStretch(1, 2)
+        layout.setColumnStretch(2, 1)
+        layout.setColumnStretch(3, 2)
 
+        # FILE BROWSE LABEL
+        open_file_label = QLabel(self.translations["labels"]["insert_file_dec"])
+        layout.addWidget(open_file_label, 0, 0, 1, 1)
 		# FILE BROWSE
-        self.open_file_btn = QPushButton("Browse")
-        self.open_file_btn.clicked.connect(self.filedialogopen)
-        bottom_layout.addWidget(self.open_file_btn)
+        open_file_btn = QPushButton(self.translations["buttons"]["browse_files"])
+        open_file_btn.clicked.connect(self.filedialogopen)
+        layout.addWidget(open_file_btn, 0, 1, 1, 3)
         
+        # ALGORITHM LABEL
+        algo_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
+        layout.addWidget(algo_label, 1, 0, 1, 1)
         # ALGORITHM DROPDOWN MENU 
-        algo_trans = self.translations["buttons"]["algorithm"]
-        self.algo_button = QPushButton(algo_trans)
-        self.algo_dropdown = QMenu()
+        algo_button = QPushButton(self.translations["buttons"]["algorithm"])
+        algo_dropdown = QMenu()
         for algo in ENC_ALGORITHMS:
-            self.algo_dropdown.addAction(algo)
-            self.algo_dropdown.addSeparator()
-        self.algo_button.setMenu(self.algo_dropdown)
-        bottom_layout.addWidget(self.algo_button)
+            algo_dropdown.addAction(algo)
+            algo_dropdown.addSeparator()
+        algo_button.setMenu(algo_dropdown)
+        layout.addWidget(algo_button, 1, 1, 1, 3)
 
-        # ENCRYPTION KEY INPUT AND CONFIRM 
-        self.text_box_dec_text = PasswordEdit(self)
-        #self.text_box_dec_text_confirm = PasswordEdit(self)
-        bottom_layout.addWidget(self.text_box_dec_text)
-        #bottom_layout.addWidget(self.text_box_dec_text_confirm)
+        # ENCRYPTION KEY LABEL
+        enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
+        layout.addWidget(enc_key_label, 2, 0, 1, 1)
+        # ENCRYPTION KEY INPUT 
+        text_box_dec_text = PasswordEdit()
+        layout.addWidget(text_box_dec_text, 2, 1, 1, 3)
 
         # DECRYPT BUTTON
-        dec_trans = self.translations["buttons"]["final_decrypt"]
-        self.decrypt_button = QPushButton(dec_trans)
-        bottom_layout.addWidget(self.decrypt_button)
+        decrypt_button = QPushButton(self.translations["buttons"]["final_decrypt"])
+        layout.addWidget(decrypt_button, 3, 0, 1, 4)
         
         main = QWidget()
-        main.setLayout(bottom_layout)
+        main.setLayout(layout)
         return main
