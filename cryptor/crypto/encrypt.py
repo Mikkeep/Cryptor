@@ -21,7 +21,7 @@ class Encryption:
             plaintext = file.read()
             return plaintext
 
-    def encrypt_with_aes(self, filename):
+    def encrypt_with_aes(self, filename, fileout):
 
         data = self.read_file(filename)
 
@@ -29,10 +29,10 @@ class Encryption:
         # MAC tag is used for authentication of the encrypted file/text
         ciphertext, tag = cipher.encrypt_and_digest(data)
 
-        file_out = open("encrypted_" + filename, "wb")
+        file_out = open("encrypted_" + fileout, "wb")
         [file_out.write(x) for x in (cipher.nonce, tag, ciphertext)]
         file_out.close()
-        print("File encrypted as " + "encrypted_" + filename)
+        print("File encrypted as " + "encrypted_" + fileout)
 
     def encrypt_with_rsa(self, filename, pub_key=None):
 
