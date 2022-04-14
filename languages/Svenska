@@ -13,6 +13,7 @@
         "decrypt_text": "Dekryptera text",
         "decrypt_files": "Dekryptera filer",
         "algorithm": "Algoritm",
+        "hash": "Hashfunktion",
         "salt": "Salt",
         "encryption_key_prompt": "Krypteringsnyckel",
         "encryption_key_confirm": "Bekräfta krypteringsnyckeln",

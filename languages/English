@@ -13,6 +13,7 @@
         "decrypt_text": "Decrypt text",
         "decrypt_files": "Decrypt file(s)",
         "algorithm": "Algorithm",
+        "hash": "Hashing function",
         "salt": "Salt",
         "encryption_key_prompt": "Encryption key",
         "encryption_key_confirm": "Confirm encryption key",
