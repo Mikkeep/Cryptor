@@ -6,7 +6,6 @@
 
 import sys
 import json
-from tkinter import CENTER
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui, QtCore
 from constants import *
