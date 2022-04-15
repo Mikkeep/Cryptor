@@ -116,25 +116,12 @@ class Window(QMainWindow):
 
     def button1(self):
         self.right_widget.setCurrentIndex(0)
-       
-        self.btn_1.setDown(True)
-        self.btn_2.setDown(False)
-        self.btn_3.setDown(False)
-
 
     def button2(self):
         self.right_widget.setCurrentIndex(1)
 
-        self.btn_2.setDown(True)
-        self.btn_1.setDown(False)
-        self.btn_3.setDown(False)
-
     def button3(self):
         self.right_widget.setCurrentIndex(2)
-
-        self.btn_3.setDown(True)
-        self.btn_1.setDown(False)
-        self.btn_2.setDown(False)
 
     def button_dec_t(self):
         self._decryption.button_dec_t()
@@ -197,7 +184,7 @@ if used_mode == "False":
         _style = f.read()
         cryptor.setStyleSheet(_style)
 
-if used_mode == "True":
+else:
     with open("darkstyle.qss", "r") as f:
         _style = f.read()
         cryptor.setStyleSheet(_style)

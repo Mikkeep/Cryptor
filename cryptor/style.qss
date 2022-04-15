@@ -23,19 +23,15 @@ QListWidget {
 QListWidget::item:selected {
     background-color: #2ABf9E;
 }
-/*
-QLabel {
-    qproperty-alignment: AlignCenter;
-}
-*/
+
 QLineEdit {
     background-color: #ebf0f1;
     padding: 15px;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 QPushButton {
     background-color: #2899b6;
     padding: 15px;
-    font-size: 15px;
+    font-size: 26px;
 }
