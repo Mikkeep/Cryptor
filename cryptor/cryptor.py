@@ -6,12 +6,12 @@
 
 import sys
 import json
-from tkinter import CENTER
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui, QtCore
 from constants import *
 from utils import *
 from pages import settings, encryption, decryption, settings_page
+
 
 __author__ = "Mikael Pennanen & Juho Bruun"
 __version__ = "1.0"

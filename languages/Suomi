@@ -15,6 +15,7 @@
         "decrypt_text": "Pura tekstien salaus",
         "decrypt_files": "Pura tiedostojen salaus",
         "algorithm": "Algoritmi",
+        "hash": "Hajautusalgoritmi",
         "salt": "Suola",
         "encryption_key_prompt": "Salausavain",
         "encryption_key_confirm": "Vahvista salausavain",
