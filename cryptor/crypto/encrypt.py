@@ -34,20 +34,33 @@ class Encryption:
         file_out.close()
         print("File encrypted as " + "encrypted_" + fileout)
 
-    def encrypt_with_rsa(self, filename, pub_key=None):
+    def encrypt_with_rsa(self, filename, fileout, pub_key=None):
 
         data = self.read_file(filename)
 
         if pub_key == None:
-            from generate_key import key_generator
 
-            generator = key_generator()
-            generator.generate_public_key()
-            generator.generate_private_key()
-            print("Generated public and private key pair for RSA encryption")
-            pub_key = generator.default_pub
+            try:
+                # Read both for confirmation they exist
+                self.read_file("public.pem")
+                self.read_file("private.pem")
+                print("Found existing RSA key pair")
+                pub_key = "public.pem"
 
-        file_out = open("encrypted_" + filename, "wb")
+            # If not found handle the error by generating new AES key pair
+            except FileNotFoundError:
+
+                print("Existing RSA key pair not found")
+
+                from .generate_key import key_generator
+
+                generator = key_generator()
+                generator.generate_public_key()
+                generator.generate_private_key()
+                print("Generated public and private key pair for RSA encryption")
+                pub_key = generator.default_pub
+
+        file_out = open("encrypted_" + fileout, "wb")
         public_key = RSA.import_key(open(pub_key).read())
         # Session key generation, encrypts data symmetrically
         session_key = get_random_bytes(16)
@@ -64,8 +77,9 @@ class Encryption:
             for x in (enc_session_key, cipher_aes.nonce, tag, ciphertext)
         ]
         file_out.close()
+        print("File encrypted as " + "encrypted_" + fileout)
 
-    def encrypt_with_chacha(self, filename):
+    def encrypt_with_chacha(self, filename, fileout):
 
         data = self.read_file(filename)
 
@@ -74,10 +88,10 @@ class Encryption:
 
         ciphertext, tag = cipher.encrypt_and_digest(data)
 
-        file_out = open("encrypted_" + filename, "wb")
+        file_out = open("encrypted_" + fileout, "wb")
         [file_out.write(x) for x in (cipher.nonce, tag, ciphertext)]
         file_out.close()
-        print("File encrypted as " + "encrypted_" + filename)
+        print("File encrypted as " + "encrypted_" + fileout)
 
     def hash_with_sha256(self, plaintext):
 
