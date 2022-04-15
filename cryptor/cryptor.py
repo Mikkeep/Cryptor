@@ -1,8 +1,5 @@
-#!/usr/bin/env python3
-
 """Cryptor is a program made to handle encryption and
     decryption of files."""
-
 
 import sys
 import json
