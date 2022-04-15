@@ -78,7 +78,7 @@ class Encrypt_page:
 
         # INSERT TEXT LABEL
         text_to_enc_label = QLabel(self.translations["labels"]["insert_text_enc"])
-        layout.addWidget(text_to_enc_label, 0, 0)
+        layout.addWidget(text_to_enc_label, 0, 0, 1, 1)
         # INSERT TEXT BOX
         text_insert = QLineEdit()
         layout.addWidget(text_insert, 0, 1, 1, 3)
@@ -221,13 +221,15 @@ class Encrypt_page:
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
         enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
         enc_conf_label = QLabel(self.translations["labels"]["encryption_key_confirm_label"])
+
         self.layout.addWidget(enc_text_label, 2, 0, 1, 1)
-        self.layout.addWidget(enc_conf_label, 2, 2)
+        self.layout.addWidget(enc_conf_label, 2, 2, 1, 1)
         # ENCRYPTION KEY INPUT AND CONFIRM 
         self.text_box_enc_text = PasswordEdit()
         self.text_box_enc_text_confirm = PasswordEdit()
-        self.layout.addWidget(self.text_box_enc_text, 2, 1)
-        self.layout.addWidget(self.text_box_enc_text_confirm, 2, 3)
+        self.layout.addWidget(self.text_box_enc_text, 2, 1, 1, 1)
+        self.layout.addWidget(self.text_box_enc_text_confirm, 2, 3, 1, 1)
+
 
         # SALT INPUT LABEL
         salt_label = QLabel(self.translations["labels"]["salt_label"])

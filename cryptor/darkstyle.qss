@@ -53,9 +53,9 @@ QListWidget::item:selected {
     background-color: #205247;
 }
 
-QLabel {
+/*QLabel {
     qproperty-alignment: AlignCenter;
-}
+}*/
 
 QLineEdit {
     background-color: #3b3838;

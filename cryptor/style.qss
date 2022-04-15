@@ -23,11 +23,11 @@ QListWidget {
 QListWidget::item:selected {
     background-color: #2ABf9E;
 }
-
+/*
 QLabel {
     qproperty-alignment: AlignCenter;
 }
-
+*/
 QLineEdit {
     background-color: #ebf0f1;
     padding: 15px;
