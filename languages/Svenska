@@ -17,9 +17,9 @@
         "salt": "Salt",
         "encryption_key_prompt": "Krypteringsnyckel",
         "encryption_key_confirm": "Bekräfta krypteringsnyckeln",
-        "browse files": "Bladdra bland filer",
+        "browse_files": "Bladdra bland filer",
         "final_encrypt": "KRYPTERA",
-        "final_decrypt": "DEKRYPTERA"
+        "final_decrypt": "DEKRYPTERA",
     },
     "prompts": {
         "settings_menu": "inställningar",
