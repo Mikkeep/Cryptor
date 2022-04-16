@@ -50,5 +50,13 @@ QPushButton::pressed {
 }
 
 QMenu {
-    width: 500px;
+    margin: 2px;
+}
+
+QMenu::item {
+    padding: 2px 25px 2px 20px;
+    border: 1px solid transparent; /* reserve space for selection border */
+    width: 200px;
+    font-size: 20px;
+    padding-left: 200px;
 }

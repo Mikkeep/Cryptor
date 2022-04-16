@@ -16,7 +16,7 @@ QTabBar::tab {
 }
 
 QTabBar::tab:selected {
-    background: #4b4747
+    background: #4b4747;
 }
 
 QMenu {
@@ -31,7 +31,7 @@ leftlayout {
 }
 
 PasswordEdit {
-    color: #ffffff
+    color: #ffffff;
 }
 
 QTabWidget {
@@ -86,8 +86,6 @@ QPushButton::pressed {
     border-radius: 4px;
 }
 
-
-
 QMenu {
     background-color: #0e6277;
     margin: 2px; /* some spacing around the menu */
@@ -96,8 +94,9 @@ QMenu {
 QMenu::item {
     padding: 2px 25px 2px 20px;
     border: 1px solid transparent; /* reserve space for selection border */
-    width: 500px;
+    width: 200px;
     font-size: 20px;
+    padding-left: 200px;
 }
 
 QMenu::item:selected {
