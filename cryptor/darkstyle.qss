@@ -1,9 +1,10 @@
 QMainWindow {
-    background-color: #384a53;
+    background-color: #29363c;
+    border: none;
 }
 
 QWidget {
-    background-color: #384a53;
+    background-color: #29363c;
 }
 
 QTabBar::tab {
@@ -53,6 +54,7 @@ QListWidget {
 
 QListWidget::item:selected {
     background-color: #205247;
+    font: bold;
 }
 
 QLabel {
@@ -71,12 +73,17 @@ QPushButton {
     padding: 15px;
     font-size: 26px;
     color:#ffffff;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 4px;
+    border-color: #04343f;
 }
 
 QPushButton::pressed {
     background-color: #0e6277;
-    font-size: 26px;
-    padding: 15px;
+    border-style: inset;
+    border-width: 2px;
+    border-radius: 4px;
 }
 
 
@@ -96,6 +103,7 @@ QMenu::item {
 QMenu::item:selected {
     border-color: darkblue;
     background: rgba(100, 100, 100, 150);
+    font: bold;
 }
 
 QMenu::separator {
@@ -106,6 +114,6 @@ QMenu::separator {
 }
 
 QMenu::indicator {
-    width: 13px;
-    height: 13px;
+    width: 16px;
+    height: 16px;
 }

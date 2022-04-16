@@ -94,7 +94,6 @@ class Encrypt_page:
             self.algo_dropdown.addAction(algo)
             self.algo_dropdown.addSeparator()      
         self.algo_button.setMenu(self.algo_dropdown)
-        self.algo_button.menu().setStyleSheet("QMenu { width: 462 }")
         self.algo_dropdown.triggered.connect(self.algorithms)
         layout.addWidget(self.algo_button, 1, 1, 1, 3)
 
@@ -213,7 +212,6 @@ class Encrypt_page:
             self.algo_dropdown.addAction(algo)
             self.algo_dropdown.addSeparator()
         self.algo_button.setMenu(self.algo_dropdown)
-        self.algo_button.menu().setStyleSheet("QMenu { width: 458px }")
         self.algo_dropdown.triggered.connect(self.algorithms)
 #        if self.algo_dropdown.triggered:
 #            self.algo_button.setText(self.chosen_algo)

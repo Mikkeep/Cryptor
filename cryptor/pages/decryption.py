@@ -83,7 +83,6 @@ class Decrypt_page:
         for algo in ENC_ALGORITHMS:
             algo_dropdown.addAction(algo)
             algo_dropdown.addSeparator()
-        algo_dropdown.setStyleSheet("width: 462px;")
         algo_button.setMenu(algo_dropdown)
         layout.addWidget(algo_button, 1, 1, 1, 3)
 
@@ -136,7 +135,6 @@ class Decrypt_page:
         for algo in ENC_ALGORITHMS:
             algo_dropdown.addAction(algo)
             algo_dropdown.addSeparator()
-        algo_dropdown.setStyleSheet("width: 462px;")
         algo_button.setMenu(algo_dropdown)
         layout.addWidget(algo_button, 1, 1, 1, 3)
 

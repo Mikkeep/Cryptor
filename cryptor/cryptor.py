@@ -84,10 +84,6 @@ class Window(QMainWindow):
         left_layout.setSpacing(0)
         left_widget = QWidget()
         left_widget.setLayout(left_layout)
-        left_widget.setStyleSheet(
-            "padding-top: 0px;"
-            "padding-bottom: 0px;"
-        )
 
         self.right_widget = QTabWidget()
         self.right_widget.tabBar().setObjectName("mainTab")
@@ -144,9 +140,10 @@ class Window(QMainWindow):
         display = msg.exec_()
         return language
 
-    def dark_mode_switch(self, mode):
-        print(mode.text())
-        if mode.text() == "On":
+    def dark_mode_switch(self):
+        mode = check_dark_mode(db_location)
+        print(mode)
+        if mode == "False":
             write_used_mode(db_location, ("True",))
             with open("darkstyle.qss", "r") as f:
                 _style = f.read()
