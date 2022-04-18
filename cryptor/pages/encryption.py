@@ -1,9 +1,11 @@
 import os
 from PyQt5.QtWidgets import *
+from constants import *
 from qtwidgets import PasswordEdit
 from .file_dialog import FileDialog
 from constants import ENC_ALGORITHMS, ENC_ALGORITHMS_FILES
 from crypto import encrypt
+from utils import check_encryption_defaults
 
 
 class Encrypt_page:
@@ -14,6 +16,7 @@ class Encrypt_page:
         self.salt = ""
         self.enc_key = ""
         self.chosen_algo = ""
+        self.defaults = check_encryption_defaults(db_location)
 
     def button_enc_t(self):
         self.bottom_widget.setCurrentIndex(0)
@@ -95,6 +98,8 @@ class Encrypt_page:
             self.algo_dropdown.addSeparator()
         self.algo_button_ttab.setMenu(self.algo_dropdown)
         self.algo_dropdown.triggered.connect(self.algorithms_text)
+        if self.defaults["default_hash"] != "":
+            self.algo_button_ttab.setText(self.defaults["default_hash"])
         layout.addWidget(self.algo_button_ttab, 1, 1, 1, 3)
 
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
@@ -106,7 +111,11 @@ class Encrypt_page:
         layout.addWidget(enc_conf_label, 2, 2)
         # ENCRYPTION KEY INPUT AND CONFIRM
         self.text_box_enc_text_ttab = PasswordEdit()
+        if self.defaults["default_key"] != "":
+            self.text_box_enc_text_ttab.setText(self.defaults["default_key"])
         self.text_box_enc_text_confirm_ttab = PasswordEdit()
+        if self.defaults["default_key"] != "":
+            self.text_box_enc_text_confirm_ttab.setText(self.defaults["default_key"])
         layout.addWidget(self.text_box_enc_text_ttab, 2, 1)
         layout.addWidget(self.text_box_enc_text_confirm_ttab, 2, 3)
 
@@ -115,6 +124,8 @@ class Encrypt_page:
         layout.addWidget(salt_label, 3, 0, 1, 1)
         # SALT INPUT
         self.salt_insert_box_ttab = PasswordEdit()
+        if self.defaults["default_salt"] != "":
+            self.salt_insert_box_ttab.setText(self.defaults["default_salt"])
         layout.addWidget(self.salt_insert_box_ttab, 3, 1, 1, 3)
 
         # ENCRYPT BUTTON
@@ -251,6 +262,8 @@ class Encrypt_page:
             self.algo_dropdown.addSeparator()
         self.algo_button.setMenu(self.algo_dropdown)
         self.algo_dropdown.triggered.connect(self.algorithms)
+        if self.defaults["default_algo"] != "":
+            self.algo_button.setText(self.defaults["default_algo"])
         #        if self.algo_dropdown.triggered:
         #            self.algo_button.setText(self.chosen_algo)
         #            self.layout.update()
@@ -266,7 +279,11 @@ class Encrypt_page:
         self.layout.addWidget(enc_conf_label, 2, 2, 1, 1)
         # ENCRYPTION KEY INPUT AND CONFIRM
         self.text_box_enc_text = PasswordEdit()
+        if self.defaults["default_key"] != "":
+            self.text_box_enc_text.setText(self.defaults["default_key"])
         self.text_box_enc_text_confirm = PasswordEdit()
+        if self.defaults["default_key"] != "":
+            self.text_box_enc_text_confirm.setText(self.defaults["default_key"])
         self.layout.addWidget(self.text_box_enc_text, 2, 1, 1, 1)
         self.layout.addWidget(self.text_box_enc_text_confirm, 2, 3, 1, 1)
 
@@ -275,6 +292,8 @@ class Encrypt_page:
         self.layout.addWidget(salt_label, 3, 0, 1, 1)
         # SALT INPUT
         self.salt_insert_box = PasswordEdit()
+        if self.defaults["default_salt"] != "":
+            self.salt_insert_box.setText(self.defaults["default_salt"])
         self.layout.addWidget(self.salt_insert_box, 3, 1, 1, 3)
 
         # ENCRYPT BUTTON
