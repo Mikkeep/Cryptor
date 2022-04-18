@@ -99,15 +99,15 @@ class Window(QMainWindow):
         self.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
         self.right_layout.resize(200, self.height)
 
-        main_layout = QHBoxLayout()
-        main_layout.addWidget(left_widget)
-        main_layout.addWidget(self.right_widget)
-        main_layout.addWidget(self.right_layout)
-        main_layout.setStretch(0, 40)
-        main_layout.setStretch(1, 200)
-        main_layout.setStretch(2, 40)
+        self.main_layout = QHBoxLayout()
+        self.main_layout.addWidget(left_widget)
+        self.main_layout.addWidget(self.right_widget)
+        self.main_layout.addWidget(self.right_layout)
+        self.main_layout.setStretch(0, 40)
+        self.main_layout.setStretch(1, 200)
+        self.main_layout.setStretch(2, 40)
         main_widget = QWidget()
-        main_widget.setLayout(main_layout)
+        main_widget.setLayout(self.main_layout)
         self.setCentralWidget(main_widget)
 
     def button1(self):
