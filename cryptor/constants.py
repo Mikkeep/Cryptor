@@ -30,3 +30,19 @@ insert_to_mode = """ INSERT INTO MODE VALUES (
 read_from_mode = """SELECT * FROM MODE;"""
 
 read_mode = """SELECT DARKMODE FROM MODE;"""
+
+table_encrypt = """ CREATE TABLE ENCRYPTION (
+                        Hash VARCHAR(100),
+                        Algorithm VARCHAR(100),
+                        Salt VARCHAR(255),
+                        Key VARCHAR(4096)
+                        ); """
+
+insert_to_encrypt = """ INSERT INTO ENCRYPTION VALUES (
+                                '',
+                                '',
+                                '',
+                                ''
+                                ); """
+
+read_encryption = """SELECT * FROM ENCRYPTION;"""
