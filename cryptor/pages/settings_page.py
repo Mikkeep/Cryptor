@@ -7,7 +7,7 @@ def settings(self):
     start_up_encrypt = self.translations["prompts"]["default_encrypt"]
     dark_mode = self.translations["prompts"]["dark_mode"]
 
-    self.main_layout = QVBoxLayout() # init layout
+    self.main_layout = QVBoxLayout()  # init layout
 
     # LANGUAGE SELECTION MENU
     self.button_lang = QPushButton(start_up_lang, self)

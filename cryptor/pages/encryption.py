@@ -30,7 +30,7 @@ class Encrypt_page:
         # DEFINE TOP WIDGET (TABS AND SWITCHING BETWEEN THEM)
         enc_button_text = self.translations["buttons"]["encrypt_text"]
         enc_button_files = self.translations["buttons"]["encrypt_files"]
-        
+
         btn_enc_t = QPushButton(f"{enc_button_text}")
         btn_enc_t.clicked.connect(self.button_enc_t)
 
@@ -53,7 +53,7 @@ class Encrypt_page:
         self.bottom_widget.addTab(self.tab_enc_t, "")
         self.bottom_widget.addTab(self.tab_enc_f, "")
 
-        self.bottom_widget.setCurrentIndex(0) # default to the text tab
+        self.bottom_widget.setCurrentIndex(0)  # default to the text tab
 
         # Add top and bottom parts to the layout
         final_layout.addWidget(self.top_widget)
@@ -82,27 +82,29 @@ class Encrypt_page:
         # INSERT TEXT BOX
         self.text_insert = QLineEdit()
         layout.addWidget(self.text_insert, 0, 1, 1, 3)
-        
+
         # ALGORITHM SET LABEL
         algo_text_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
         layout.addWidget(algo_text_label, 1, 0, 1, 1)
-        # ALGORITHM DROPDOWN MENU 
+        # ALGORITHM DROPDOWN MENU
         algo_trans = self.translations["buttons"]["algorithm"]
         self.algo_button_ttab = QPushButton(algo_trans)
         self.algo_dropdown = QMenu()
         for algo in ENC_ALGORITHMS:
             self.algo_dropdown.addAction(algo)
-            self.algo_dropdown.addSeparator()      
+            self.algo_dropdown.addSeparator()
         self.algo_button_ttab.setMenu(self.algo_dropdown)
         self.algo_dropdown.triggered.connect(self.algorithms_text)
         layout.addWidget(self.algo_button_ttab, 1, 1, 1, 3)
 
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
         enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
-        enc_conf_label = QLabel(self.translations["labels"]["encryption_key_confirm_label"])
+        enc_conf_label = QLabel(
+            self.translations["labels"]["encryption_key_confirm_label"]
+        )
         layout.addWidget(enc_text_label, 2, 0, 1, 1)
         layout.addWidget(enc_conf_label, 2, 2)
-        # ENCRYPTION KEY INPUT AND CONFIRM 
+        # ENCRYPTION KEY INPUT AND CONFIRM
         self.text_box_enc_text_ttab = PasswordEdit()
         self.text_box_enc_text_confirm_ttab = PasswordEdit()
         layout.addWidget(self.text_box_enc_text_ttab, 2, 1)
@@ -123,7 +125,7 @@ class Encrypt_page:
         self.encrypt_result.setHidden(True)
         layout.addWidget(encrypt_button, 4, 0, 1, 4)
         layout.addWidget(self.encrypt_result, 5, 0, 1, 4)
-        
+
         # finish and set layout
         main = QWidget()
         main.setLayout(layout)
@@ -142,21 +144,15 @@ class Encrypt_page:
         """
         self._save = FileDialog().fileSave()
 
-    #Encrypt parameters set and function call
+    # Encrypt parameters set and function call
     def encrypt_file(self):
-        print("clicked encrypt")
         self.enc_key = self.text_box_enc_text.text()
         self.enc_key_confirm = self.text_box_enc_text_confirm.text()
         self.salt = self.salt_insert_box.text()
         filepath = self.filepath
         fileout = os.path.basename(self.filepath)
-        print(fileout)
         salt = self.salt
         enc_key = self.enc_key
-        print("Filepath: ", self.filepath)
-        print("used password: ", self.enc_key)
-        print("used salt: ", self.salt)
-        print("Chosen algorithm: ", self.chosen_algo)
         if str(self.enc_key) != str(self.enc_key_confirm):
             pwd_mismatch = self.translations["prompts"]["password_mismatch"]
             msg = QMessageBox()
@@ -177,15 +173,11 @@ class Encrypt_page:
         # Filepath is the path for the file
         # Fileout is the name of the file, comes out with added
         # _encryted prefix after ecnryption
-        print("Done encrypting")
         return
 
     def encrypt_text(self):
         result = ""
-        print("clicked encrypt")
         self.encrypt_result.setHidden(False)
-        print("Chosen algorithm: ", self.chosen_algo)
-        print("Chosen salt: ", self.salt_insert_box_ttab.text())
         text_hasher = encrypt.Encryption(salt=self.salt_insert_box_ttab.text())
         if self.chosen_algo == "MD5":
             result = text_hasher.hash_with_md5(self.text_insert.text())
@@ -196,7 +188,6 @@ class Encrypt_page:
         if self.chosen_algo == "SHA3-512":
             result = text_hasher.hash_with_sha3_512(self.text_insert.text())
         self.encrypt_result.setText(result)
-
 
     def algorithms(self, algorithm):
         disabled_password = self.translations["prompts"]["encryption_disabled"]
@@ -248,11 +239,11 @@ class Encrypt_page:
         file_browse_btn = QPushButton(self.translations["buttons"]["browse_files"])
         file_browse_btn.clicked.connect(self.filedialogopen)
         self.layout.addWidget(file_browse_btn, 0, 1, 1, 3)
-        
+
         # ALGORITHM SET LABEL
         self.algo_text_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
         self.layout.addWidget(self.algo_text_label, 1, 0, 1, 1)
-        # ALGORITHM DROPDOWN MENU 
+        # ALGORITHM DROPDOWN MENU
         self.algo_button = QPushButton(self.translations["buttons"]["algorithm"])
         self.algo_dropdown = QMenu()
         for algo in ENC_ALGORITHMS_FILES:
@@ -260,23 +251,24 @@ class Encrypt_page:
             self.algo_dropdown.addSeparator()
         self.algo_button.setMenu(self.algo_dropdown)
         self.algo_dropdown.triggered.connect(self.algorithms)
-#        if self.algo_dropdown.triggered:
-#            self.algo_button.setText(self.chosen_algo)
-#            self.layout.update()
+        #        if self.algo_dropdown.triggered:
+        #            self.algo_button.setText(self.chosen_algo)
+        #            self.layout.update()
         self.layout.addWidget(self.algo_button, 1, 1, 1, 3)
 
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
         enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
-        enc_conf_label = QLabel(self.translations["labels"]["encryption_key_confirm_label"])
+        enc_conf_label = QLabel(
+            self.translations["labels"]["encryption_key_confirm_label"]
+        )
 
         self.layout.addWidget(enc_text_label, 2, 0, 1, 1)
         self.layout.addWidget(enc_conf_label, 2, 2, 1, 1)
-        # ENCRYPTION KEY INPUT AND CONFIRM 
+        # ENCRYPTION KEY INPUT AND CONFIRM
         self.text_box_enc_text = PasswordEdit()
         self.text_box_enc_text_confirm = PasswordEdit()
         self.layout.addWidget(self.text_box_enc_text, 2, 1, 1, 1)
         self.layout.addWidget(self.text_box_enc_text_confirm, 2, 3, 1, 1)
-
 
         # SALT INPUT LABEL
         salt_label = QLabel(self.translations["labels"]["salt_label"])
@@ -289,7 +281,7 @@ class Encrypt_page:
         self.encrypt_button = QPushButton(self.translations["buttons"]["final_encrypt"])
         self.layout.addWidget(self.encrypt_button, 4, 0, 1, 4)
         self.encrypt_button.clicked.connect(self.encrypt_file)
-        
+
         # finish and set layout
         self.main = QWidget()
         self.main.setLayout(self.layout)

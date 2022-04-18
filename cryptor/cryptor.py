@@ -45,7 +45,9 @@ class Window(QMainWindow):
         self.btn_3 = QPushButton("", self)
 
         self.btn_1.clicked.connect(self.button1)
-        self.btn_1.setDown(True) # set default tab button to pushed state on program start
+        self.btn_1.setDown(
+            True
+        )  # set default tab button to pushed state on program start
         self.btn_1.setIcon(QtGui.QIcon(IMG_LOCATION + "crypt.png"))
         self.btn_1.setIconSize(QtCore.QSize(200, 250))
         self.btn_2.clicked.connect(self.button2)
@@ -58,7 +60,7 @@ class Window(QMainWindow):
         # add tabs
         self._encryption = encryption.Encrypt_page(self.translations)
         self._decryption = decryption.Decrypt_page(self.translations)
-        self.tab1 = self._encryption.encryption() 
+        self.tab1 = self._encryption.encryption()
         self.tab2 = self._decryption.decryption()
         self.tab3 = settings_page.settings(self)
 

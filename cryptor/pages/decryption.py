@@ -44,7 +44,7 @@ class Decrypt_page:
         self.bottom_widget_dec.addTab(self.tab_dec_t, "")
         self.bottom_widget_dec.addTab(self.tab_dec_f, "")
 
-        self.bottom_widget_dec.setCurrentIndex(0) # default to text decryption tab
+        self.bottom_widget_dec.setCurrentIndex(0)  # default to text decryption tab
 
         # add top and bottom widgets to layout
         final_layout.addWidget(self.top_widget_dec)
@@ -77,7 +77,7 @@ class Decrypt_page:
         # ALGORITHM LABEL
         algo_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
         layout.addWidget(algo_label, 1, 0, 1, 1)
-        # ALGORITHM DROPDOWN MENU 
+        # ALGORITHM DROPDOWN MENU
         algo_button = QPushButton(self.translations["buttons"]["algorithm"])
         algo_dropdown = QMenu()
         for algo in ENC_ALGORITHMS:
@@ -89,14 +89,14 @@ class Decrypt_page:
         # ENCRYPTION KEY LABEL
         enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
         layout.addWidget(enc_key_label, 2, 0, 1, 1)
-        # ENCRYPTION KEY INPUT 
+        # ENCRYPTION KEY INPUT
         text_box_dec_text = PasswordEdit()
         layout.addWidget(text_box_dec_text, 2, 1, 1, 3)
 
         # DECRYPT BUTTON
         decrypt_button = QPushButton(self.translations["buttons"]["final_decrypt"])
         layout.addWidget(decrypt_button, 3, 0, 1, 4)
-        
+
         main = QWidget()
         main.setLayout(layout)
         return main
@@ -121,15 +121,15 @@ class Decrypt_page:
         # FILE BROWSE LABEL
         open_file_label = QLabel(self.translations["labels"]["insert_file_dec"])
         layout.addWidget(open_file_label, 0, 0, 1, 1)
-		# FILE BROWSE
+        # FILE BROWSE
         open_file_btn = QPushButton(self.translations["buttons"]["browse_files"])
         open_file_btn.clicked.connect(self.filedialogopen)
         layout.addWidget(open_file_btn, 0, 1, 1, 3)
-        
+
         # ALGORITHM LABEL
         algo_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
         layout.addWidget(algo_label, 1, 0, 1, 1)
-        # ALGORITHM DROPDOWN MENU 
+        # ALGORITHM DROPDOWN MENU
         algo_button = QPushButton(self.translations["buttons"]["algorithm"])
         algo_dropdown = QMenu()
         for algo in ENC_ALGORITHMS:
@@ -141,14 +141,14 @@ class Decrypt_page:
         # ENCRYPTION KEY LABEL
         enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
         layout.addWidget(enc_key_label, 2, 0, 1, 1)
-        # ENCRYPTION KEY INPUT 
+        # ENCRYPTION KEY INPUT
         text_box_dec_text = PasswordEdit()
         layout.addWidget(text_box_dec_text, 2, 1, 1, 3)
 
         # DECRYPT BUTTON
         decrypt_button = QPushButton(self.translations["buttons"]["final_decrypt"])
         layout.addWidget(decrypt_button, 3, 0, 1, 4)
-        
+
         # finish layout
         main = QWidget()
         main.setLayout(layout)
