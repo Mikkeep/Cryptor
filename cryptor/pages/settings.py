@@ -103,8 +103,25 @@ class SettingsWindow(QWidget):
                     QMessageBox.Yes | QMessageBox.No,
                 )
                 if confirm_no_pwd == QMessageBox.Yes:
+                    defaults = {"hash": "", "algorithm": "", "salt": "", "key": ""}
+                    if self.chosen_hash != "":
+                        defaults["hash"] = self.chosen_hash
+                    if self.chosen_algo != "":
+                        defaults["algorithm"] = self.chosen_algo
+                    if self.text_box_salt.text() != "":
+                        defaults["salt"] = self.text_box_salt.text()
+                    if self.text_box_enc_text.text() != "":
+                        defaults["key"] = self.text_box_enc_text.text()
+                    write_encryption_defaults(
+                        db_location,
+                        (
+                            defaults["hash"],
+                            defaults["algorithm"],
+                            defaults["salt"],
+                            defaults["key"],
+                        ),
+                    )
                     self.close()
-                    print("Default values saved succesfully")
                     return
                 return
         if (
@@ -117,4 +134,22 @@ class SettingsWindow(QWidget):
             display = msg.exec_()
             return
 
+        defaults = {"hash": "", "algorithm": "", "salt": "", "key": ""}
+        if self.chosen_hash != "":
+            defaults["hash"] = self.chosen_hash
+        if self.chosen_algo != "":
+            defaults["algorithm"] = self.chosen_algo
+        if self.text_box_salt.text() != "":
+            defaults["salt"] = self.text_box_salt.text()
+        if self.text_box_enc_text.text() != "":
+            defaults["key"] = self.text_box_enc_text.text()
+        write_encryption_defaults(
+            db_location,
+            (
+                defaults["hash"],
+                defaults["algorithm"],
+                defaults["salt"],
+                defaults["key"],
+            ),
+        )
         self.close()
