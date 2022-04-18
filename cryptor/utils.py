@@ -61,8 +61,10 @@ def check_db(db_name):
                 print("Database does not exist, creating a new one")
                 create_db_table(db_name, table_lang)
                 create_db_table(db_name, table_mode)
+                create_db_table(db_name, table_encrypt)
                 insert_to_db(db_name, insert_to_lang)
                 insert_to_db(db_name, insert_to_mode)
+                insert_to_db(db_name, insert_to_encrypt)
                 connection.close()
 
 
@@ -120,3 +122,51 @@ def write_used_lang(db_name, language):
         print(f"Changed used language to {language}")
         connection.commit()
         connection.close()
+
+
+def write_encryption_defaults(db_name, defaults):
+    connection = None
+    cur = None
+    try:
+        connection = sqlite3.connect(db_name)
+        cur = connection.cursor()
+    except Error as e:
+        print(e)
+    finally:
+        sql_command = """ UPDATE ENCRYPTION
+                            SET Hash = ? ,
+                                Algorithm = ? ,
+                                Salt = ? ,
+                                Key = ?
+        """
+        cur.execute(sql_command, defaults)
+        print("Saved default values")
+        connection.commit()
+        connection.close()
+
+
+def check_encryption_defaults(db_name):
+    """
+    Check whetever user has submitted default values for encryption
+    """
+    data = ""
+    try:
+        conn = sqlite3.connect(db_name)
+        cur = conn.cursor()
+        cur.execute(read_encryption)
+        data = cur.fetchone()
+        defaults = {
+            "default_hash": "",
+            "default_algo": "",
+            "default_salt": "",
+            "default_key": "",
+        }
+        defaults["default_hash"] = data[0]
+        defaults["default_algo"] = data[1]
+        defaults["default_salt"] = data[2]
+        defaults["default_key"] = data[3]
+        conn.close()
+    except Error as e:
+        data = "False"
+        print("Could not read used mode from db")
+    return defaults
