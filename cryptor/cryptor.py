@@ -172,6 +172,8 @@ class Window(QMainWindow):
 
 
 check_db(db_location)
+defs = check_encryption_defaults(db_location)
+print(defs)
 
 cryptor = QApplication(sys.argv)
 
