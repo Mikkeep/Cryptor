@@ -21,7 +21,7 @@
         "encryption_key_confirm": "Bekräfta krypteringsnyckeln",
         "browse_files": "Bladdra bland filer",
         "final_encrypt": "KRYPTERA",
-        "final_decrypt": "DEKRYPTERA",
+        "final_decrypt": "DEKRYPTERA"
     },
     "prompts": {
         "settings_menu": "inställningar",
@@ -36,6 +36,8 @@
         "no_enc_key": "Ingen krypteringsnyckel inställd",
         "confirm_no_password": "Ingen standardkrypteringsnyckel inställd, vill du fortsätta ändå?\nEndast standardvärden för algoritm och salt kommer att sparas",
         "dark_mode_selection_info_on": "Mörkt läge har aktiverats",
-        "dark_mode_selection_info_off": "Mörkt läge har avaktiverats"
+        "dark_mode_selection_info_off": "Mörkt läge har avaktiverats",
+        "encryption_disabled": "Krypteringsnyckel används inte för RSA-kryptering",
+        "salt_disabled": "Saltvärden används inte för RSA-kryptering"
     }
 }

@@ -22,20 +22,41 @@ QListWidget {
 
 QListWidget::item:selected {
     background-color: #2ABf9E;
+    font: bold;
 }
-/*
-QLabel {
-    qproperty-alignment: AlignCenter;
-}
-*/
+
 QLineEdit {
     background-color: #ebf0f1;
     padding: 15px;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 QPushButton {
     background-color: #2899b6;
     padding: 15px;
-    font-size: 15px;
+    font-size: 26px;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 4px;
+    border-color: darkslategray;
+}
+
+QPushButton::pressed {
+    background-color: #1c697c;
+    border-style: inset;
+    border-width: 2px;
+    border-radius: 4px;
+    border-color: gray;
+}
+
+QMenu {
+    margin: 2px;
+}
+
+QMenu::item {
+    padding: 2px 25px 2px 20px;
+    border: 1px solid transparent; /* reserve space for selection border */
+    width: 200px;
+    font-size: 20px;
+    padding-left: 200px;
 }

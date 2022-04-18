@@ -60,8 +60,8 @@ class SettingsWindow(QWidget):
         layout.addWidget(self.close_button)
         self.setLayout(layout)
 
-        self.Width = 670
-        self.height = int(0.6 * self.Width)
+        self.Width = 700
+        self.height = int(0.8 * self.Width)
         self.setFixedSize(self.Width, self.height)
         # center the window relative to screensize
         centering = self.frameGeometry()

@@ -36,6 +36,8 @@
         "no_enc_key": "Oletus salausavainta ei asetettu",
         "confirm_no_password": "Oletus salausavainta ei ole asetettu, haluatko silti jatkaa?\nVain algoritmin ja suolan oletusarvot tallennetaan",
         "dark_mode_selection_info_on": "Tumma tila on asetettu paalle",
-        "dark_mode_selection_info_off": "Tumma tila on asetettu pois paalta"
+        "dark_mode_selection_info_off": "Tumma tila on asetettu pois paalta",
+        "encryption_disabled": "Salausavainta ei syoteta RSA salaukseen",
+        "salt_disabled": "Suolaa ei syoteta RSA salaukseen"
     }
 }

@@ -1,8 +1,5 @@
-#!/usr/bin/env python3
-
 """Cryptor is a program made to handle encryption and
     decryption of files."""
-
 
 import sys
 import json
@@ -87,10 +84,6 @@ class Window(QMainWindow):
         left_layout.setSpacing(0)
         left_widget = QWidget()
         left_widget.setLayout(left_layout)
-        left_widget.setStyleSheet(
-            "padding-top: 0px;"
-            "padding-bottom: 0px;"
-        )
 
         self.right_widget = QTabWidget()
         self.right_widget.tabBar().setObjectName("mainTab")
@@ -106,38 +99,25 @@ class Window(QMainWindow):
         self.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
         self.right_layout.resize(200, self.height)
 
-        main_layout = QHBoxLayout()
-        main_layout.addWidget(left_widget)
-        main_layout.addWidget(self.right_widget)
-        main_layout.addWidget(self.right_layout)
-        main_layout.setStretch(0, 40)
-        main_layout.setStretch(1, 200)
-        main_layout.setStretch(2, 40)
+        self.main_layout = QHBoxLayout()
+        self.main_layout.addWidget(left_widget)
+        self.main_layout.addWidget(self.right_widget)
+        self.main_layout.addWidget(self.right_layout)
+        self.main_layout.setStretch(0, 40)
+        self.main_layout.setStretch(1, 200)
+        self.main_layout.setStretch(2, 40)
         main_widget = QWidget()
-        main_widget.setLayout(main_layout)
+        main_widget.setLayout(self.main_layout)
         self.setCentralWidget(main_widget)
 
     def button1(self):
         self.right_widget.setCurrentIndex(0)
-       
-        self.btn_1.setDown(True)
-        self.btn_2.setDown(False)
-        self.btn_3.setDown(False)
-
 
     def button2(self):
         self.right_widget.setCurrentIndex(1)
 
-        self.btn_2.setDown(True)
-        self.btn_1.setDown(False)
-        self.btn_3.setDown(False)
-
     def button3(self):
         self.right_widget.setCurrentIndex(2)
-
-        self.btn_3.setDown(True)
-        self.btn_1.setDown(False)
-        self.btn_2.setDown(False)
 
     def button_dec_t(self):
         self._decryption.button_dec_t()
@@ -160,9 +140,10 @@ class Window(QMainWindow):
         display = msg.exec_()
         return language
 
-    def dark_mode_switch(self, mode):
-        print(mode.text())
-        if mode.text() == "On":
+    def dark_mode_switch(self):
+        mode = check_dark_mode(db_location)
+        print(mode)
+        if mode == "False":
             write_used_mode(db_location, ("True",))
             with open("darkstyle.qss", "r") as f:
                 _style = f.read()
@@ -200,7 +181,7 @@ if used_mode == "False":
         _style = f.read()
         cryptor.setStyleSheet(_style)
 
-if used_mode == "True":
+else:
     with open("darkstyle.qss", "r") as f:
         _style = f.read()
         cryptor.setStyleSheet(_style)
