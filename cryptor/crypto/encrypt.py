@@ -96,23 +96,31 @@ class Encryption:
     def hash_with_sha256(self, plaintext):
 
         hash = SHA256.new()
+        if self.salt != "":
+            plaintext = self.salt + plaintext
         hash.update(plaintext.encode("utf-8"))
         return hash.hexdigest()
 
     def hash_with_sha512(self, plaintext):
 
         hash = SHA512.new()
+        if self.salt != "":
+            plaintext = self.salt + plaintext
         hash.update(plaintext.encode("utf-8"))
         return hash.hexdigest()
 
     def hash_with_sha3_512(self, plaintext):
 
         hash = SHA3_512.new()
+        if self.salt != "":
+            plaintext = self.salt + plaintext
         hash.update(plaintext.encode("utf-8"))
         return hash.hexdigest()
 
     def hash_with_md5(self, plaintext):
 
         hash = MD5.new()
+        if self.salt != "":
+            plaintext = self.salt + plaintext
         hash.update(plaintext.encode("utf-8"))
         return hash.hexdigest()
