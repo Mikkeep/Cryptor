@@ -80,8 +80,8 @@ class Encrypt_page:
         text_to_enc_label = QLabel(self.translations["labels"]["insert_text_enc"])
         layout.addWidget(text_to_enc_label, 0, 0, 1, 1)
         # INSERT TEXT BOX
-        text_insert = QLineEdit()
-        layout.addWidget(text_insert, 0, 1, 1, 3)
+        self.text_insert = QLineEdit()
+        layout.addWidget(self.text_insert, 0, 1, 1, 3)
         
         # ALGORITHM SET LABEL
         algo_text_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
@@ -181,9 +181,22 @@ class Encrypt_page:
         return
 
     def encrypt_text(self):
+        result = ""
         print("clicked encrypt")
         self.encrypt_result.setHidden(False)
-        self.encrypt_result.setText("TEST")
+        print("Chosen algorithm: ", self.chosen_algo)
+        print("Chosen salt: ", self.salt_insert_box_ttab.text())
+        text_hasher = encrypt.Encryption(salt=self.salt_insert_box_ttab.text())
+        if self.chosen_algo == "MD5":
+            result = text_hasher.hash_with_md5(self.text_insert.text())
+        if self.chosen_algo == "SHA-256":
+            result = text_hasher.hash_with_sha256(self.text_insert.text())
+        if self.chosen_algo == "SHA-512":
+            result = text_hasher.hash_with_sha512(self.text_insert.text())
+        if self.chosen_algo == "SHA3-512":
+            result = text_hasher.hash_with_sha3_512(self.text_insert.text())
+        self.encrypt_result.setText(result)
+
 
     def algorithms(self, algorithm):
         disabled_password = self.translations["prompts"]["encryption_disabled"]
@@ -208,27 +221,11 @@ class Encrypt_page:
         return algorithm
 
     def algorithms_text(self, algorithm):
-        disabled_password = self.translations["prompts"]["encryption_disabled"]
-        disabled_salt = self.translations["prompts"]["salt_disabled"]
+        """
+        Change the encryption button text to chosen algorithm
+        """
         self.chosen_algo = algorithm.text()
         self.algo_button_ttab.setText(self.chosen_algo)
-        if self.chosen_algo == "RSA":
-            self.text_box_enc_text_ttab.setDisabled(True)
-            self.text_box_enc_text_ttab.setToolTip(disabled_password)
-            self.text_box_enc_text_ttab.setPlaceholderText("Disabled for RSA")
-            self.text_box_enc_text_confirm_ttab.setDisabled(True)
-            self.text_box_enc_text_confirm_ttab.setToolTip(disabled_password)
-            self.text_box_enc_text_confirm_ttab.setPlaceholderText("Disabled for RSA")
-            self.salt_insert_box_ttab.setDisabled(True)
-            self.salt_insert_box_ttab.setToolTip(disabled_salt)
-            self.salt_insert_box_ttab.setPlaceholderText("Disabled for RSA")
-        else:
-            self.text_box_enc_text_ttab.setDisabled(False)
-            self.text_box_enc_text_ttab.setToolTip("")
-            self.text_box_enc_text_confirm_ttab.setDisabled(False)
-            self.text_box_enc_text_ttab.setToolTip("")
-            self.salt_insert_box_ttab.setDisabled(False)
-            self.text_box_enc_text_ttab.setToolTip("")
         self.layout.update()
         return algorithm
 
