@@ -177,8 +177,24 @@ class Encrypt_page:
         return
 
     def algorithms(self, algorithm):
+        disabled_password = self.translations["prompts"]["encryption_disabled"]
+        disabled_salt = self.translations["prompts"]["salt_disabled"]
         self.chosen_algo = algorithm.text()
         self.algo_button.setText(self.chosen_algo)
+        if self.chosen_algo == "RSA":
+            self.text_box_enc_text.setDisabled(True)
+            self.text_box_enc_text.setToolTip(disabled_password)
+            self.text_box_enc_text_confirm.setDisabled(True)
+            self.text_box_enc_text_confirm.setToolTip(disabled_password)
+            self.salt_insert_box.setDisabled(True)
+            self.salt_insert_box.setToolTip(disabled_salt)
+        else:
+            self.text_box_enc_text.setDisabled(False)
+            self.text_box_enc_text.setToolTip("")
+            self.text_box_enc_text_confirm.setDisabled(False)
+            self.text_box_enc_text.setToolTip("")
+            self.salt_insert_box.setDisabled(False)
+            self.text_box_enc_text.setToolTip("")
         self.layout.update()
         return algorithm
 
