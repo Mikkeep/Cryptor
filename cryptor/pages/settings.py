@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from qtwidgets import PasswordEdit
 from constants import *
 from utils import *
+from PyQt5.QtGui import QIcon
 
 
 class SettingsWindow(QWidget):
@@ -19,6 +20,9 @@ class SettingsWindow(QWidget):
         hash = self.settings_translate["buttons"]["hash"]
         salt = self.settings_translate["buttons"]["salt"]
         close_btn = self.settings_translate["prompts"]["close_button"]
+
+        self.setWindowIcon(QIcon(IMG_LOCATION + "win_icon.png"))
+        self.setWindowTitle("Set default encryption settings")
 
         self.hash = QPushButton(hash)
         self.algorithm = QPushButton(algorithm)
