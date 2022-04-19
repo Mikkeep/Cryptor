@@ -150,23 +150,22 @@ def check_encryption_defaults(db_name):
     Check whetever user has submitted default values for encryption
     """
     data = ""
-    try:
-        conn = sqlite3.connect(db_name)
-        cur = conn.cursor()
-        cur.execute(read_encryption)
-        data = cur.fetchone()
-        defaults = {
+    defaults = {
             "default_hash": "",
             "default_algo": "",
             "default_salt": "",
             "default_key": "",
         }
+    try:
+        conn = sqlite3.connect(db_name)
+        cur = conn.cursor()
+        cur.execute(read_encryption)
+        data = cur.fetchone()
         defaults["default_hash"] = data[0]
         defaults["default_algo"] = data[1]
         defaults["default_salt"] = data[2]
         defaults["default_key"] = data[3]
         conn.close()
     except Error as e:
-        data = "False"
-        print("Could not read used mode from db")
+        print("Could not read default values from db")
     return defaults
