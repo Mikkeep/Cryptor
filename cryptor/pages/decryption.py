@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
 from qtwidgets import PasswordEdit
 from .file_dialog import FileDialog
 from constants import ENC_ALGORITHMS
@@ -62,21 +63,19 @@ class Decrypt_page:
         """
         # init layout and set suitable column widths
         layout = QGridLayout()
-        layout.setColumnStretch(0, 1)
-        layout.setColumnStretch(1, 2)
-        layout.setColumnStretch(2, 1)
-        layout.setColumnStretch(3, 2)
 
         # INSERT TEXT LABEL
         text_ins_label = QLabel(self.translations["labels"]["insert_text_dec"])
-        layout.addWidget(text_ins_label, 0, 0, 1, 1)
+        text_ins_label.setObjectName("large_label") # set object name for qss tag effects
+        text_ins_label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(text_ins_label, 0, 0, 1, 3)
         # INSERT TEXT BOX
         text_insert = QLineEdit()
-        layout.addWidget(text_insert, 0, 1, 1, 3)
+        layout.addWidget(text_insert, 0, 3, 1, 7)
 
         # ALGORITHM LABEL
         algo_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
-        layout.addWidget(algo_label, 1, 0, 1, 1)
+        layout.addWidget(algo_label, 1, 1, 1, 3)
         # ALGORITHM DROPDOWN MENU
         algo_button = QPushButton(self.translations["buttons"]["algorithm"])
         algo_dropdown = QMenu()
@@ -84,18 +83,18 @@ class Decrypt_page:
             algo_dropdown.addAction(algo)
             algo_dropdown.addSeparator()
         algo_button.setMenu(algo_dropdown)
-        layout.addWidget(algo_button, 1, 1, 1, 3)
+        layout.addWidget(algo_button, 1, 4, 1, 5)
 
         # ENCRYPTION KEY LABEL
         enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
-        layout.addWidget(enc_key_label, 2, 0, 1, 1)
+        layout.addWidget(enc_key_label, 2, 1, 1, 2)
         # ENCRYPTION KEY INPUT
         text_box_dec_text = PasswordEdit()
-        layout.addWidget(text_box_dec_text, 2, 1, 1, 3)
+        layout.addWidget(text_box_dec_text, 2, 3, 1, 6)
 
         # DECRYPT BUTTON
         decrypt_button = QPushButton(self.translations["buttons"]["final_decrypt"])
-        layout.addWidget(decrypt_button, 3, 0, 1, 4)
+        layout.addWidget(decrypt_button, 3, 1, 1, 8)
 
         main = QWidget()
         main.setLayout(layout)

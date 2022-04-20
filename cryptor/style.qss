@@ -6,6 +6,11 @@ QLabel {
     font-size: 18px;
 }
 
+#large_label {
+    font-size: 20px;
+} 
+
+
 QTabBar::tab {
     width: 0;
     height: 0;
@@ -14,7 +19,7 @@ QTabBar::tab {
     border: none;
 }
 
-leftlayout {
+#leftlayout {
     margin: 0;
     height: 100;
 }

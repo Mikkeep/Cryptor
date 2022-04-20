@@ -80,6 +80,7 @@ class Window(QMainWindow):
 
     def initUI(self):
         left_layout = QVBoxLayout()
+        left_layout.setObjectName("leftlayout")
         left_layout.addWidget(self.btn_1)
         left_layout.addWidget(self.btn_2)
         left_layout.addWidget(self.btn_3)
