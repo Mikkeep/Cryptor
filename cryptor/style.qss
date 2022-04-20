@@ -2,6 +2,10 @@ QMainWindow {
     background-color: #d1d3d4;
 }
 
+QLabel {
+    font-size: 18px;
+}
+
 QTabBar::tab {
     width: 0;
     height: 0;
@@ -32,7 +36,7 @@ QLineEdit {
 }
 
 QPushButton {
-    background-color: #2899b6;
+    background-color: #74cbe0;
     padding: 15px;
     font-size: 26px;
     border-style: outset;
@@ -59,4 +63,11 @@ QMenu::item {
     width: 200px;
     font-size: 20px;
     padding-left: 200px;
+}
+
+QMenu::item:selected {
+    border-color: darkslategrey;
+    background-color: #c4c4c4;
+    background: rgba(100, 100, 100, 150);
+    font: bold;
 }
