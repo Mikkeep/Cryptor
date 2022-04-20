@@ -12,11 +12,14 @@ class Encrypt_page:
     def __init__(self, translations):
         # Define used class parameters to be set in the selections
         self.translations = translations
+        self.defaults = check_encryption_defaults(db_location)
         self.filepath = ""
         self.salt = ""
         self.enc_key = ""
-        self.chosen_algo = ""
-        self.defaults = check_encryption_defaults(db_location)
+        if self.defaults["default_hash"] != "":
+            self.chosen_algo = self.defaults["default_hash"]
+        else:
+            self.chosen_algo = ""
 
     def button_enc_t(self):
         self.bottom_widget.setCurrentIndex(0)
@@ -107,13 +110,17 @@ class Encrypt_page:
         enc_conf_label = QLabel(
             self.translations["labels"]["encryption_key_confirm_label"]
         )
+#        enc_text_label.setHidden(True)
+#        enc_conf_label.setHidden(True)
         layout.addWidget(enc_text_label, 2, 0, 1, 1)
         layout.addWidget(enc_conf_label, 2, 2)
         # ENCRYPTION KEY INPUT AND CONFIRM
         self.text_box_enc_text_ttab = PasswordEdit()
+#        self.text_box_enc_text_ttab.setHidden(True)
         if self.defaults["default_key"] != "":
             self.text_box_enc_text_ttab.setText(self.defaults["default_key"])
         self.text_box_enc_text_confirm_ttab = PasswordEdit()
+#        self.text_box_enc_text_confirm_ttab.setHidden(True)
         if self.defaults["default_key"] != "":
             self.text_box_enc_text_confirm_ttab.setText(self.defaults["default_key"])
         layout.addWidget(self.text_box_enc_text_ttab, 2, 1)
