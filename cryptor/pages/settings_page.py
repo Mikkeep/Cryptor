@@ -6,6 +6,7 @@ def settings(self):
     start_up_lang = self.translations["prompts"]["startup_lang"]
     start_up_encrypt = self.translations["prompts"]["default_encrypt"]
     dark_mode = self.translations["prompts"]["dark_mode"]
+    generate_keys = self.translations["prompts"]["generate_keys"]
 
     self.main_layout = QVBoxLayout()  # init layout
 
@@ -25,6 +26,11 @@ def settings(self):
     self.button_default_crypt = QPushButton(start_up_encrypt, self)
     self.main_layout.addWidget(self.button_default_crypt)
     self.button_default_crypt.clicked.connect(self.default_encrypt_window)
+
+    # GENERATE RSA KEYPAIR
+    self.button_generate_keys = QPushButton(generate_keys, self)
+    self.button_generate_keys.pressed.connect(self.generate_rsa_keys)
+    self.main_layout.addWidget(self.button_generate_keys)
 
     # DARK MODE MENU
     self.button_dark_mode = QPushButton(dark_mode, self)
