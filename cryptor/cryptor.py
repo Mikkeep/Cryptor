@@ -193,10 +193,6 @@ class Window(QMainWindow):
         if self.w is None:
             self.w = settings.SettingsWindow(self.translations)
         self.w.show()
-        self.sub = QMdiSubWindow()
-        self.sub.setWindowTitle("subwindow")
-        self.mdi.addSubWindow(self.sub)
-        self.sub.show()
 
     def close_subwindow(self):
         self.mdi.close()
