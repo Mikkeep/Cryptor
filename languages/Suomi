@@ -22,7 +22,11 @@
         "encryption_key_confirm": "Vahvista salausavain",
         "browse_files": "Selaa tiedostoja",
         "final_encrypt": "SALAA",
-        "final_decrypt": "PURA SALAUS"
+        "final_decrypt": "PURA SALAUS",
+        "salt_select": "Valitse suolan tyyppi",
+        "automatic_salt": "Generoi suola automaattisesti",
+        "click_salt": "Generoi suola klikkauksista",
+        "write_salt": "Kirjoita suola manuaalisesti"
     },
     "prompts": {
         "settings_menu": "Asetukset",

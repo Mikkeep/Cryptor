@@ -22,7 +22,11 @@
         "encryption_key_confirm": "Confirm encryption key",
         "browse_files": "Browse files",
         "final_encrypt": "ENCRYPT",
-        "final_decrypt": "DECRYPT"
+        "final_decrypt": "DECRYPT",
+        "salt_select": "Select salt type",
+        "automatic_salt": "Generate salt automatically",
+        "click_salt": "Generate salt from clicks",
+        "write_salt": "Write salt manually"
     },
     "prompts": {
         "settings_menu": "Settings",

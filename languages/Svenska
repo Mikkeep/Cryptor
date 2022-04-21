@@ -22,7 +22,11 @@
         "encryption_key_confirm": "Bekräfta krypteringsnyckeln",
         "browse_files": "Bladdra bland filer",
         "final_encrypt": "KRYPTERA",
-        "final_decrypt": "DEKRYPTERA"
+        "final_decrypt": "DEKRYPTERA",
+        "salt_select": "välj salttyp",
+        "automatic_salt": "Generera salt automatiskt",
+        "click_salt": "Generera salt från klick",
+        "write_salt": "Skriv salt manuellt"
     },
     "prompts": {
         "settings_menu": "inställningar",
