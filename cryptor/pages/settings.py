@@ -3,7 +3,9 @@ from qtwidgets import PasswordEdit
 from constants import *
 from utils import *
 from PyQt5.QtGui import QIcon
-
+from crypto import generate_salt
+from pages import salt_generation
+import time
 
 class SettingsWindow(QWidget):
     def __init__(self, translation):
@@ -13,10 +15,15 @@ class SettingsWindow(QWidget):
         self.chosen_hash = ""
         self.chosen_salt = ""
         self.chosen_key = ""
+        self.window = None
         self.settings_translate = translation
         enc_key = self.settings_translate["buttons"]["encryption_key_prompt"]
         enc_key_confirm = self.settings_translate["buttons"]["encryption_key_confirm"]
         algorithm = self.settings_translate["buttons"]["algorithm"]
+        salt_select = self.settings_translate["buttons"]["salt_select"]
+        self.automatic_salt = self.settings_translate["buttons"]["automatic_salt"]
+        self.click_salt = self.settings_translate["buttons"]["click_salt"]
+        self.write_salt = self.settings_translate["buttons"]["write_salt"]
         hash = self.settings_translate["buttons"]["hash"]
         salt = self.settings_translate["buttons"]["salt"]
         close_btn = self.settings_translate["prompts"]["close_button"]
@@ -26,6 +33,7 @@ class SettingsWindow(QWidget):
 
         self.hash = QPushButton(hash)
         self.algorithm = QPushButton(algorithm)
+        self.salt_selection = QPushButton(salt_select)
         self.text_box_salt = PasswordEdit(self)
         self.text_box_salt.setPlaceholderText(salt)
         self.text_box_enc_text = PasswordEdit(self)
@@ -54,8 +62,18 @@ class SettingsWindow(QWidget):
         self.menu_algo.addAction("AES")
         self.algorithm.setMenu(self.menu_algo)
         self.menu_algo.triggered.connect(self.algorithms)
+        # Define Salt type functions menu
+        self.salt_selection_menu = QMenu(self)
+        self.salt_selection_menu.addAction(self.automatic_salt)
+        self.salt_selection_menu.addSeparator()
+        self.salt_selection_menu.addAction(self.click_salt)
+        self.salt_selection_menu.addSeparator()
+        self.salt_selection_menu.addAction(self.write_salt)
+        self.salt_selection.setMenu(self.salt_selection_menu)
+        self.salt_selection_menu.triggered.connect(self.choose_salt)
         layout.addWidget(self.hash)
         layout.addWidget(self.algorithm)
+        layout.addWidget(self.salt_selection)
         #        layout.addWidget(self.salt)
         layout.addWidget(self.text_box_salt)
         layout.addWidget(self.text_box_enc_text)
@@ -81,7 +99,21 @@ class SettingsWindow(QWidget):
     def algorithms(self, language):
         self.chosen_algo = language.text()
         print(language.text())
+        print(self.chosen_salt)
         return language
+
+    def choose_salt(self, salt_type):
+        print("Chosen salt type: ", salt_type.text())
+        if salt_type.text() == self.write_salt:
+            self.text_box_salt.setFocus()
+            return
+        if salt_type.text() == self.automatic_salt:
+            salt_gen = generate_salt.salt_generator().generate_salt()
+            self.text_box_salt.setText(salt_gen)
+            return
+        self.window = salt_generation.SaltWindow(self.settings_translate, self)
+        self.window.show()
+
 
     def close_settings(self, event):
         pwd_mismatch = self.settings_translate["prompts"]["password_mismatch"]
