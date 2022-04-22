@@ -9,17 +9,22 @@ from utils import check_encryption_defaults
 
 
 class Encrypt_page:
-    def __init__(self, translations):
+    def __init__(self, translations, mainwindow):
         # Define used class parameters to be set in the selections
         self.translations = translations
         self.defaults = check_encryption_defaults(db_location)
         self.filepath = ""
         self.salt = ""
         self.enc_key = ""
+        self.parent_win = mainwindow
         if self.defaults["default_hash"] != "":
             self.chosen_algo = self.defaults["default_hash"]
         else:
             self.chosen_algo = ""
+        if self.defaults["default_algo"] != "":
+            self.chosen_algorithm = self.defaults["default_algo"]
+        else:
+            self.chosen_algorithm = ""
 
     def button_enc_t(self):
         self.bottom_widget.setCurrentIndex(0)
@@ -155,6 +160,12 @@ class Encrypt_page:
         """
         self._files = FileDialog().fileOpen()
         self.filepath = self._files
+        fileout = os.path.basename(self.filepath)
+        inprogresslist.append(fileout)
+        progress = self.translations["prompts"]["in_progress"]
+        self.parent_win.right_layout.clear()
+        self.parent_win.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
+        self.parent_win.right_layout.addItem(fileout)
 
     def filedialogsave(self):
         """
@@ -171,6 +182,7 @@ class Encrypt_page:
         fileout = os.path.basename(self.filepath)
         salt = self.salt
         enc_key = self.enc_key
+        print(self.chosen_algorithm)
         if str(self.enc_key) != str(self.enc_key_confirm):
             pwd_mismatch = self.translations["prompts"]["password_mismatch"]
             msg = QMessageBox()
@@ -179,18 +191,22 @@ class Encrypt_page:
             display = msg.exec_()
             return
         # File out gets the name of the file for saving the file
-        if self.chosen_algo == "AES":
+        if self.chosen_algorithm == "AES":
             encryptor = encrypt.Encryption(password=enc_key, salt=salt)
             encryptor.encrypt_with_aes(filepath, fileout)
-        if self.chosen_algo == "RSA":
+        if self.chosen_algorithm == "RSA":
             encryptor = encrypt.Encryption(password=enc_key, salt=salt)
             encryptor.encrypt_with_rsa(filepath, fileout)
-        if self.chosen_algo == "Chacha":
+        if self.chosen_algorithm == "ChaCha20":
             encryptor = encrypt.Encryption(password=enc_key, salt=salt)
             encryptor.encrypt_with_chacha(filepath, fileout)
         # Filepath is the path for the file
         # Fileout is the name of the file, comes out with added
         # _encryted prefix after ecnryption
+        inprogresslist.clear()
+        progress = "ready: "
+        self.parent_win.right_layout.insertItem(7, f"{progress} ({len(inprogresslist)})")
+        self.parent_win.right_layout.addItem("Olen valmis")
         return
 
     def encrypt_text(self):
@@ -210,9 +226,9 @@ class Encrypt_page:
     def algorithms(self, algorithm):
         disabled_password = self.translations["prompts"]["encryption_disabled"]
         disabled_salt = self.translations["prompts"]["salt_disabled"]
-        self.chosen_algo = algorithm.text()
-        self.algo_button.setText(self.chosen_algo)
-        if self.chosen_algo == "RSA":
+        self.chosen_algorithm = algorithm.text()
+        self.algo_button.setText(self.chosen_algorithm)
+        if self.chosen_algorithm == "RSA":
             self.text_box_enc_text.setDisabled(True)
             self.text_box_enc_text.setToolTip(disabled_password)
             self.text_box_enc_text_confirm.setDisabled(True)
