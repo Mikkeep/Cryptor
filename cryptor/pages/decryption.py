@@ -110,7 +110,7 @@ class Decrypt_page:
         """
         This method handles the file decryption tab
         """
-        # init layout and set suitable column widths
+        # init layout
         layout = QGridLayout()
         pad = QLabel(" ")
         layout.addWidget(pad, 0, 0, 1, 1)

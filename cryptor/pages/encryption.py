@@ -88,7 +88,7 @@ class Encrypt_page:
         # ALGORITHM SET LABEL
         algo_text_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
         algo_text_label.setAlignment(Qt.AlignCenter)
-        layout.addWidget(algo_text_label, 1, 0, 1, 3)
+        layout.addWidget(algo_text_label, 1, 2, 1, 3)
         # ALGORITHM DROPDOWN MENU
         algo_trans = self.translations["buttons"]["algorithm"]
         self.algo_button_ttab = QPushButton(algo_trans)
@@ -100,14 +100,15 @@ class Encrypt_page:
         self.algo_dropdown.triggered.connect(self.algorithms_text)
         if self.defaults["default_hash"] != "":
             self.algo_button_ttab.setText(self.defaults["default_hash"])
-        layout.addWidget(self.algo_button_ttab, 1, 3, 1, 7)
+        layout.addWidget(self.algo_button_ttab, 1, 5, 1, 3)
 
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
         enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
         enc_text_label.setAlignment(Qt.AlignCenter)
         enc_conf_label = QLabel(self.translations["labels"]["encryption_key_confirm_label"])
-        layout.addWidget(enc_text_label, 2, 0, 1, 1)
-        layout.addWidget(enc_conf_label, 2, 5, 1, 2)
+        enc_conf_label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(enc_text_label, 2, 3, 1, 1)
+        layout.addWidget(enc_conf_label, 3, 2, 1, 2)
         # ENCRYPTION KEY INPUT AND CONFIRM
         self.text_box_enc_text_ttab = PasswordEdit()
         if self.defaults["default_key"] != "":
@@ -115,19 +116,19 @@ class Encrypt_page:
         self.text_box_enc_text_confirm_ttab = PasswordEdit()
         if self.defaults["default_key"] != "":
             self.text_box_enc_text_confirm_ttab.setText(self.defaults["default_key"])
-        layout.addWidget(self.text_box_enc_text_ttab, 2, 1, 1, 4)
-        layout.addWidget(self.text_box_enc_text_confirm_ttab, 2, 7, 1, 3)
+        layout.addWidget(self.text_box_enc_text_ttab, 2, 4, 1, 3)
+        layout.addWidget(self.text_box_enc_text_confirm_ttab, 3, 4, 1, 3)
 
         # SALT INPUT LABEL
         salt_label = QLabel(self.translations["labels"]["salt_label"])
         salt_label.setAlignment(Qt.AlignCenter)
         salt_label.setObjectName("large_label")
-        layout.addWidget(salt_label, 3, 0, 1, 3)
+        layout.addWidget(salt_label, 4, 1, 1, 3)
         # SALT INPUT
         self.salt_insert_box_ttab = PasswordEdit()
         if self.defaults["default_salt"] != "":
             self.salt_insert_box_ttab.setText(self.defaults["default_salt"])
-        layout.addWidget(self.salt_insert_box_ttab, 3, 3, 1, 7)
+        layout.addWidget(self.salt_insert_box_ttab, 4, 4, 1, 5)
 
         # ENCRYPT BUTTON
         enc_trans = self.translations["buttons"]["final_encrypt"]
@@ -135,8 +136,8 @@ class Encrypt_page:
         encrypt_button.clicked.connect(self.encrypt_text)
         self.encrypt_result = QLineEdit()
         self.encrypt_result.setHidden(True)
-        layout.addWidget(encrypt_button, 4, 0, 1, 10)
-        layout.addWidget(self.encrypt_result, 5, 0, 1, 10)
+        layout.addWidget(encrypt_button, 5, 2, 1, 6)
+        layout.addWidget(self.encrypt_result, 6, 0, 1, 10)
 
         # finish and set layout
         main = QWidget()

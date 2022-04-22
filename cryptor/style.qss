@@ -1,5 +1,9 @@
 QMainWindow {
-    background-color: #d1d3d4;
+    background-color: #e0ecff;
+}
+
+QWidget {
+    background-color: #bad5fd;
 }
 
 QLabel {
@@ -10,12 +14,48 @@ QLabel {
     font-size: 20px;
 } 
 
+#encrypt_tab_btn {
+    image: url(../images/crypt.png);
+    border-style: outset;
+    border-color: darkslategray;
+    border-width: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 1px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 1px; 
+    padding: 10px;
+}
+
+#decrypt_tab_btn {
+    image: url(../images/key.png);
+}
+
+#settings_tab_btn {
+    image: url(../images/settings.png);
+    border-style: outset;
+    border-color: darkslategray;
+    border-width: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 1px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 1px; 
+    padding: 10px;
+}
+
+QTabWidget {
+    border: none;
+    padding: 0px;
+}
+
+QVBoxLayout {
+    padding: 100px;
+}
 
 QTabBar::tab {
     width: 0;
     height: 0;
     margin: 0;
-    padding: 0;
+    padding: 2px;
     border: none;
 }
 
@@ -25,8 +65,7 @@ QTabBar::tab {
 }
 
 QListWidget {
-    color: #FFFFFF;
-    background-color: #d1d3d4;
+    background-color: #84b5fd;
 }
 
 QListWidget::item:selected {
@@ -41,7 +80,7 @@ QLineEdit {
 }
 
 QPushButton {
-    background-color: #74cbe0;
+    background-color: #84b5fd;
     padding: 15px;
     font-size: 26px;
     border-style: outset;
@@ -51,7 +90,7 @@ QPushButton {
 }
 
 QPushButton::pressed {
-    background-color: #1c697c;
+    background-color: #408cfb;
     border-style: inset;
     border-width: 2px;
     border-radius: 4px;
