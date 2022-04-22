@@ -170,6 +170,15 @@ class SettingsWindow(QWidget):
             display = msg.exec_()
             return
 
+        if str(self.text_box_enc_text.text()) != str(
+            self.text_box_enc_text_confirm.text()
+        ):
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
+            msg.setText(pwd_mismatch)
+            display = msg.exec_()
+            return
+
         defaults = {"hash": "", "algorithm": "", "salt": "", "key": ""}
         if self.chosen_hash != "":
             defaults["hash"] = self.chosen_hash
