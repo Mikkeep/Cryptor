@@ -60,7 +60,7 @@ class Window(QMainWindow):
         self.btn_3.setIconSize(QtCore.QSize(220, 220))
 
         # add tabs
-        self._encryption = encryption.Encrypt_page(self.translations)
+        self._encryption = encryption.Encrypt_page(self.translations, self)
         self._decryption = decryption.Decrypt_page(self.translations)
         self.tab1 = self._encryption.encryption()
         self.tab2 = self._decryption.decryption()
