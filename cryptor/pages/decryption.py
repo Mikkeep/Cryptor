@@ -79,6 +79,7 @@ class Decrypt_page:
         # ALGORITHM DROPDOWN MENU
         algo_button = QPushButton(self.translations["buttons"]["algorithm"])
         algo_dropdown = QMenu()
+        algo_dropdown.setObjectName("algo_menu_dec")
         for algo in ENC_ALGORITHMS:
             algo_dropdown.addAction(algo)
             algo_dropdown.addSeparator()
@@ -133,6 +134,7 @@ class Decrypt_page:
         # ALGORITHM DROPDOWN MENU
         algo_button = QPushButton(self.translations["buttons"]["algorithm"])
         algo_dropdown = QMenu()
+        algo_dropdown.setObjectName("algo_menu_dec")
         for algo in ENC_ALGORITHMS:
             algo_dropdown.addAction(algo)
             algo_dropdown.addSeparator()

@@ -36,6 +36,7 @@ class SettingsWindow(QWidget):
         self.close_button.clicked.connect(self.close_settings)
         # Define Hash functions menu
         self.menu = QMenu(self)
+        self.menu.setObjectName("default_hash_menu")
         self.menu.addAction("MD5")
         self.menu.addSeparator()
         self.menu.addAction("SHA-256")
@@ -47,6 +48,7 @@ class SettingsWindow(QWidget):
         self.menu.triggered.connect(self.hashes)
         # Define Algorithms functions menu
         self.menu_algo = QMenu(self)
+        self.menu_algo.setObjectName("default_algo_menu")
         self.menu_algo.addAction("ChaCha20")
         self.menu_algo.addSeparator()
         self.menu_algo.addAction("RSA")

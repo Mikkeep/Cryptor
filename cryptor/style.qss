@@ -1,9 +1,10 @@
 QMainWindow {
-    background-color: #e0ecff;
+    background-color: #e7f3fd;
+    border: none;
 }
 
 QWidget {
-    background-color: #bad5fd;
+    background-color: #e7f3fd;
 }
 
 QLabel {
@@ -12,34 +13,48 @@ QLabel {
 
 #large_label {
     font-size: 20px;
-} 
+}
+
+#title_label {
+    font-size: 40px;
+    border: none;
+    font: bold;
+}
 
 #encrypt_tab_btn {
-    image: url(../images/crypt.png);
+    image: url(../images/crypt_light.png);
     border-style: outset;
     border-color: darkslategray;
     border-width: 2px;
-    border-top-left-radius: 10px;
+    border-top-left-radius: 30px;
     border-top-right-radius: 1px;
-    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 30px;
     border-bottom-right-radius: 1px; 
-    padding: 10px;
+    /*padding: 10px;*/
 }
 
 #decrypt_tab_btn {
-    image: url(../images/key.png);
-}
-
-#settings_tab_btn {
-    image: url(../images/settings.png);
+    image: url(../images/key_light.png);
     border-style: outset;
     border-color: darkslategray;
     border-width: 2px;
-    border-top-left-radius: 10px;
+    border-top-left-radius: 30px;
     border-top-right-radius: 1px;
-    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 30px;
     border-bottom-right-radius: 1px; 
-    padding: 10px;
+    /*padding: 10px;*/
+}
+
+#settings_tab_btn {
+    image: url(../images/settings_light.png);
+    border-style: outset;
+    border-color: darkslategray;
+    border-width: 2px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 1px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 1px; 
+    /*padding: 10px;*/
 }
 
 QTabWidget {
@@ -97,21 +112,103 @@ QPushButton::pressed {
     border-color: gray;
 }
 
+QPushButton::menu-indicator {
+    subcontrol-position: bottom right;
+    width: 60px;
+    height: 60px;
+}
+
 QMenu {
     margin: 2px;
 }
 
-QMenu::item {
-    padding: 2px 25px 2px 20px;
-    border: 1px solid transparent; /* reserve space for selection border */
-    width: 200px;
-    font-size: 20px;
-    padding-left: 200px;
+QMenu#lang_menu {
+    width: 556px;
+    background-color: #A3C8FF;
+}
+QMenu#lang_menu::item {
+    font-size: 26px;
+    padding-bottom: 2px;
+    padding-left: 250px;
+}
+QMenu#lang_menu::item:selected {
+    border-color: darkslategrey;
+    background-color: #257CFD;
+    background: rgba(100, 100, 100, 150);
+    font: bold;
 }
 
-QMenu::item:selected {
+QMenu#algo_menu_enc_text {
+    width: 222px;
+    background-color: #A3C8FF;
+}
+QMenu#algo_menu_enc_text::item {
+    font-size: 24px;
+    padding-left: 50px;
+}
+QMenu#algo_menu_enc_text::item:selected {
     border-color: darkslategrey;
-    background-color: #c4c4c4;
+    background-color: #257CFD;
+    background: rgba(100, 100, 100, 150);
+    font: bold;
+}
+
+QMenu#algo_menu_enc_files {
+    width: 232px;
+    background-color: #A3C8FF;
+}
+QMenu#algo_menu_enc_files::item {
+    font-size: 24px;
+    padding-left: 50px;
+}
+QMenu#algo_menu_enc_files::item:selected {
+    border-color: darkslategrey;
+    background-color: #257CFD;
+    background: rgba(100, 100, 100, 150);
+    font: bold;
+}
+
+QMenu#algo_menu_dec {
+    width: 218px;
+    background-color: #A3C8FF;
+}
+QMenu#algo_menu_dec::item {
+    font-size: 24px;
+    padding-left: 50px;
+}
+QMenu#algo_menu_dec::item:selected {
+    border-color: darkslategrey;
+    background-color: #257CFD;
+    background: rgba(100, 100, 100, 150);
+    font: bold;
+}
+
+QMenu#default_hash_menu {
+    width: 678px;
+    background-color: #A3C8FF;
+}
+QMenu#default_hash_menu::item {
+    font-size: 24px;
+    padding-left: 250px;
+}
+QMenu#default_hash_menu::item:selected {
+    border-color: darkslategrey;
+    background-color: #257CFD;
+    background: rgba(100, 100, 100, 150);
+    font: bold;
+}
+
+QMenu#default_algo_menu {
+    width: 678px;
+    background-color: #A3C8FF;
+}
+QMenu#default_algo_menu::item {
+    font-size: 24px;
+    padding-left: 250px;
+}
+QMenu#default_algo_menu::item:selected {
+    border-color: darkslategrey;
+    background-color: #257CFD;
     background: rgba(100, 100, 100, 150);
     font: bold;
 }

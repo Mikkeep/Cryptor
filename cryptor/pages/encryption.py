@@ -93,6 +93,7 @@ class Encrypt_page:
         algo_trans = self.translations["buttons"]["algorithm"]
         self.algo_button_ttab = QPushButton(algo_trans)
         self.algo_dropdown = QMenu()
+        self.algo_dropdown.setObjectName("algo_menu_enc_text")
         for algo in ENC_ALGORITHMS:
             self.algo_dropdown.addAction(algo)
             self.algo_dropdown.addSeparator()
@@ -240,21 +241,27 @@ class Encrypt_page:
         # init layout
         self.layout = QGridLayout()
 
+        pad = QLabel(" ")
+        self.layout.addWidget(pad, 0, 9, 1, 1)
+
         # FILE BROWSER LABEL
         file_browse_label = QLabel(self.translations["labels"]["browse_file_enc"])
         file_browse_label.setObjectName("large_label")
-        self.layout.addWidget(file_browse_label, 0, 0, 1, 3)
+        file_browse_label.setAlignment(Qt.AlignCenter)
+        self.layout.addWidget(file_browse_label, 0, 2, 1, 3)
         # INSERT FILE BROWSER
         file_browse_btn = QPushButton(self.translations["buttons"]["browse_files"])
         file_browse_btn.clicked.connect(self.filedialogopen)
-        self.layout.addWidget(file_browse_btn, 0, 3, 1, 7)
+        self.layout.addWidget(file_browse_btn, 0, 5, 1, 3)
 
         # ALGORITHM SET LABEL
         self.algo_text_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
-        self.layout.addWidget(self.algo_text_label, 1, 0, 1, 3)
+        self.algo_text_label.setAlignment(Qt.AlignCenter)
+        self.layout.addWidget(self.algo_text_label, 1, 2, 1, 3)
         # ALGORITHM DROPDOWN MENU
         self.algo_button = QPushButton(self.translations["buttons"]["algorithm"])
         self.algo_dropdown = QMenu()
+        self.algo_dropdown.setObjectName("algo_menu_enc_files")
         for algo in ENC_ALGORITHMS_FILES:
             self.algo_dropdown.addAction(algo)
             self.algo_dropdown.addSeparator()
@@ -265,13 +272,13 @@ class Encrypt_page:
         #        if self.algo_dropdown.triggered:
         #            self.algo_button.setText(self.chosen_algo)
         #            self.layout.update()
-        self.layout.addWidget(self.algo_button, 1, 3, 1, 7)
+        self.layout.addWidget(self.algo_button, 1, 5, 1, 3)
 
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
         enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
         enc_conf_label = QLabel(self.translations["labels"]["encryption_key_confirm_label"])
-        self.layout.addWidget(enc_text_label, 2, 0, 1, 1)
-        self.layout.addWidget(enc_conf_label, 2, 5, 1, 2)
+        self.layout.addWidget(enc_text_label, 2, 3, 1, 1)
+        self.layout.addWidget(enc_conf_label, 3, 2, 1, 2)
         # ENCRYPTION KEY INPUT AND CONFIRM
         self.text_box_enc_text = PasswordEdit()
         if self.defaults["default_key"] != "":
@@ -279,23 +286,23 @@ class Encrypt_page:
         self.text_box_enc_text_confirm = PasswordEdit()
         if self.defaults["default_key"] != "":
             self.text_box_enc_text_confirm.setText(self.defaults["default_key"])
-        self.layout.addWidget(self.text_box_enc_text, 2, 1, 1, 4)
-        self.layout.addWidget(self.text_box_enc_text_confirm, 2, 7, 1, 3)
+        self.layout.addWidget(self.text_box_enc_text, 2, 4, 1, 3)
+        self.layout.addWidget(self.text_box_enc_text_confirm, 3, 4, 1, 3)
 
         # SALT INPUT LABEL
         salt_label = QLabel(self.translations["labels"]["salt_label"])
         salt_label.setObjectName("large_label")
         salt_label.setAlignment(Qt.AlignCenter)
-        self.layout.addWidget(salt_label, 3, 0, 1, 3)
+        self.layout.addWidget(salt_label, 4, 1, 1, 3)
         # SALT INPUT
         self.salt_insert_box = PasswordEdit()
         if self.defaults["default_salt"] != "":
             self.salt_insert_box.setText(self.defaults["default_salt"])
-        self.layout.addWidget(self.salt_insert_box, 3, 3, 1, 7)
+        self.layout.addWidget(self.salt_insert_box, 4, 4, 1, 5)
 
         # ENCRYPT BUTTON
         self.encrypt_button = QPushButton(self.translations["buttons"]["final_encrypt"])
-        self.layout.addWidget(self.encrypt_button, 4, 0, 1, 10)
+        self.layout.addWidget(self.encrypt_button, 5, 3, 1, 5)
         self.encrypt_button.clicked.connect(self.encrypt_file)
 
         # finish and set layout

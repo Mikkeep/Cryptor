@@ -7,6 +7,42 @@ QWidget {
     background-color: #29363c;
 }
 
+#encrypt_tab_btn {
+    image: url(../images/crypt_dark.png);
+    border-style: outset;
+    border-color: darkslategray;
+    border-width: 2px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 1px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 1px; 
+    /*padding: 10px;*/
+}
+
+#decrypt_tab_btn {
+    image: url(../images/key_dark.png);
+    border-style: outset;
+    border-color: darkslategray;
+    border-width: 2px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 1px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 1px; 
+    /*padding: 10px;*/
+}
+
+#settings_tab_btn {
+    image: url(../images/settings_dark.png);
+    border-style: outset;
+    border-color: darkslategray;
+    border-width: 2px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 1px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 1px; 
+    /*padding: 10px;*/
+}
+
 QTabBar::tab {
     width: 0;
     height: 0;
