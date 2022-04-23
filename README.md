@@ -53,6 +53,6 @@ Features to be added to the app
 
 ### Upcoming features
 - [ ] Make RSA encryption use user chosen RSA keys
-- [ ] Generate salt for the user:
-  - [ ] Generate salt automatically
-  - [ ] Salt generation window by clicking and calculating salt from input combined with random numbers
+- [x] Generate salt for the user:
+  - [x] Generate salt automatically
+  - [x] Salt generation window by clicking and calculating salt from input combined with random numbers
