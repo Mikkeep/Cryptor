@@ -1,71 +1,38 @@
+/*QMainWindow section*/
 QMainWindow {
     background-color: #e7f3fd;
     border: none;
 }
 
+
+/*QWidget section*/
 QWidget {
     background-color: #e7f3fd;
 }
 
+
+/*QLabel section*/
 QLabel {
     font-size: 18px;
 }
-
-#large_label {
+QLabel#large_label {
     font-size: 20px;
 }
-
-#title_label {
+QLabel#title_label {
     font-size: 40px;
     border: none;
     font: bold;
 }
 
-#encrypt_tab_btn {
-    image: url(../images/crypt_light.png);
-    border-style: outset;
-    border-color: darkslategray;
-    border-width: 2px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 1px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 1px; 
-    /*padding: 10px;*/
-}
 
-#decrypt_tab_btn {
-    image: url(../images/key_light.png);
-    border-style: outset;
-    border-color: darkslategray;
-    border-width: 2px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 1px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 1px; 
-    /*padding: 10px;*/
-}
-
-#settings_tab_btn {
-    image: url(../images/settings_light.png);
-    border-style: outset;
-    border-color: darkslategray;
-    border-width: 2px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 1px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 1px; 
-    /*padding: 10px;*/
-}
-
+/*QTabWidget section*/
 QTabWidget {
     border: none;
     padding: 0px;
 }
 
-QVBoxLayout {
-    padding: 100px;
-}
 
+/*QTabBar section*/
 QTabBar::tab {
     width: 0;
     height: 0;
@@ -74,50 +41,18 @@ QTabBar::tab {
     border: none;
 }
 
-#leftlayout {
-    margin: 0;
-    height: 100;
-}
 
+/*QListWidget section*/
 QListWidget {
     background-color: #84b5fd;
 }
-
 QListWidget::item:selected {
     background-color: #2ABf9E;
     font: bold;
 }
 
-QLineEdit {
-    background-color: #ebf0f1;
-    padding: 15px;
-    font-size: 20px;
-}
 
-QPushButton {
-    background-color: #84b5fd;
-    padding: 15px;
-    font-size: 26px;
-    border-style: outset;
-    border-width: 2px;
-    border-radius: 4px;
-    border-color: darkslategray;
-}
-
-QPushButton::pressed {
-    background-color: #408cfb;
-    border-style: inset;
-    border-width: 2px;
-    border-radius: 4px;
-    border-color: gray;
-}
-
-QPushButton::menu-indicator {
-    subcontrol-position: bottom right;
-    width: 60px;
-    height: 60px;
-}
-
+/*QMenu section */
 QMenu {
     margin: 2px;
 }
@@ -211,4 +146,65 @@ QMenu#default_algo_menu::item:selected {
     background-color: #257CFD;
     background: rgba(100, 100, 100, 150);
     font: bold;
+}
+
+
+/*QLineEdit section*/
+QLineEdit {
+    background-color: #ebf0f1;
+    padding: 15px;
+    font-size: 20px;
+}
+
+/*QPushbutton section*/
+QPushButton {
+    background-color: #84b5fd;
+    padding: 15px;
+    font-size: 26px;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 4px;
+    border-color: darkslategray;
+}
+QPushButton::pressed {
+    background-color: #408cfb;
+    border-style: inset;
+    border-width: 2px;
+    border-radius: 4px;
+    border-color: gray;
+}
+QPushButton::menu-indicator {
+    subcontrol-position: bottom right;
+    width: 60px;
+    height: 60px;
+}
+QPushButton#encrypt_tab_btn {
+    image: url(../images/crypt_light.png);
+    border-style: outset;
+    border-color: darkslategray;
+    border-width: 2px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 1px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 1px; 
+}
+QPushButton#decrypt_tab_btn {
+    image: url(../images/key_light.png);
+    border-style: outset;
+    border-color: darkslategray;
+    border-width: 2px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 1px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 1px; 
+}
+QPushButton#settings_tab_btn {
+    image: url(../images/settings_light.png);
+    border-style: outset;
+    border-color: darkslategray;
+    border-width: 2px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 1px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 1px; 
 }
