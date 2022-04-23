@@ -26,11 +26,15 @@ class Decrypt_page:
         dec_button_files = self.translations["buttons"]["decrypt_files"]
 
         self.btn_dec_t = QPushButton(f"{dec_button_text}")
+        self.btn_dec_t.setObjectName("btn_dec_t")
         self.btn_dec_t.clicked.connect(self.button_dec_t)
         self.btn_dec_f = QPushButton(f"{dec_button_files}")
+        self.btn_dec_f.setObjectName("btn_dec_f")
         self.btn_dec_f.clicked.connect(self.button_dec_f)
 
         top_actions = QHBoxLayout()
+        top_actions.setSpacing(0)
+        top_actions.setContentsMargins(0, 16, 0, 0)
         top_actions.addWidget(self.btn_dec_t)
         top_actions.addWidget(self.btn_dec_f)
         self.top_widget_dec = QWidget()

@@ -36,11 +36,15 @@ class Encrypt_page:
         enc_button_files = self.translations["buttons"]["encrypt_files"]
 
         btn_enc_t = QPushButton(f"{enc_button_text}")
+        btn_enc_t.setObjectName("btn_enc_t")
         btn_enc_t.clicked.connect(self.button_enc_t)
-
         btn_enc_f = QPushButton(f"{enc_button_files}")
+        btn_enc_f.setObjectName("btn_enc_f")
         btn_enc_f.clicked.connect(self.button_enc_f)
+        
         top_actions = QHBoxLayout()
+        top_actions.setSpacing(0)
+        top_actions.setContentsMargins(0, 16, 0, 0)
         top_actions.addWidget(btn_enc_t)
         top_actions.addWidget(btn_enc_f)
 
@@ -240,6 +244,7 @@ class Encrypt_page:
         """
         # init layout
         self.layout = QGridLayout()
+        self.layout.setContentsMargins(0, 0, 0, 0)
 
         pad = QLabel(" ")
         self.layout.addWidget(pad, 0, 9, 1, 1)

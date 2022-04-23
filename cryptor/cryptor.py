@@ -47,11 +47,11 @@ class Window(QMainWindow):
         self.btn_3 = QPushButton("", self)
         self.btn_3.setObjectName("settings_tab_btn")
 
-        self.btn_1.setFixedSize(QtCore.QSize(180, 230))
+        self.btn_1.setFixedSize(QtCore.QSize(180, 226))
         self.btn_1.clicked.connect(self.button1) 
-        self.btn_2.setFixedSize(QtCore.QSize(180, 230))
+        self.btn_2.setFixedSize(QtCore.QSize(180, 226))
         self.btn_2.clicked.connect(self.button2)
-        self.btn_3.setFixedSize(QtCore.QSize(180, 230))
+        self.btn_3.setFixedSize(QtCore.QSize(180, 226))
         self.btn_3.clicked.connect(self.button3)
 
 
@@ -83,7 +83,7 @@ class Window(QMainWindow):
         left_layout.addWidget(self.btn_3)
         left_layout.addStretch(10)
         left_layout.setSpacing(0)
-        #left_layout.setContentsMargins(0, 0, 0, 0)
+        left_layout.setContentsMargins(6, 10, 0, 0)
         left_widget = QWidget()
         left_widget.setLayout(left_layout)
 
