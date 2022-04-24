@@ -5,6 +5,7 @@
         "insert_text_dec": "Syota purettava salattu teksti:",
         "insert_file_dec": "Valitse purettavaksi salattu tiedosto:",
         "set_enc_algorithm": "Valitse salausalgoritmi:",
+        "set_dec_algorithm": "Valitse purkualgoritmi:",
         "encryption_key_label": "Salausavain:",
         "encryption_key_confirm_label": "Vahvista salausavain:",
         "salt_label": "Syota suola:"
@@ -21,7 +22,11 @@
         "encryption_key_confirm": "Vahvista salausavain",
         "browse_files": "Selaa tiedostoja",
         "final_encrypt": "SALAA",
-        "final_decrypt": "PURA SALAUS"
+        "final_decrypt": "PURA SALAUS",
+        "salt_select": "Valitse suolan tyyppi",
+        "automatic_salt": "Generoi suola automaattisesti",
+        "click_salt": "Generoi suola klikkauksista",
+        "write_salt": "Kirjoita suola manuaalisesti"
     },
     "prompts": {
         "settings_menu": "Asetukset",
@@ -38,6 +43,11 @@
         "dark_mode_selection_info_on": "Tumma tila on asetettu paalle",
         "dark_mode_selection_info_off": "Tumma tila on asetettu pois paalta",
         "encryption_disabled": "Salausavainta ei syoteta RSA salaukseen",
-        "salt_disabled": "Suolaa ei syoteta RSA salaukseen"
+        "salt_disabled": "Suolaa ei syoteta RSA salaukseen",
+        "no_rsa_keys": "RSA avainta ei havaittu!\nGeneroi uusi avainpari asetuksista",
+        "failed_decrypt": "Salauksen purku tiedostosta epaonnistui!",
+        "generate_keys": "Generoi RSA avainpari",
+        "keys_exist": "RSA avainpari on jo olemassa",
+        "keys_generated": "RSA avainpari luotu"
     }
 }

@@ -8,6 +8,7 @@ from PyQt5 import QtGui, QtCore
 from constants import *
 from utils import *
 from pages import settings, encryption, decryption, settings_page
+from crypto import generate_key, encrypt
 
 
 __author__ = "Mikael Pennanen & Juho Bruun"
@@ -56,7 +57,7 @@ class Window(QMainWindow):
 
 
         # add tabs
-        self._encryption = encryption.Encrypt_page(self.translations)
+        self._encryption = encryption.Encrypt_page(self.translations, self)
         self._decryption = decryption.Decrypt_page(self.translations)
         self.tab1 = self._encryption.encryption()
         self.tab2 = self._decryption.decryption()
@@ -158,14 +159,39 @@ class Window(QMainWindow):
                 cryptor.setStyleSheet(_style)
             return
 
+    def generate_rsa_keys(self):
+        try:
+            # Read both for confirmation they exist
+            encrypt.Encryption().read_file("public.pem")
+            encrypt.Encryption().read_file("private.pem")
+            print("Found existing RSA key pair")
+            keys_exist = self.translations["prompts"]["keys_exist"]
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
+            msg.setText(keys_exist)
+            msg.exec_()
+            return
+
+        # If not found handle the error by generating new AES key pair
+        except FileNotFoundError:
+
+            print("Existing RSA key pair not found")
+
+            generator = generate_key.key_generator()
+            generator.generate_public_key()
+            generator.generate_private_key()
+            print("Generated public and private key pair for RSA encryption")
+            keys_generated = self.translations["prompts"]["keys_generated"]
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
+            msg.setText(keys_generated)
+            msg.exec_()
+            return
+
     def default_encrypt_window(self):
         if self.w is None:
             self.w = settings.SettingsWindow(self.translations)
         self.w.show()
-        self.sub = QMdiSubWindow()
-        self.sub.setWindowTitle("subwindow")
-        self.mdi.addSubWindow(self.sub)
-        self.sub.show()
 
     def close_subwindow(self):
         self.mdi.close()

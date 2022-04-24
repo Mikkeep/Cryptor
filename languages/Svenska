@@ -5,6 +5,7 @@
         "insert_text_dec": "Infoga text för att dekryptera:",
         "insert_file_dec": "Valj en fil at dekryptera:",
         "set_enc_algorithm": "Valj krypteringsalgoritm:",
+        "set_dec_algorithm": "Valj dekrypteringsalgoritm:",
         "encryption_key_label": "Krypteringsnyckel:",
         "encryption_key_confirm_label": "Bekrafta krypteringsnyckeln:",
         "salt_label": "Lagg i salt:"
@@ -21,7 +22,11 @@
         "encryption_key_confirm": "Bekräfta krypteringsnyckeln",
         "browse_files": "Bladdra bland filer",
         "final_encrypt": "KRYPTERA",
-        "final_decrypt": "DEKRYPTERA"
+        "final_decrypt": "DEKRYPTERA",
+        "salt_select": "välj salttyp",
+        "automatic_salt": "Generera salt automatiskt",
+        "click_salt": "Generera salt från klick",
+        "write_salt": "Skriv salt manuellt"
     },
     "prompts": {
         "settings_menu": "inställningar",
@@ -38,6 +43,11 @@
         "dark_mode_selection_info_on": "Mörkt läge har aktiverats",
         "dark_mode_selection_info_off": "Mörkt läge har avaktiverats",
         "encryption_disabled": "Krypteringsnyckel används inte för RSA-kryptering",
-        "salt_disabled": "Saltvärden används inte för RSA-kryptering"
+        "salt_disabled": "Saltvärden används inte för RSA-kryptering",
+        "no_rsa_keys": "Ingen RSA-nyckel upptäckt!\nSkapa ett nytt par från inställningarna",
+        "failed_decrypt": "Det gick inte att dekryptera filen!",
+        "generate_keys": "Generera RSA-nyckelpar",
+        "keys_exist": "Hittade befintligt RSA-nyckelpar",
+        "keys_generated": "Genererat RSA-nyckelpar"
     }
 }

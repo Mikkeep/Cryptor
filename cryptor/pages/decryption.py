@@ -1,13 +1,20 @@
+import os
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
 from qtwidgets import PasswordEdit
+
+from crypto import decrypt
 from .file_dialog import FileDialog
-from constants import ENC_ALGORITHMS
+from constants import ENC_ALGORITHMS, ENC_ALGORITHMS_FILES
 
 
 class Decrypt_page:
     def __init__(self, translations):
         self.translations = translations
+        self.enc_key = ""
+        self.salt = ""
+        self.filepath = ""
+        self.chosen_algo = ""
 
     def button_dec_t(self):
         self.bottom_widget_dec.setCurrentIndex(0)
@@ -78,24 +85,24 @@ class Decrypt_page:
         layout.addWidget(text_insert, 0, 3, 1, 7)
 
         # ALGORITHM LABEL
-        algo_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
+        algo_label = QLabel(self.translations["labels"]["set_dec_algorithm"])
         layout.addWidget(algo_label, 1, 2, 1, 3)
         # ALGORITHM DROPDOWN MENU
-        algo_button = QPushButton(self.translations["buttons"]["algorithm"])
-        algo_dropdown = QMenu()
-        algo_dropdown.setObjectName("algo_menu_dec")
+        self.algo_button_ttab = QPushButton(self.translations["buttons"]["algorithm"])
+        self.algo_dropdown = QMenu()
         for algo in ENC_ALGORITHMS:
-            algo_dropdown.addAction(algo)
-            algo_dropdown.addSeparator()
-        algo_button.setMenu(algo_dropdown)
-        layout.addWidget(algo_button, 1, 5, 1, 3)
+            self.algo_dropdown.addAction(algo)
+            self.algo_dropdown.addSeparator()
+        self.algo_button_ttab.setMenu(self.algo_dropdown)
+        self.algo_dropdown.triggered.connect(self.algorithms_text_tab)
+        layout.addWidget(self.algo_button_ttab, 1, 5, 1, 3)
 
-        # ENCRYPTION KEY LABEL
-        enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
-        layout.addWidget(enc_key_label, 2, 1, 1, 2)
-        # ENCRYPTION KEY INPUT
-        text_box_dec_text = PasswordEdit()
-        layout.addWidget(text_box_dec_text, 2, 3, 1, 6)
+        # ENCRYPTION SALT LABEL
+        self.enc_salt_label = QLabel(self.translations["labels"]["salt_label"])
+        layout.addWidget(self.enc_salt_label, 2, 1, 1, 1)
+        # ENCRYPTION SALT INPUT
+        self.text_box_salt_text = PasswordEdit()
+        layout.addWidget(self.text_box_salt_text, 2, 3, 1, 6)
 
         # DECRYPT BUTTON
         decrypt_button = QPushButton(self.translations["buttons"]["final_decrypt"])
@@ -107,9 +114,101 @@ class Decrypt_page:
 
     def filedialogopen(self):
         self._files = FileDialog().fileOpen()
+        self.filepath = self._files
 
     def filedialogsave(self):
         self._save = FileDialog().fileSave()
+
+    # Decrypt parameters set and function call
+    def decrypt_file(self):
+        self.enc_key = self.text_box_dec_text.text()
+        self.salt = self.text_box_salt_text.text()
+        salt = self.salt
+        print("salt:", salt)
+        filepath = self.filepath
+        fileout = os.path.basename(self.filepath)
+        enc_key = self.enc_key
+        print(enc_key)
+        # File out gets the name of the file for saving the file
+        if self.chosen_algo == "AES":
+            decryptor = decrypt.Decryption(password=enc_key, salt=salt)
+            result = decryptor.decrypt_with_aes(filepath, fileout)
+            if result == -1:
+                print("failed decrypting")
+                failed_decrypt = self.translations["prompts"]["failed_decrypt"]
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setText(failed_decrypt)
+                msg.exec_()
+                return
+            return
+        if self.chosen_algo == "RSA":
+            decryptor = decrypt.Decryption(password=enc_key, salt=salt)
+            result = decryptor.decrypt_with_rsa(filename=filepath, priv_key="private.pem", fileout=fileout)
+            if result == -2:
+                no_RSA_keys = self.translations["prompts"]["no_rsa_keys"]
+                print("Cant open key file")
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setText(no_RSA_keys)
+                msg.exec_()
+                return
+            if result == -1:
+                print("failed decrypting")
+                failed_decrypt = self.translations["prompts"]["failed_decrypt"]
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setText(failed_decrypt)
+                msg.exec_()
+                return
+            return
+        if self.chosen_algo == "Chacha":
+            decryptor = decrypt.Decryption(password=enc_key, salt=salt)
+            result = decryptor.decrypt_with_chacha(filepath, fileout)
+            if result == -1:
+                print("failed decrypting")
+                failed_decrypt = self.translations["prompts"]["failed_decrypt"]
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setText(failed_decrypt)
+                msg.exec_()
+                return
+            return
+        # Filepath is the path for the file
+        # Fileout is the name of the file, comes out with added
+        # .dec prefix after decryption
+        return
+
+    def algorithms(self, algorithm):
+        """
+        Change the encryption button text to chosen algorithm
+        """
+        disabled_password = self.translations["prompts"]["encryption_disabled"]
+        disabled_salt = self.translations["prompts"]["salt_disabled"]
+        self.chosen_algo = algorithm.text()
+        self.algo_button.setText(self.chosen_algo)
+        if self.chosen_algo == "RSA":
+            self.text_box_dec_text.setDisabled(True)
+            self.text_box_dec_text.setToolTip(disabled_password)
+            self.text_box_salt_text.setDisabled(True)
+            self.text_box_salt_text.setToolTip(disabled_salt)
+        else:
+            self.text_box_dec_text.setDisabled(False)
+            self.text_box_dec_text.setToolTip("")
+            self.text_box_dec_text.setToolTip("")
+            self.text_box_salt_text.setDisabled(False)
+            self.text_box_salt_text.setToolTip("")
+        self.layout.update()
+        return algorithm
+
+    def algorithms_text_tab(self, algorithm):
+        """
+        Change the encryption button text to chosen algorithm
+        """
+        self.chosen_algo = algorithm.text()
+        self.algo_button_ttab.setText(self.chosen_algo)
+        self.layout.update()
+        return algorithm
 
     def tab_dec_files(self):
         """
@@ -121,7 +220,6 @@ class Decrypt_page:
         layout.addWidget(pad, 0, 0, 1, 1)
         layout.addWidget(pad, 0, 9, 1, 1)
 
-
         # FILE BROWSE LABEL
         open_file_label = QLabel(self.translations["labels"]["insert_file_dec"])
         open_file_label.setObjectName("large_label")
@@ -130,33 +228,42 @@ class Decrypt_page:
         # FILE BROWSE
         open_file_btn = QPushButton(self.translations["buttons"]["browse_files"])
         open_file_btn.clicked.connect(self.filedialogopen)
-        layout.addWidget(open_file_btn, 0, 5, 1, 3)
+        self.layout.addWidget(open_file_btn, 0, 5, 1, 3)
 
         # ALGORITHM LABEL
-        algo_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
-        layout.addWidget(algo_label, 1, 2, 1, 3)
+        algo_label = QLabel(self.translations["labels"]["set_dec_algorithm"])
+        self.layout.addWidget(algo_label, 1, 2, 1, 3)
         # ALGORITHM DROPDOWN MENU
-        algo_button = QPushButton(self.translations["buttons"]["algorithm"])
-        algo_dropdown = QMenu()
-        algo_dropdown.setObjectName("algo_menu_dec")
-        for algo in ENC_ALGORITHMS:
-            algo_dropdown.addAction(algo)
-            algo_dropdown.addSeparator()
-        algo_button.setMenu(algo_dropdown)
-        layout.addWidget(algo_button, 1, 5, 1, 3)
+        self.algo_button = QPushButton(self.translations["buttons"]["algorithm"])
+        self.algo_dropdown = QMenu()
+        self.algo_dropdown.setObjectName("algo_menu_dec")
+        for algo in ENC_ALGORITHMS_FILES:
+            self.algo_dropdown.addAction(algo)
+            self.algo_dropdown.addSeparator()
+        self.algo_button.setMenu(self.algo_dropdown)
+        self.algo_dropdown.triggered.connect(self.algorithms)
+        self.layout.addWidget(self.algo_button, 1, 5, 1, 3)
 
         # ENCRYPTION KEY LABEL
-        enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
-        layout.addWidget(enc_key_label, 2, 1, 1, 2)
+        self.enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
+        self.layout.addWidget(self.enc_key_label, 2, 1, 1, 2)
         # ENCRYPTION KEY INPUT
-        text_box_dec_text = PasswordEdit()
-        layout.addWidget(text_box_dec_text, 2, 3, 1, 6)
+        self.text_box_dec_text = PasswordEdit()
+        self.layout.addWidget(self.text_box_dec_text, 2, 3, 1, 6)
+
+        # ENCRYPTION SALT LABEL
+        self.enc_salt_label = QLabel(self.translations["labels"]["salt_label"])
+        self.layout.addWidget(self.enc_salt_label, 3, 1, 1, 2)
+        # ENCRYPTION SALT INPUT
+        self.text_box_salt_text = PasswordEdit()
+        self.layout.addWidget(self.text_box_salt_text, 3, 3, 1, 6)
 
         # DECRYPT BUTTON
         decrypt_button = QPushButton(self.translations["buttons"]["final_decrypt"])
-        layout.addWidget(decrypt_button, 3, 2, 1, 6)
+        decrypt_button.clicked.connect(self.decrypt_file)
+        self.layout.addWidget(decrypt_button, 4, 2, 1, 6)
 
         # finish layout
         main = QWidget()
-        main.setLayout(layout)
+        main.setLayout(self.layout)
         return main

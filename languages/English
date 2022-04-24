@@ -5,6 +5,7 @@
         "insert_text_dec": "Insert text to decrypt:",
         "insert_file_dec": "Choose a file to decrypt:",
         "set_enc_algorithm": "Choose encryption algorithm:",
+        "set_dec_algorithm": "Choose decryption algorithm:",
         "encryption_key_label": "Encryption key:",
         "encryption_key_confirm_label": "Confirm encryption key:",
         "salt_label": "Insert encryption salt:"
@@ -21,7 +22,11 @@
         "encryption_key_confirm": "Confirm encryption key",
         "browse_files": "Browse files",
         "final_encrypt": "ENCRYPT",
-        "final_decrypt": "DECRYPT"
+        "final_decrypt": "DECRYPT",
+        "salt_select": "Select salt type",
+        "automatic_salt": "Generate salt automatically",
+        "click_salt": "Generate salt from clicks",
+        "write_salt": "Write salt manually"
     },
     "prompts": {
         "settings_menu": "Settings",
@@ -38,6 +43,11 @@
         "dark_mode_selection_info_on": "Dark mode has been activated",
         "dark_mode_selection_info_off": "Dark mode has been deactivated",
         "encryption_disabled": "Encryption key is not used for RSA encryption",
-        "salt_disabled": "Salt values are not used for RSA encryption"
+        "salt_disabled": "Salt values are not used for RSA encryption",
+        "no_rsa_keys": "No RSA-key detected!\nGenerate a new pair from settings",
+        "failed_decrypt": "Failed to decrypt the file!",
+        "generate_keys": "Generate RSA keypair",
+        "keys_exist": "Found existing RSA keypair",
+        "keys_generated": "Generated RSA keypair"
     }
 }
