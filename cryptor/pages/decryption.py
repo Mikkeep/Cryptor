@@ -5,16 +5,17 @@ from qtwidgets import PasswordEdit
 
 from crypto import decrypt
 from .file_dialog import FileDialog
-from constants import ENC_ALGORITHMS, ENC_ALGORITHMS_FILES
+from constants import ENC_ALGORITHMS, ENC_ALGORITHMS_FILES, inprogresslist
 
 
 class Decrypt_page:
-    def __init__(self, translations):
+    def __init__(self, translations, mainwindow):
         self.translations = translations
         self.enc_key = ""
         self.salt = ""
         self.filepath = ""
         self.chosen_algo = ""
+        self.parent_win = mainwindow
 
     def button_dec_t(self):
         self.bottom_widget_dec.setCurrentIndex(0)
@@ -141,6 +142,12 @@ class Decrypt_page:
                 msg.setText(failed_decrypt)
                 msg.exec_()
                 return
+            inprogresslist.append(f"Decrypted: {fileout}")
+            progress = self.translations["prompts"]["ready"]
+            self.parent_win.right_layout.clear()
+            self.parent_win.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
+            self.parent_win.right_layout.addItems(inprogresslist)
+            self.parent_win.right_layout.setHidden(False)
             return
         if self.chosen_algo == "RSA":
             decryptor = decrypt.Decryption(password=enc_key, salt=salt)
@@ -161,6 +168,12 @@ class Decrypt_page:
                 msg.setText(failed_decrypt)
                 msg.exec_()
                 return
+            inprogresslist.append(f"Decrypted: {fileout}")
+            progress = self.translations["prompts"]["ready"]
+            self.parent_win.right_layout.clear()
+            self.parent_win.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
+            self.parent_win.right_layout.addItems(inprogresslist)
+            self.parent_win.right_layout.setHidden(False)
             return
         if self.chosen_algo == "Chacha":
             decryptor = decrypt.Decryption(password=enc_key, salt=salt)
@@ -173,6 +186,12 @@ class Decrypt_page:
                 msg.setText(failed_decrypt)
                 msg.exec_()
                 return
+            inprogresslist.append(f"Decrypted: {fileout}")
+            progress = self.translations["prompts"]["ready"]
+            self.parent_win.right_layout.clear()
+            self.parent_win.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
+            self.parent_win.right_layout.addItems(inprogresslist)
+            self.parent_win.right_layout.setHidden(False)
             return
         # Filepath is the path for the file
         # Fileout is the name of the file, comes out with added
