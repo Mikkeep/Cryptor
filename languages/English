@@ -31,6 +31,7 @@
     "prompts": {
         "settings_menu": "Settings",
         "in_progress": "In_progress",
+        "ready": "Ready",
         "choose_lang": "Choose a language",
         "startup_lang": "Select used language for the application",
         "language_selection_info": "Language is changed during restart of the application",

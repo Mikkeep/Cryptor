@@ -31,6 +31,7 @@
     "prompts": {
         "settings_menu": "inställningar",
         "in_progress": "Pågående",
+        "ready": "Redo",
         "choose_lang": "Välj ett språk",
         "startup_lang": "Välj det språk som används för applikationen",
         "language_selection_info": "Språket ändras vid omstart av programmet",
