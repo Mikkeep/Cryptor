@@ -40,24 +40,21 @@ class Window(QMainWindow):
         # center the window relative to screensize
         self.center_window()
 
-        # add all widgets
+        # init tab buttons
         self.btn_1 = QPushButton("", self)
+        self.btn_1.setObjectName("encrypt_tab_btn")
         self.btn_2 = QPushButton("", self)
+        self.btn_2.setObjectName("decrypt_tab_btn")
         self.btn_3 = QPushButton("", self)
+        self.btn_3.setObjectName("settings_tab_btn")
 
+        self.btn_1.setFixedSize(QtCore.QSize(180, 226))
         self.btn_1.clicked.connect(self.button1) 
-        # set default tab button to pushed state on program start
-        self.btn_1.setFixedSize(QtCore.QSize(240, 240))
-        self.btn_1.setIcon(QtGui.QIcon(IMG_LOCATION + "crypt.png"))
-        self.btn_1.setIconSize(QtCore.QSize(220, 220))
-        self.btn_2.setFixedSize(QtCore.QSize(240, 240))
+        self.btn_2.setFixedSize(QtCore.QSize(180, 226))
         self.btn_2.clicked.connect(self.button2)
-        self.btn_2.setIcon(QtGui.QIcon(IMG_LOCATION + "key.png"))
-        self.btn_2.setIconSize(QtCore.QSize(220, 220))
-        self.btn_3.setFixedSize(QtCore.QSize(240, 240))
+        self.btn_3.setFixedSize(QtCore.QSize(180, 226))
         self.btn_3.clicked.connect(self.button3)
-        self.btn_3.setIcon(QtGui.QIcon(IMG_LOCATION + "settings.png"))
-        self.btn_3.setIconSize(QtCore.QSize(220, 220))
+
 
         # add tabs
         self._encryption = encryption.Encrypt_page(self.translations, self)
@@ -81,11 +78,13 @@ class Window(QMainWindow):
 
     def initUI(self):
         left_layout = QVBoxLayout()
+        #left_layout.setObjectName("leftlayout")
         left_layout.addWidget(self.btn_1)
         left_layout.addWidget(self.btn_2)
         left_layout.addWidget(self.btn_3)
         left_layout.addStretch(10)
         left_layout.setSpacing(0)
+        left_layout.setContentsMargins(6, 10, 0, 0)
         left_widget = QWidget()
         left_widget.setLayout(left_layout)
 
