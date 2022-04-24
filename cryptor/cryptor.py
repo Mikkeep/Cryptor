@@ -58,7 +58,7 @@ class Window(QMainWindow):
 
         # add tabs
         self._encryption = encryption.Encrypt_page(self.translations, self)
-        self._decryption = decryption.Decrypt_page(self.translations)
+        self._decryption = decryption.Decrypt_page(self.translations, self)
         self.tab1 = self._encryption.encryption()
         self.tab2 = self._decryption.decryption()
         self.tab3 = settings_page.settings(self)
@@ -101,6 +101,7 @@ class Window(QMainWindow):
         progress = self.translations["prompts"]["in_progress"]
         self.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
         self.right_layout.resize(200, self.height)
+        self.right_layout.setHidden(True)
 
         self.main_layout = QHBoxLayout()
         self.main_layout.addWidget(left_widget)
