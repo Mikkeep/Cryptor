@@ -170,12 +170,6 @@ class Encrypt_page:
         """
         self._files = FileDialog().fileOpen()
         self.filepath = self._files
-        fileout = os.path.basename(self.filepath)
-        inprogresslist.append(fileout)
-        progress = self.translations["prompts"]["in_progress"]
-        self.parent_win.right_layout.clear()
-        self.parent_win.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
-        self.parent_win.right_layout.addItem(fileout)
 
     def filedialogsave(self):
         """
@@ -213,10 +207,12 @@ class Encrypt_page:
         # Filepath is the path for the file
         # Fileout is the name of the file, comes out with added
         # _encryted prefix after ecnryption
-        inprogresslist.clear()
-        progress = "ready: "
-        self.parent_win.right_layout.insertItem(7, f"{progress} ({len(inprogresslist)})")
-        self.parent_win.right_layout.addItem("Olen valmis")
+        inprogresslist.append(f"Encrypted: {fileout}")
+        progress = self.translations["prompts"]["ready"]
+        self.parent_win.right_layout.clear()
+        self.parent_win.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
+        self.parent_win.right_layout.addItems(inprogresslist)
+        self.parent_win.right_layout.setHidden(False)
         return
 
     def encrypt_text(self):
