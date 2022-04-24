@@ -49,7 +49,7 @@ class Encrypt_page:
         btn_enc_f = QPushButton(f"{enc_button_files}")
         btn_enc_f.setObjectName("btn_enc_f")
         btn_enc_f.clicked.connect(self.button_enc_f)
-        
+
         top_actions = QHBoxLayout()
         top_actions.setSpacing(0)
         top_actions.setContentsMargins(0, 16, 0, 0)
@@ -303,7 +303,9 @@ class Encrypt_page:
 
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
         enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
-        enc_conf_label = QLabel(self.translations["labels"]["encryption_key_confirm_label"])
+        enc_conf_label = QLabel(
+            self.translations["labels"]["encryption_key_confirm_label"]
+        )
         self.layout.addWidget(enc_text_label, 2, 3, 1, 1)
         self.layout.addWidget(enc_conf_label, 3, 2, 1, 2)
         # ENCRYPTION KEY INPUT AND CONFIRM

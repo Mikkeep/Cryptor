@@ -49,12 +49,11 @@ class Window(QMainWindow):
         self.btn_3.setObjectName("settings_tab_btn")
 
         self.btn_1.setFixedSize(QtCore.QSize(180, 226))
-        self.btn_1.clicked.connect(self.button1) 
+        self.btn_1.clicked.connect(self.button1)
         self.btn_2.setFixedSize(QtCore.QSize(180, 226))
         self.btn_2.clicked.connect(self.button2)
         self.btn_3.setFixedSize(QtCore.QSize(180, 226))
         self.btn_3.clicked.connect(self.button3)
-
 
         # add tabs
         self._encryption = encryption.Encrypt_page(self.translations, self)
@@ -78,7 +77,7 @@ class Window(QMainWindow):
 
     def initUI(self):
         left_layout = QVBoxLayout()
-        #left_layout.setObjectName("leftlayout")
+        # left_layout.setObjectName("leftlayout")
         left_layout.addWidget(self.btn_1)
         left_layout.addWidget(self.btn_2)
         left_layout.addWidget(self.btn_3)

@@ -78,7 +78,9 @@ class Decrypt_page:
 
         # INSERT TEXT LABEL
         text_ins_label = QLabel(self.translations["labels"]["insert_text_dec"])
-        text_ins_label.setObjectName("large_label") # set object name for qss tag effects
+        text_ins_label.setObjectName(
+            "large_label"
+        )  # set object name for qss tag effects
         text_ins_label.setAlignment(Qt.AlignCenter)
         layout.addWidget(text_ins_label, 0, 0, 1, 3)
         # INSERT TEXT BOX
@@ -145,13 +147,17 @@ class Decrypt_page:
             inprogresslist.append(f"Decrypted: {fileout}")
             progress = self.translations["prompts"]["ready"]
             self.parent_win.right_layout.clear()
-            self.parent_win.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
+            self.parent_win.right_layout.addItems(
+                [f"{progress} ({len(inprogresslist)})"]
+            )
             self.parent_win.right_layout.addItems(inprogresslist)
             self.parent_win.right_layout.setHidden(False)
             return
         if self.chosen_algo == "RSA":
             decryptor = decrypt.Decryption(password=enc_key, salt=salt)
-            result = decryptor.decrypt_with_rsa(filename=filepath, priv_key="private.pem", fileout=fileout)
+            result = decryptor.decrypt_with_rsa(
+                filename=filepath, priv_key="private.pem", fileout=fileout
+            )
             if result == -2:
                 no_RSA_keys = self.translations["prompts"]["no_rsa_keys"]
                 print("Cant open key file")
@@ -171,7 +177,9 @@ class Decrypt_page:
             inprogresslist.append(f"Decrypted: {fileout}")
             progress = self.translations["prompts"]["ready"]
             self.parent_win.right_layout.clear()
-            self.parent_win.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
+            self.parent_win.right_layout.addItems(
+                [f"{progress} ({len(inprogresslist)})"]
+            )
             self.parent_win.right_layout.addItems(inprogresslist)
             self.parent_win.right_layout.setHidden(False)
             return
@@ -189,7 +197,9 @@ class Decrypt_page:
             inprogresslist.append(f"Decrypted: {fileout}")
             progress = self.translations["prompts"]["ready"]
             self.parent_win.right_layout.clear()
-            self.parent_win.right_layout.addItems([f"{progress} ({len(inprogresslist)})"])
+            self.parent_win.right_layout.addItems(
+                [f"{progress} ({len(inprogresslist)})"]
+            )
             self.parent_win.right_layout.addItems(inprogresslist)
             self.parent_win.right_layout.setHidden(False)
             return

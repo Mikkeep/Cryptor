@@ -3,6 +3,7 @@ from constants import *
 from utils import *
 from crypto import generate_salt
 
+
 class SaltWindow(QWidget):
     def __init__(self, translation, window):
         super().__init__()
@@ -29,11 +30,12 @@ class SaltWindow(QWidget):
         centering.moveCenter(centerOfScreen)
         self.move(centering.topLeft())
 
-
     def mousePressEvent(self, event):
         self.count += 1
         if self.count >= 3:
-            save_salt = generate_salt.salt_generator().generate_salt_from_coords(*self.coordinates)
+            save_salt = generate_salt.salt_generator().generate_salt_from_coords(
+                *self.coordinates
+            )
             self.final_val = str(save_salt)
             print(self.final_val)
             self.parent_window.chosen_salt = self.final_val

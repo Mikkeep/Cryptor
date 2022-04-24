@@ -5,6 +5,7 @@ from base64 import b64encode
 
 class salt_generator:
     """Generate salts for defaults"""
+
     def __init__(self) -> None:
         self.salt = ""
         # Number between 1 million and 9.9 million
@@ -15,7 +16,7 @@ class salt_generator:
         random_bytes = get_random_bytes(16)
         # Get 16 characters from the beginning
         self.salt = b64encode(random_bytes)[0:16]
-        return self.salt.decode('utf-8')
+        return self.salt.decode("utf-8")
 
     # Uses *args to accept arbitary amount of coords
     def generate_salt_from_coords(self, *coords):

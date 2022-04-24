@@ -151,11 +151,11 @@ def check_encryption_defaults(db_name):
     """
     data = ""
     defaults = {
-            "default_hash": "",
-            "default_algo": "",
-            "default_salt": "",
-            "default_key": "",
-        }
+        "default_hash": "",
+        "default_algo": "",
+        "default_salt": "",
+        "default_key": "",
+    }
     try:
         conn = sqlite3.connect(db_name)
         cur = conn.cursor()

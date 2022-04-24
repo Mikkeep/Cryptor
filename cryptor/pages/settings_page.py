@@ -14,10 +14,12 @@ def settings(self):
 
     title_label.setAlignment(Qt.AlignCenter)
     title_label.setObjectName("title_label")
-    title_label.setSizePolicy(QSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Fixed))
+    title_label.setSizePolicy(
+        QSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Fixed)
+    )
     title_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
     self.main_layout.addWidget(title_label, 0, 1, 1, 8)
-    
+
     pad = QLabel(" ")
     self.main_layout.addWidget(pad, 0, 0, 1, 2)
     self.main_layout.addWidget(pad, 0, 8, 1, 2)

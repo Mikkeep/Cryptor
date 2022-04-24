@@ -7,6 +7,7 @@ from crypto import generate_salt
 from pages import salt_generation
 import time
 
+
 class SettingsWindow(QWidget):
     def __init__(self, translation):
         super().__init__()
@@ -115,7 +116,6 @@ class SettingsWindow(QWidget):
             return
         self.window = salt_generation.SaltWindow(self.settings_translate, self)
         self.window.show()
-
 
     def close_settings(self, event):
         pwd_mismatch = self.settings_translate["prompts"]["password_mismatch"]
