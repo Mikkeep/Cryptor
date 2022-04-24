@@ -215,16 +215,16 @@ class Decrypt_page:
         This method handles the file decryption tab
         """
         # init layout
-        layout = QGridLayout()
+        self.layout = QGridLayout()
         pad = QLabel(" ")
-        layout.addWidget(pad, 0, 0, 1, 1)
-        layout.addWidget(pad, 0, 9, 1, 1)
+        self.layout.addWidget(pad, 0, 0, 1, 1)
+        self.layout.addWidget(pad, 0, 9, 1, 1)
 
         # FILE BROWSE LABEL
         open_file_label = QLabel(self.translations["labels"]["insert_file_dec"])
         open_file_label.setObjectName("large_label")
         open_file_label.setAlignment(Qt.AlignCenter)
-        layout.addWidget(open_file_label, 0, 2, 1, 3)
+        self.layout.addWidget(open_file_label, 0, 2, 1, 3)
         # FILE BROWSE
         open_file_btn = QPushButton(self.translations["buttons"]["browse_files"])
         open_file_btn.clicked.connect(self.filedialogopen)
