@@ -100,7 +100,7 @@ class Encrypt_page:
         # ALGORITHM SET LABEL
         algo_text_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
         algo_text_label.setAlignment(Qt.AlignCenter)
-        layout.addWidget(algo_text_label, 1, 2, 1, 3)
+        layout.addWidget(algo_text_label, 1, 1, 1, 3)
         # ALGORITHM DROPDOWN MENU
         algo_trans = self.translations["buttons"]["algorithm"]
         self.algo_button_ttab = QPushButton(algo_trans)
@@ -113,7 +113,7 @@ class Encrypt_page:
         self.algo_dropdown.triggered.connect(self.algorithms_text)
         if self.defaults["default_hash"] != "":
             self.algo_button_ttab.setText(self.defaults["default_hash"])
-        layout.addWidget(self.algo_button_ttab, 1, 5, 1, 3)
+        layout.addWidget(self.algo_button_ttab, 1, 4, 1, 3)
 
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
         enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
