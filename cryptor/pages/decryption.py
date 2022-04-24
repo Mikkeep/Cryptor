@@ -86,7 +86,7 @@ class Decrypt_page:
 
         # ALGORITHM LABEL
         algo_label = QLabel(self.translations["labels"]["set_dec_algorithm"])
-        layout.addWidget(algo_label, 1, 2, 1, 3)
+        layout.addWidget(algo_label, 1, 1, 1, 3)
         # ALGORITHM DROPDOWN MENU
         self.algo_button_ttab = QPushButton(self.translations["buttons"]["algorithm"])
         self.algo_dropdown = QMenu()
@@ -95,7 +95,7 @@ class Decrypt_page:
             self.algo_dropdown.addSeparator()
         self.algo_button_ttab.setMenu(self.algo_dropdown)
         self.algo_dropdown.triggered.connect(self.algorithms_text_tab)
-        layout.addWidget(self.algo_button_ttab, 1, 5, 1, 3)
+        layout.addWidget(self.algo_button_ttab, 1, 4, 1, 3)
 
         # ENCRYPTION SALT LABEL
         self.enc_salt_label = QLabel(self.translations["labels"]["salt_label"])
