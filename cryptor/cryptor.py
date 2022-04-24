@@ -149,13 +149,13 @@ class Window(QMainWindow):
         print(mode)
         if mode == "False":
             write_used_mode(db_location, ("True",))
-            with open("darkstyle.qss", "r") as f:
+            with open("styles/darkstyle.qss", "r") as f:
                 _style = f.read()
                 cryptor.setStyleSheet(_style)
             return
         else:
             write_used_mode(db_location, ("False",))
-            with open("style.qss", "r") as f:
+            with open("styles/style.qss", "r") as f:
                 _style = f.read()
                 cryptor.setStyleSheet(_style)
             return
@@ -208,12 +208,12 @@ used_mode = check_dark_mode(db_location)
 print("Darkmode state: ", used_mode)
 
 if used_mode == "False":
-    with open("style.qss", "r") as f:
+    with open("styles/style.qss", "r") as f:
         _style = f.read()
         cryptor.setStyleSheet(_style)
 
 else:
-    with open("darkstyle.qss", "r") as f:
+    with open("styles/darkstyle.qss", "r") as f:
         _style = f.read()
         cryptor.setStyleSheet(_style)
 
