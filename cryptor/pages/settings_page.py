@@ -43,12 +43,12 @@ def settings(self):
     # GENERATE RSA KEYPAIR
     self.button_generate_keys = QPushButton(generate_keys, self)
     self.button_generate_keys.pressed.connect(self.generate_rsa_keys)
-    self.main_layout.addWidget(self.button_generate_keys)
+    self.main_layout.addWidget(self.button_generate_keys, 6, 2, 1, 6)
 
     # DARK MODE MENU
     self.button_dark_mode = QPushButton(dark_mode, self)
     self.button_dark_mode.pressed.connect(self.dark_mode_switch)
-    self.main_layout.addWidget(self.button_dark_mode, 6, 2, 1, 6)
+    self.main_layout.addWidget(self.button_dark_mode, 8, 2, 1, 6)
 
     # finish layout
     main = QWidget()
