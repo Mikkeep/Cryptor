@@ -7,7 +7,7 @@
         "set_enc_algorithm": "Valj krypteringsalgoritm:",
         "set_dec_algorithm": "Valj dekrypteringsalgoritm:",
         "encryption_key_label": "Krypteringsnyckel:",
-        "encryption_rsa_key_label": "RSA nyckel:",
+        "encryption_rsa_key_label": "Välj RSA-nyckel:",
         "encryption_key_confirm_label": "Bekrafta krypteringsnyckeln:",
         "salt_label": "Lagg i salt:"
     },

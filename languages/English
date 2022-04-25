@@ -7,7 +7,7 @@
         "set_enc_algorithm": "Choose encryption algorithm:",
         "set_dec_algorithm": "Choose decryption algorithm:",
         "encryption_key_label": "Encryption key:",
-        "encryption_rsa_key_label": "RSA key:",
+        "encryption_rsa_key_label": "RSA key selection:",
         "encryption_key_confirm_label": "Confirm encryption key:",
         "salt_label": "Insert encryption salt:"
     },
