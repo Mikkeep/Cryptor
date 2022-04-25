@@ -339,7 +339,7 @@ class Encrypt_page:
 
         # CUSTOM RSA KEY FILEOPEN PROMPT
         self.rsa_selection_btn = QPushButton(self.translations["buttons"]["browse_files"])
-        self.rsa_selection_btn.setText("private.pem")
+        self.rsa_selection_btn.setText("public.pem")
         self.rsa_selection_btn.clicked.connect(self.filedialogopen_rsa)
         self.layout.addWidget(self.rsa_selection_btn, 2, 5, 1, 3)
         self.rsa_selection_btn.setHidden(True)
