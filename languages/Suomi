@@ -7,6 +7,7 @@
         "set_enc_algorithm": "Valitse salausalgoritmi:",
         "set_dec_algorithm": "Valitse purkualgoritmi:",
         "encryption_key_label": "Salausavain:",
+        "encryption_rsa_key_label": "RSA avain:",
         "encryption_key_confirm_label": "Vahvista salausavain:",
         "salt_label": "Syota suola:"
     },
