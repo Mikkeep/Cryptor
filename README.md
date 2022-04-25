@@ -11,8 +11,9 @@ Dark mode is available is high contrast if not your prefered style for an applic
 ## Currently supported algorithms for encryption:
 - AES
 - RSA
-  - RSA uses currently only keys named "private.pem" & "public.pem" placed in the directory of the program
+  - RSA uses default keys named "private.pem" & "public.pem" placed in the directory of the program
   - Program can generate these keys or they can be placed by the user if custom ones are used
+  - Custom keys are supported as well, with filedialog for selection
 - ChaCha20-Poly1305
 
 ## Currently supported algorithms for hashing:
@@ -52,7 +53,7 @@ python3 cryptor.py
 Features to be added to the app
 
 ### Upcoming features
-- [ ] Make RSA encryption use user chosen RSA keys
+- [x] Make RSA encryption use user chosen RSA keys
 - [x] Generate salt for the user:
   - [x] Generate salt automatically
   - [x] Salt generation window by clicking and calculating salt from input combined with random numbers
