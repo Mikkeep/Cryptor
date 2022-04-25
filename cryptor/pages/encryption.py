@@ -15,6 +15,7 @@ class Encrypt_page:
         self.translations = translations
         self.defaults = check_encryption_defaults(db_location)
         self.filepath = ""
+        self.filepath_rsa = ""
         self.salt = ""
         self.enc_key = ""
         self.parent_win = mainwindow
@@ -171,6 +172,16 @@ class Encrypt_page:
         self._files = FileDialog().fileOpen()
         self.filepath = self._files
 
+    def filedialogopen_rsa(self):
+        """
+        File dialog opening method
+        """
+        self._files_rsa = FileDialog().fileOpen()
+        self.filepath_rsa = self._files_rsa
+        fileout = os.path.basename(self.filepath_rsa)
+        self.rsa_selection_btn.setText(fileout)
+
+
     def filedialogsave(self):
         """
         File save method
@@ -199,8 +210,12 @@ class Encrypt_page:
             encryptor = encrypt.Encryption(password=enc_key, salt=salt)
             encryptor.encrypt_with_aes(filepath, fileout)
         if self.chosen_algorithm == "RSA":
-            encryptor = encrypt.Encryption(password=enc_key, salt=salt)
-            encryptor.encrypt_with_rsa(filepath, fileout)
+            if self.filepath_rsa == "":
+                encryptor = encrypt.Encryption(password=enc_key, salt=salt)
+                encryptor.encrypt_with_rsa(filename=filepath, fileout=fileout, pub_key=None)
+            else:
+                encryptor = encrypt.Encryption(password=enc_key, salt=salt)
+                encryptor.encrypt_with_rsa(filename=filepath, fileout=fileout, pub_key=self.filepath_rsa)
         if self.chosen_algorithm == "ChaCha20":
             encryptor = encrypt.Encryption(password=enc_key, salt=salt)
             encryptor.encrypt_with_chacha(filepath, fileout)
@@ -235,19 +250,35 @@ class Encrypt_page:
         self.chosen_algorithm = algorithm.text()
         self.algo_button.setText(self.chosen_algorithm)
         if self.chosen_algorithm == "RSA":
+            self.enc_text_label.setHidden(True)
+            self.enc_conf_label.setHidden(True)
+            self.salt_label.setHidden(True)
+            self.text_box_enc_text.setHidden(True)
             self.text_box_enc_text.setDisabled(True)
             self.text_box_enc_text.setToolTip(disabled_password)
+            self.text_box_enc_text_confirm.setHidden(True)
             self.text_box_enc_text_confirm.setDisabled(True)
             self.text_box_enc_text_confirm.setToolTip(disabled_password)
+            self.salt_insert_box.setHidden(True)
             self.salt_insert_box.setDisabled(True)
             self.salt_insert_box.setToolTip(disabled_salt)
+            self.rsa_key_selection_label.setHidden(False)
+            self.rsa_selection_btn.setHidden(False)
         else:
+            self.enc_text_label.setHidden(False)
+            self.enc_conf_label.setHidden(False)
+            self.salt_label.setHidden(False)
+            self.text_box_enc_text.setHidden(False)
             self.text_box_enc_text.setDisabled(False)
             self.text_box_enc_text.setToolTip("")
+            self.text_box_enc_text_confirm.setHidden(False)
             self.text_box_enc_text_confirm.setDisabled(False)
             self.text_box_enc_text.setToolTip("")
+            self.salt_insert_box.setHidden(False)
             self.salt_insert_box.setDisabled(False)
             self.text_box_enc_text.setToolTip("")
+            self.rsa_key_selection_label.setHidden(True)
+            self.rsa_selection_btn.setHidden(True)
         self.layout.update()
         return algorithm
 
@@ -301,13 +332,25 @@ class Encrypt_page:
         #            self.layout.update()
         self.layout.addWidget(self.algo_button, 1, 5, 1, 3)
 
+        # CUSTOM RSA KEY SELECTION LABEL
+        self.rsa_key_selection_label = QLabel(self.translations["labels"]["encryption_rsa_key_label"])
+        self.layout.addWidget(self.rsa_key_selection_label, 2, 3, 1, 1)
+        self.rsa_key_selection_label.setHidden(True)
+
+        # CUSTOM RSA KEY FILEOPEN PROMPT
+        self.rsa_selection_btn = QPushButton(self.translations["buttons"]["browse_files"])
+        self.rsa_selection_btn.setText("private.pem")
+        self.rsa_selection_btn.clicked.connect(self.filedialogopen_rsa)
+        self.layout.addWidget(self.rsa_selection_btn, 2, 5, 1, 3)
+        self.rsa_selection_btn.setHidden(True)
+
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
-        enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
-        enc_conf_label = QLabel(
+        self.enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
+        self.enc_conf_label = QLabel(
             self.translations["labels"]["encryption_key_confirm_label"]
         )
-        self.layout.addWidget(enc_text_label, 2, 3, 1, 1)
-        self.layout.addWidget(enc_conf_label, 3, 2, 1, 2)
+        self.layout.addWidget(self.enc_text_label, 2, 3, 1, 1)
+        self.layout.addWidget(self.enc_conf_label, 3, 2, 1, 2)
         # ENCRYPTION KEY INPUT AND CONFIRM
         self.text_box_enc_text = PasswordEdit()
         if self.defaults["default_key"] != "":
@@ -319,10 +362,10 @@ class Encrypt_page:
         self.layout.addWidget(self.text_box_enc_text_confirm, 3, 4, 1, 3)
 
         # SALT INPUT LABEL
-        salt_label = QLabel(self.translations["labels"]["salt_label"])
-        salt_label.setObjectName("large_label")
-        salt_label.setAlignment(Qt.AlignCenter)
-        self.layout.addWidget(salt_label, 4, 1, 1, 3)
+        self.salt_label = QLabel(self.translations["labels"]["salt_label"])
+        self.salt_label.setObjectName("large_label")
+        self.salt_label.setAlignment(Qt.AlignCenter)
+        self.layout.addWidget(self.salt_label, 4, 1, 1, 3)
         # SALT INPUT
         self.salt_insert_box = PasswordEdit()
         if self.defaults["default_salt"] != "":
