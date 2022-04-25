@@ -14,6 +14,7 @@ class Decrypt_page:
         self.enc_key = ""
         self.salt = ""
         self.filepath = ""
+        self.filepath_rsa = ""
         self.chosen_algo = ""
         self.parent_win = mainwindow
 
@@ -119,6 +120,19 @@ class Decrypt_page:
         self._files = FileDialog().fileOpen()
         self.filepath = self._files
 
+    def filedialogopen_rsa(self):
+        """
+        File dialog opening method
+        """
+        self._files_rsa = FileDialog().fileOpen()
+        self.filepath_rsa = self._files_rsa
+        fileout = ""
+        try:
+            fileout = os.path.basename(self.filepath_rsa)
+            self.rsa_selection_btn.setText(fileout)
+        except TypeError:
+            self.rsa_selection_btn.setText("private.pem")
+
     def filedialogsave(self):
         self._save = FileDialog().fileSave()
 
@@ -154,26 +168,48 @@ class Decrypt_page:
             self.parent_win.right_layout.setHidden(False)
             return
         if self.chosen_algo == "RSA":
-            decryptor = decrypt.Decryption(password=enc_key, salt=salt)
-            result = decryptor.decrypt_with_rsa(
+            if self.filepath_rsa == "":
+                decryptor = decrypt.Decryption(password=enc_key, salt=salt)
+                result = decryptor.decrypt_with_rsa(
                 filename=filepath, priv_key="private.pem", fileout=fileout
-            )
-            if result == -2:
-                no_RSA_keys = self.translations["prompts"]["no_rsa_keys"]
-                print("Cant open key file")
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Warning)
-                msg.setText(no_RSA_keys)
-                msg.exec_()
-                return
-            if result == -1:
-                print("failed decrypting")
-                failed_decrypt = self.translations["prompts"]["failed_decrypt"]
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Warning)
-                msg.setText(failed_decrypt)
-                msg.exec_()
-                return
+                )
+                if result == -2:
+                    no_RSA_keys = self.translations["prompts"]["no_rsa_keys"]
+                    print("Cant open key file")
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Warning)
+                    msg.setText(no_RSA_keys)
+                    msg.exec_()
+                    return
+                if result == -1:
+                    print("failed decrypting")
+                    failed_decrypt = self.translations["prompts"]["failed_decrypt"]
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Warning)
+                    msg.setText(failed_decrypt)
+                    msg.exec_()
+                    return
+            else:
+                decryptor = decrypt.Decryption(password=enc_key, salt=salt)
+                result = decryptor.decrypt_with_rsa(
+                filename=filepath, priv_key=self.filepath_rsa, fileout=fileout
+                )
+                if result == -2:
+                    no_RSA_keys = self.translations["prompts"]["no_rsa_keys"]
+                    print("Cant open key file")
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Warning)
+                    msg.setText(no_RSA_keys)
+                    msg.exec_()
+                    return
+                if result == -1:
+                    print("failed decrypting")
+                    failed_decrypt = self.translations["prompts"]["failed_decrypt"]
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Warning)
+                    msg.setText(failed_decrypt)
+                    msg.exec_()
+                    return
             inprogresslist.append(f"Decrypted: {fileout}")
             progress = self.translations["prompts"]["ready"]
             self.parent_win.right_layout.clear()
@@ -217,16 +253,24 @@ class Decrypt_page:
         self.chosen_algo = algorithm.text()
         self.algo_button.setText(self.chosen_algo)
         if self.chosen_algo == "RSA":
-            self.text_box_dec_text.setDisabled(True)
-            self.text_box_dec_text.setToolTip(disabled_password)
-            self.text_box_salt_text.setDisabled(True)
-            self.text_box_salt_text.setToolTip(disabled_salt)
+            self.text_box_dec_text.setHidden(True)
+#            self.text_box_dec_text.setToolTip(disabled_password)
+            self.text_box_salt_text.setHidden(True)
+#            self.text_box_salt_text.setToolTip(disabled_salt)
+            self.rsa_key_selection_label.setHidden(False)
+            self.rsa_selection_btn.setHidden(False)
+            self.enc_key_label.setHidden(True)
+            self.enc_salt_label.setHidden(True)
         else:
-            self.text_box_dec_text.setDisabled(False)
-            self.text_box_dec_text.setToolTip("")
-            self.text_box_dec_text.setToolTip("")
-            self.text_box_salt_text.setDisabled(False)
-            self.text_box_salt_text.setToolTip("")
+            self.text_box_dec_text.setHidden(False)
+#            self.text_box_dec_text.setToolTip("")
+#            self.text_box_dec_text.setToolTip("")
+            self.text_box_salt_text.setHidden(False)
+#            self.text_box_salt_text.setToolTip("")
+            self.rsa_key_selection_label.setHidden(True)
+            self.rsa_selection_btn.setHidden(True)
+            self.enc_key_label.setHidden(False)
+            self.enc_salt_label.setHidden(False)
         self.layout.update()
         return algorithm
 
@@ -272,6 +316,18 @@ class Decrypt_page:
         self.algo_button.setMenu(self.algo_dropdown)
         self.algo_dropdown.triggered.connect(self.algorithms)
         self.layout.addWidget(self.algo_button, 1, 5, 1, 3)
+
+        # CUSTOM RSA KEY SELECTION LABEL
+        self.rsa_key_selection_label = QLabel(self.translations["labels"]["encryption_rsa_key_label"])
+        self.layout.addWidget(self.rsa_key_selection_label, 2, 3, 1, 1)
+        self.rsa_key_selection_label.setHidden(True)
+
+        # CUSTOM RSA KEY FILEOPEN PROMPT
+        self.rsa_selection_btn = QPushButton(self.translations["buttons"]["browse_files"])
+        self.rsa_selection_btn.setText("private.pem")
+        self.rsa_selection_btn.clicked.connect(self.filedialogopen_rsa)
+        self.layout.addWidget(self.rsa_selection_btn, 2, 5, 1, 3)
+        self.rsa_selection_btn.setHidden(True)
 
         # ENCRYPTION KEY LABEL
         self.enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
