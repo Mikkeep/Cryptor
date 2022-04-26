@@ -178,9 +178,12 @@ class Encrypt_page:
         """
         self._files_rsa = FileDialog().fileOpen()
         self.filepath_rsa = self._files_rsa
-        fileout = os.path.basename(self.filepath_rsa)
-        self.rsa_selection_btn.setText(fileout)
-
+        if self.filepath_rsa != None:
+            fileout = os.path.basename(self.filepath_rsa)
+            self.rsa_selection_btn.setText(fileout)
+            return
+        fileout = "public.pem"
+        self.rsa_selection_btn.setText(fileout)        
 
     def filedialogsave(self):
         """

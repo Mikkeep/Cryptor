@@ -13,9 +13,9 @@
     },
     "buttons": {
         "encrypt_text": "Encrypt text",
-        "encrypt_files": "Encrypt file(s)",
+        "encrypt_files": "Encrypt file",
         "decrypt_text": "Decrypt text",
-        "decrypt_files": "Decrypt file(s)",
+        "decrypt_files": "Decrypt file",
         "algorithm": "Algorithm",
         "hash": "Hashing function",
         "salt": "Salt",
