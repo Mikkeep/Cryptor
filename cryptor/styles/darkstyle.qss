@@ -63,6 +63,9 @@ QListWidget::item:selected {
 QMenu {
     background-color: #677780;
     color:#ffffff;
+    width: 500px;
+    background-color: #677780;
+    font-size: 26px;
 }
 QMenu::separator {
     height: 2px;

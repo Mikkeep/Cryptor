@@ -94,6 +94,7 @@ class Decrypt_page:
         # ALGORITHM DROPDOWN MENU
         self.algo_button_ttab = QPushButton(self.translations["buttons"]["algorithm"])
         self.algo_dropdown = QMenu()
+        self.algo_dropdown.setObjectName("algo_menu_dec")
         for algo in ENC_ALGORITHMS:
             self.algo_dropdown.addAction(algo)
             self.algo_dropdown.addSeparator()
