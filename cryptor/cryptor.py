@@ -55,6 +55,11 @@ class Window(QMainWindow):
         self.btn_3.setFixedSize(QtCore.QSize(180, 226))
         self.btn_3.clicked.connect(self.button3)
 
+        if check_dark_mode(db_location) == "False":
+            self.btn_1.setStyleSheet(ENC_TAB_PRESSED_QSS)
+        else:
+            self.btn_1.setStyleSheet(DARK_ENC_TAB_PRESSED_QSS)
+
         # add tabs
         self._encryption = encryption.Encrypt_page(self.translations, self)
         self._decryption = decryption.Decrypt_page(self.translations, self)
@@ -115,12 +120,36 @@ class Window(QMainWindow):
 
     def button1(self):
         self.right_widget.setCurrentIndex(0)
+        if check_dark_mode(db_location) == "False":
+            self.btn_1.setStyleSheet(ENC_TAB_PRESSED_QSS)
+            self.btn_2.setStyleSheet(DEC_TAB_DEPRESSED_QSS)
+            self.btn_3.setStyleSheet(SETTINGS_DEPRESSED_QSS)
+        else:
+            self.btn_1.setStyleSheet(DARK_ENC_TAB_PRESSED_QSS)
+            self.btn_2.setStyleSheet(DARK_DEC_TAB_DEPRESSED_QSS)
+            self.btn_3.setStyleSheet(DARK_SETTINGS_DEPRESSED_QSS)
 
     def button2(self):
         self.right_widget.setCurrentIndex(1)
-
+        if check_dark_mode(db_location) == "False":
+            self.btn_2.setStyleSheet(DEC_TAB_PRESSED_QSS)
+            self.btn_1.setStyleSheet(ENC_TAB_DEPRESSED_QSS)
+            self.btn_3.setStyleSheet(SETTINGS_DEPRESSED_QSS)
+        else:
+            self.btn_2.setStyleSheet(DARK_DEC_TAB_PRESSED_QSS)
+            self.btn_1.setStyleSheet(DARK_ENC_TAB_DEPRESSED_QSS)
+            self.btn_3.setStyleSheet(DARK_SETTINGS_DEPRESSED_QSS)
+    
     def button3(self):
         self.right_widget.setCurrentIndex(2)
+        if check_dark_mode(db_location) == "False":
+            self.btn_3.setStyleSheet(SETTINGS_PRESSED_QSS)
+            self.btn_1.setStyleSheet(ENC_TAB_DEPRESSED_QSS)
+            self.btn_2.setStyleSheet(DEC_TAB_DEPRESSED_QSS)
+        else:
+            self.btn_3.setStyleSheet(DARK_SETTINGS_PRESSED_QSS)
+            self.btn_1.setStyleSheet(DARK_ENC_TAB_DEPRESSED_QSS)
+            self.btn_2.setStyleSheet(DARK_DEC_TAB_DEPRESSED_QSS)
 
     def button_dec_t(self):
         self._decryption.button_dec_t()
@@ -147,12 +176,52 @@ class Window(QMainWindow):
         mode = check_dark_mode(db_location)
         print(mode)
         if mode == "False":
+            self.btn_3.setStyleSheet(DARK_SETTINGS_PRESSED_QSS)
+            self.btn_1.setStyleSheet(DARK_ENC_TAB_DEPRESSED_QSS)
+            self.btn_2.setStyleSheet(DARK_DEC_TAB_DEPRESSED_QSS)
+            
+            tab_enc = self._encryption.bottom_widget.currentIndex()
+            if tab_enc == 0:
+                self._encryption.btn_enc_t.setStyleSheet(DARK_ENC_TEXT_PRESSED_QSS)
+                self._encryption.btn_enc_f.setStyleSheet(DARK_ENC_FILE_DEPRESSED_QSS)
+            elif tab_enc == 1:
+                self._encryption.btn_enc_t.setStyleSheet(DARK_ENC_TEXT_DEPRESSED_QSS)
+                self._encryption.btn_enc_f.setStyleSheet(DARK_ENC_FILE_PRESSED_QSS)
+            
+            tab_dec = self._decryption.bottom_widget_dec.currentIndex()
+            if tab_dec == 0:
+                self._decryption.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_PRESSED_QSS)
+                self._decryption.btn_dec_f.setStyleSheet(DARK_DEC_FILE_DEPRESSED_QSS)
+            elif tab_dec == 1:
+                self._decryption.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_DEPRESSED_QSS)
+                self._decryption.btn_dec_f.setStyleSheet(DARK_DEC_FILE_PRESSED_QSS)
+            
             write_used_mode(db_location, ("True",))
             with open("styles/darkstyle.qss", "r") as f:
                 _style = f.read()
                 cryptor.setStyleSheet(_style)
             return
         else:
+            self.btn_3.setStyleSheet(SETTINGS_PRESSED_QSS)
+            self.btn_1.setStyleSheet(ENC_TAB_DEPRESSED_QSS)
+            self.btn_2.setStyleSheet(DEC_TAB_DEPRESSED_QSS)
+            
+            tab_enc = self._encryption.bottom_widget.currentIndex()
+            if tab_enc == 0:
+                self._encryption.btn_enc_t.setStyleSheet(ENC_TEXT_PRESSED_QSS)
+                self._encryption.btn_enc_f.setStyleSheet(ENC_FILE_DEPRESSED_QSS)
+            elif tab_enc == 1:
+                self._encryption.btn_enc_t.setStyleSheet(ENC_TEXT_DEPRESSED_QSS)
+                self._encryption.btn_enc_f.setStyleSheet(ENC_FILE_PRESSED_QSS)
+            
+            tab_dec = self._decryption.bottom_widget_dec.currentIndex()
+            if tab_dec == 0:
+                self._decryption.btn_dec_t.setStyleSheet(DEC_TEXT_PRESSED_QSS)
+                self._decryption.btn_dec_f.setStyleSheet(DEC_FILE_DEPRESSED_QSS)
+            elif tab_dec == 1:
+                self._decryption.btn_dec_t.setStyleSheet(DEC_TEXT_DEPRESSED_QSS)
+                self._decryption.btn_dec_f.setStyleSheet(DEC_FILE_PRESSED_QSS)
+
             write_used_mode(db_location, ("False",))
             with open("styles/style.qss", "r") as f:
                 _style = f.read()

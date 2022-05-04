@@ -5,7 +5,8 @@ from qtwidgets import PasswordEdit
 
 from crypto import decrypt
 from .file_dialog import FileDialog
-from constants import ENC_ALGORITHMS, ENC_ALGORITHMS_FILES, inprogresslist
+from constants import *
+from utils import check_dark_mode
 
 
 class Decrypt_page:
@@ -20,9 +21,21 @@ class Decrypt_page:
 
     def button_dec_t(self):
         self.bottom_widget_dec.setCurrentIndex(0)
+        if check_dark_mode(db_location) == "False":
+            self.btn_dec_t.setStyleSheet(DEC_TEXT_PRESSED_QSS)
+            self.btn_dec_f.setStyleSheet(DEC_FILE_DEPRESSED_QSS)
+        else:
+            self.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_PRESSED_QSS)
+            self.btn_dec_f.setStyleSheet(DARK_DEC_FILE_DEPRESSED_QSS)
 
     def button_dec_f(self):
         self.bottom_widget_dec.setCurrentIndex(1)
+        if check_dark_mode(db_location) == "False":
+            self.btn_dec_t.setStyleSheet(DEC_TEXT_DEPRESSED_QSS)
+            self.btn_dec_f.setStyleSheet(DEC_FILE_PRESSED_QSS)
+        else:
+            self.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_DEPRESSED_QSS)
+            self.btn_dec_f.setStyleSheet(DARK_DEC_FILE_PRESSED_QSS)
 
     def decryption(self):
         """
@@ -40,6 +53,11 @@ class Decrypt_page:
         self.btn_dec_f = QPushButton(f"{dec_button_files}")
         self.btn_dec_f.setObjectName("btn_dec_f")
         self.btn_dec_f.clicked.connect(self.button_dec_f)
+
+        if check_dark_mode(db_location) == "False":
+            self.btn_dec_t.setStyleSheet(DEC_TEXT_PRESSED_QSS)
+        else:
+            self.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_PRESSED_QSS)
 
         top_actions = QHBoxLayout()
         top_actions.setSpacing(0)
@@ -90,7 +108,7 @@ class Decrypt_page:
 
         # ALGORITHM LABEL
         algo_label = QLabel(self.translations["labels"]["set_dec_algorithm"])
-        layout.addWidget(algo_label, 1, 1, 1, 3)
+        layout.addWidget(algo_label, 1, 2, 1, 2)
         # ALGORITHM DROPDOWN MENU
         self.algo_button_ttab = QPushButton(self.translations["buttons"]["algorithm"])
         self.algo_dropdown = QMenu()
@@ -104,7 +122,7 @@ class Decrypt_page:
 
         # ENCRYPTION SALT LABEL
         self.enc_salt_label = QLabel(self.translations["labels"]["salt_label"])
-        layout.addWidget(self.enc_salt_label, 2, 1, 1, 1)
+        layout.addWidget(self.enc_salt_label, 2, 1, 1, 2)
         # ENCRYPTION SALT INPUT
         self.text_box_salt_text = PasswordEdit()
         layout.addWidget(self.text_box_salt_text, 2, 3, 1, 6)
@@ -316,7 +334,7 @@ class Decrypt_page:
             self.algo_dropdown.addSeparator()
         self.algo_button.setMenu(self.algo_dropdown)
         self.algo_dropdown.triggered.connect(self.algorithms)
-        self.layout.addWidget(self.algo_button, 1, 5, 1, 3)
+        self.layout.addWidget(self.algo_button, 1, 5, 1, 2)
 
         # CUSTOM RSA KEY SELECTION LABEL
         self.rsa_key_selection_label = QLabel(self.translations["labels"]["encryption_rsa_key_label"])

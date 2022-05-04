@@ -67,6 +67,7 @@ class SettingsWindow(QWidget):
         self.menu_algo.triggered.connect(self.algorithms)
         # Define Salt type functions menu
         self.salt_selection_menu = QMenu(self)
+        self.salt_selection_menu.setObjectName("default_salt_menu")
         self.salt_selection_menu.addAction(self.automatic_salt)
         self.salt_selection_menu.addSeparator()
         self.salt_selection_menu.addAction(self.click_salt)

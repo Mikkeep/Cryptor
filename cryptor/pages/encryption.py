@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
 from constants import *
 from qtwidgets import PasswordEdit
+
+from utils import check_dark_mode
 from .file_dialog import FileDialog
 from constants import ENC_ALGORITHMS, ENC_ALGORITHMS_FILES
 from crypto import encrypt
@@ -30,9 +32,21 @@ class Encrypt_page:
 
     def button_enc_t(self):
         self.bottom_widget.setCurrentIndex(0)
+        if check_dark_mode(db_location) == "False":
+            self.btn_enc_t.setStyleSheet(ENC_TEXT_PRESSED_QSS)
+            self.btn_enc_f.setStyleSheet(ENC_FILE_DEPRESSED_QSS)
+        else:
+            self.btn_enc_t.setStyleSheet(DARK_ENC_TEXT_PRESSED_QSS)
+            self.btn_enc_f.setStyleSheet(DARK_ENC_FILE_DEPRESSED_QSS)
 
     def button_enc_f(self):
         self.bottom_widget.setCurrentIndex(1)
+        if check_dark_mode(db_location) == "False":
+            self.btn_enc_t.setStyleSheet(ENC_TEXT_DEPRESSED_QSS)
+            self.btn_enc_f.setStyleSheet(ENC_FILE_PRESSED_QSS)
+        else:
+            self.btn_enc_t.setStyleSheet(DARK_ENC_TEXT_DEPRESSED_QSS)
+            self.btn_enc_f.setStyleSheet(DARK_ENC_FILE_PRESSED_QSS)
 
     def encryption(self):
         """
@@ -44,18 +58,23 @@ class Encrypt_page:
         enc_button_text = self.translations["buttons"]["encrypt_text"]
         enc_button_files = self.translations["buttons"]["encrypt_files"]
 
-        btn_enc_t = QPushButton(f"{enc_button_text}")
-        btn_enc_t.setObjectName("btn_enc_t")
-        btn_enc_t.clicked.connect(self.button_enc_t)
-        btn_enc_f = QPushButton(f"{enc_button_files}")
-        btn_enc_f.setObjectName("btn_enc_f")
-        btn_enc_f.clicked.connect(self.button_enc_f)
+        self.btn_enc_t = QPushButton(f"{enc_button_text}")
+        self.btn_enc_t.setObjectName("btn_enc_t")
+        self.btn_enc_t.clicked.connect(self.button_enc_t)
+        self.btn_enc_f = QPushButton(f"{enc_button_files}")
+        self.btn_enc_f.setObjectName("btn_enc_f")
+        self.btn_enc_f.clicked.connect(self.button_enc_f)
+
+        if check_dark_mode(db_location) == "False":
+            self.btn_enc_t.setStyleSheet(ENC_TEXT_PRESSED_QSS)
+        else:
+            self.btn_enc_t.setStyleSheet(DARK_ENC_TEXT_PRESSED_QSS)
 
         top_actions = QHBoxLayout()
         top_actions.setSpacing(0)
         top_actions.setContentsMargins(0, 16, 0, 0)
-        top_actions.addWidget(btn_enc_t)
-        top_actions.addWidget(btn_enc_f)
+        top_actions.addWidget(self.btn_enc_t)
+        top_actions.addWidget(self.btn_enc_f)
 
         self.top_widget = QWidget()
         self.top_widget.setLayout(top_actions)
