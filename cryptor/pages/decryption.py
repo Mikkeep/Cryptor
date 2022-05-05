@@ -167,7 +167,11 @@ class Decrypt_page:
         salt = self.salt
         print("salt:", salt)
         filepath = self.filepath
-        fileout = os.path.basename(self.filepath)
+        try:
+            fileout = os.path.basename(self.filepath)
+        except TypeError:
+            print("No file chosen!")
+            return
         enc_key = self.enc_key
         print(enc_key)
         # File out gets the name of the file for saving the file

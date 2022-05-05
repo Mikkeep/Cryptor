@@ -216,7 +216,11 @@ class Encrypt_page:
         self.enc_key_confirm = self.text_box_enc_text_confirm.text()
         self.salt = self.salt_insert_box.text()
         filepath = self.filepath
-        fileout = os.path.basename(self.filepath)
+        try:
+            fileout = os.path.basename(self.filepath)
+        except TypeError:
+            print("No file chosen!")
+            return
         salt = self.salt
         enc_key = self.enc_key
         print(self.chosen_algorithm)
