@@ -81,7 +81,7 @@ QMenu::indicator {
 }
 
 QMenu#lang_menu {
-    width: 556px;
+    width: 574px;
     background-color: #677780;
 }
 QMenu#lang_menu::item {

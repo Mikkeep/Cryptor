@@ -70,7 +70,7 @@ QMenu::item:selected {
 
 
 QMenu#lang_menu {
-    width: 556px;
+    width: 574px;
     background-color: #A3C8FF;
 }
 QMenu#lang_menu::item {
