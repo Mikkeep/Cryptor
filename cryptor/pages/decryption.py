@@ -314,8 +314,8 @@ class Decrypt_page:
         # init layout
         self.layout = QGridLayout()
         pad = QLabel(" ")
-        self.layout.addWidget(pad, 0, 0, 1, 1)
-        self.layout.addWidget(pad, 0, 9, 1, 1)
+        self.layout.addWidget(pad, 0, 0, 1, 2)
+        self.layout.addWidget(pad, 0, 8, 1, 2)
 
         # FILE BROWSE LABEL
         open_file_label = QLabel(self.translations["labels"]["insert_file_dec"])
@@ -355,17 +355,18 @@ class Decrypt_page:
 
         # ENCRYPTION KEY LABEL
         self.enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
-        self.layout.addWidget(self.enc_key_label, 2, 1, 1, 2)
+        self.enc_key_label.setAlignment(Qt.AlignCenter)
+        self.layout.addWidget(self.enc_key_label, 2, 2, 1, 2)
         # ENCRYPTION KEY INPUT
         self.text_box_dec_text = PasswordEdit()
-        self.layout.addWidget(self.text_box_dec_text, 2, 3, 1, 6)
+        self.layout.addWidget(self.text_box_dec_text, 2, 4, 1, 5)
 
         # ENCRYPTION SALT LABEL
         self.enc_salt_label = QLabel(self.translations["labels"]["salt_label"])
-        self.layout.addWidget(self.enc_salt_label, 3, 1, 1, 2)
+        self.layout.addWidget(self.enc_salt_label, 3, 2, 1, 3)
         # ENCRYPTION SALT INPUT
         self.text_box_salt_text = PasswordEdit()
-        self.layout.addWidget(self.text_box_salt_text, 3, 3, 1, 6)
+        self.layout.addWidget(self.text_box_salt_text, 3, 4, 1, 5)
 
         # DECRYPT BUTTON
         decrypt_button = QPushButton(self.translations["buttons"]["final_decrypt"])

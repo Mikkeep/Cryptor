@@ -115,7 +115,7 @@ class Encrypt_page:
         layout.addWidget(text_to_enc_label, 0, 1, 1, 3)
         # INSERT TEXT BOX
         self.text_insert = QLineEdit()
-        layout.addWidget(self.text_insert, 0, 4, 1, 6)
+        layout.addWidget(self.text_insert, 0, 4, 1, 5)
 
         # ALGORITHM SET LABEL
         algo_text_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
@@ -322,7 +322,8 @@ class Encrypt_page:
         self.layout.setContentsMargins(0, 0, 0, 0)
 
         pad = QLabel(" ")
-        self.layout.addWidget(pad, 0, 9, 1, 1)
+        self.layout.addWidget(pad, 0, 8, 1, 2)
+        self.layout.addWidget(pad, 0, 0, 1, 1)
 
         # FILE BROWSER LABEL
         file_browse_label = QLabel(self.translations["labels"]["browse_file_enc"])
@@ -371,7 +372,9 @@ class Encrypt_page:
         self.enc_conf_label = QLabel(
             self.translations["labels"]["encryption_key_confirm_label"]
         )
-        self.layout.addWidget(self.enc_text_label, 2, 3, 1, 1)
+        self.enc_text_label.setAlignment(Qt.AlignCenter)
+        self.enc_conf_label.setAlignment(Qt.AlignCenter)
+        self.layout.addWidget(self.enc_text_label, 2, 2, 1, 2)
         self.layout.addWidget(self.enc_conf_label, 3, 2, 1, 2)
         # ENCRYPTION KEY INPUT AND CONFIRM
         self.text_box_enc_text = PasswordEdit()
@@ -380,14 +383,14 @@ class Encrypt_page:
         self.text_box_enc_text_confirm = PasswordEdit()
         if self.defaults["default_key"] != "":
             self.text_box_enc_text_confirm.setText(self.defaults["default_key"])
-        self.layout.addWidget(self.text_box_enc_text, 2, 4, 1, 3)
-        self.layout.addWidget(self.text_box_enc_text_confirm, 3, 4, 1, 3)
+        self.layout.addWidget(self.text_box_enc_text, 2, 4, 1, 5)
+        self.layout.addWidget(self.text_box_enc_text_confirm, 3, 4, 1, 5)
 
         # SALT INPUT LABEL
         self.salt_label = QLabel(self.translations["labels"]["salt_label"])
         self.salt_label.setObjectName("large_label")
         self.salt_label.setAlignment(Qt.AlignCenter)
-        self.layout.addWidget(self.salt_label, 4, 1, 1, 3)
+        self.layout.addWidget(self.salt_label, 4, 2, 1, 2)
         # SALT INPUT
         self.salt_insert_box = PasswordEdit()
         if self.defaults["default_salt"] != "":
