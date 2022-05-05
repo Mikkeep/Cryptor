@@ -170,7 +170,6 @@ class Decrypt_page:
         try:
             fileout = os.path.basename(self.filepath)
         except TypeError:
-            print("No file chosen!")
             return
         enc_key = self.enc_key
         print(enc_key)

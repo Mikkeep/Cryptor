@@ -219,7 +219,6 @@ class Encrypt_page:
         try:
             fileout = os.path.basename(self.filepath)
         except TypeError:
-            print("No file chosen!")
             return
         salt = self.salt
         enc_key = self.enc_key
