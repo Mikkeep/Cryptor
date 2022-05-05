@@ -342,7 +342,7 @@ class Decrypt_page:
             self.algo_dropdown.addSeparator()
         self.algo_button.setMenu(self.algo_dropdown)
         self.algo_dropdown.triggered.connect(self.algorithms)
-        self.layout.addWidget(self.algo_button, 1, 5, 1, 2)
+        self.layout.addWidget(self.algo_button, 1, 5, 1, 3)
 
         # CUSTOM RSA KEY SELECTION LABEL
         self.rsa_key_selection_label = QLabel(self.translations["labels"]["encryption_rsa_key_label"])

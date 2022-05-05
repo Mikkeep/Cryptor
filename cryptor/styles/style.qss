@@ -86,7 +86,7 @@ QMenu#lang_menu::item:selected {
 }
 
 QMenu#algo_menu_enc_text {
-    width: 222px;
+    width: 268px;
     background-color: #A3C8FF;
 }
 QMenu#algo_menu_enc_text::item {
@@ -101,12 +101,12 @@ QMenu#algo_menu_enc_text::item:selected {
 }
 
 QMenu#algo_menu_enc_files {
-    width: 232px;
+    width: 306px;
     background-color: #A3C8FF;
 }
 QMenu#algo_menu_enc_files::item {
     font-size: 24px;
-    padding-left: 50px;
+    padding-left: 100px;
 }
 QMenu#algo_menu_enc_files::item:selected {
     border-color: darkslategrey;
@@ -116,7 +116,7 @@ QMenu#algo_menu_enc_files::item:selected {
 }
 
 QMenu#algo_menu_dec {
-    width: 218px;
+    width: 268px;
     background-color: #A3C8FF;
 }
 QMenu#algo_menu_dec::item {
