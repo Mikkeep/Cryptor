@@ -94,6 +94,9 @@ class Decrypt_page:
         """
         # init layout and set suitable column widths
         layout = QGridLayout()
+        pad = QLabel()
+        layout.addWidget(pad, 0, 0, 1, 1)
+        layout.addWidget(pad, 0, 9, 1, 1)
 
         # INSERT TEXT LABEL
         text_ins_label = QLabel(self.translations["labels"]["insert_text_dec"])
@@ -101,14 +104,15 @@ class Decrypt_page:
             "large_label"
         )  # set object name for qss tag effects
         text_ins_label.setAlignment(Qt.AlignCenter)
-        layout.addWidget(text_ins_label, 0, 0, 1, 3)
+        layout.addWidget(text_ins_label, 0, 1, 1, 3)
         # INSERT TEXT BOX
         text_insert = QLineEdit()
-        layout.addWidget(text_insert, 0, 3, 1, 7)
+        layout.addWidget(text_insert, 0, 4, 1, 5)
 
         # ALGORITHM LABEL
         algo_label = QLabel(self.translations["labels"]["set_dec_algorithm"])
-        layout.addWidget(algo_label, 1, 2, 1, 2)
+        algo_label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(algo_label, 1, 1, 1, 3)
         # ALGORITHM DROPDOWN MENU
         self.algo_button_ttab = QPushButton(self.translations["buttons"]["algorithm"])
         self.algo_dropdown = QMenu()
@@ -122,10 +126,11 @@ class Decrypt_page:
 
         # ENCRYPTION SALT LABEL
         self.enc_salt_label = QLabel(self.translations["labels"]["salt_label"])
-        layout.addWidget(self.enc_salt_label, 2, 1, 1, 2)
+        self.enc_salt_label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(self.enc_salt_label, 2, 1, 1, 3)
         # ENCRYPTION SALT INPUT
         self.text_box_salt_text = PasswordEdit()
-        layout.addWidget(self.text_box_salt_text, 2, 3, 1, 6)
+        layout.addWidget(self.text_box_salt_text, 2, 4, 1, 5)
 
         # DECRYPT BUTTON
         decrypt_button = QPushButton(self.translations["buttons"]["final_decrypt"])

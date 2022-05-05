@@ -112,10 +112,10 @@ class Encrypt_page:
         text_to_enc_label = QLabel(self.translations["labels"]["insert_text_enc"])
         text_to_enc_label.setAlignment(Qt.AlignCenter)
         text_to_enc_label.setObjectName("large_label")
-        layout.addWidget(text_to_enc_label, 0, 0, 1, 3)
+        layout.addWidget(text_to_enc_label, 0, 1, 1, 3)
         # INSERT TEXT BOX
         self.text_insert = QLineEdit()
-        layout.addWidget(self.text_insert, 0, 3, 1, 7)
+        layout.addWidget(self.text_insert, 0, 4, 1, 6)
 
         # ALGORITHM SET LABEL
         algo_text_label = QLabel(self.translations["labels"]["set_enc_algorithm"])
