@@ -9,7 +9,9 @@
     "encryption_key_label": "Encryption key:",
     "encryption_rsa_key_label": "RSA key selection:",
     "encryption_key_confirm_label": "Confirm encryption key:",
-    "salt_label": "Insert encryption salt:"
+    "salt_label": "Insert encryption salt:",
+    "settings": "Settings",
+    "decryption_file": "Decrypt file"
   },
   "buttons": {
     "encrypt_text": "Encrypt text",

@@ -152,7 +152,8 @@ class Window(QMainWindow):
             self.btn_2.setStyleSheet(DARK_DEC_TAB_DEPRESSED_QSS)
 
     def button_dec_t(self):
-        self._decryption.button_dec_t()
+        #self._decryption.button_dec_t()
+        pass
 
     def button_dec_f(self):
         self._decryption.button_dec_f()
@@ -190,13 +191,13 @@ class Window(QMainWindow):
                 self._encryption.btn_enc_t.setStyleSheet(DARK_ENC_TEXT_DEPRESSED_QSS)
                 self._encryption.btn_enc_f.setStyleSheet(DARK_ENC_FILE_PRESSED_QSS)
             
-            tab_dec = self._decryption.bottom_widget_dec.currentIndex()
-            if tab_dec == 0:
-                self._decryption.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_PRESSED_QSS)
-                self._decryption.btn_dec_f.setStyleSheet(DARK_DEC_FILE_DEPRESSED_QSS)
-            elif tab_dec == 1:
-                self._decryption.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_DEPRESSED_QSS)
-                self._decryption.btn_dec_f.setStyleSheet(DARK_DEC_FILE_PRESSED_QSS)
+            #tab_dec = self._decryption.bottom_widget_dec.currentIndex()
+            #if tab_dec == 0:
+                #self._decryption.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_PRESSED_QSS)
+                #self._decryption.btn_dec_f.setStyleSheet(DARK_DEC_FILE_DEPRESSED_QSS)
+            #elif tab_dec == 1:
+                #self._decryption.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_DEPRESSED_QSS)
+                #self._decryption.btn_dec_f.setStyleSheet(DARK_DEC_FILE_PRESSED_QSS)
             
             write_used_mode(db_location, ("True",))
             with open("styles/darkstyle.qss", "r") as f:
@@ -218,13 +219,13 @@ class Window(QMainWindow):
                 self._encryption.btn_enc_t.setStyleSheet(ENC_TEXT_DEPRESSED_QSS)
                 self._encryption.btn_enc_f.setStyleSheet(ENC_FILE_PRESSED_QSS)
             
-            tab_dec = self._decryption.bottom_widget_dec.currentIndex()
-            if tab_dec == 0:
-                self._decryption.btn_dec_t.setStyleSheet(DEC_TEXT_PRESSED_QSS)
-                self._decryption.btn_dec_f.setStyleSheet(DEC_FILE_DEPRESSED_QSS)
-            elif tab_dec == 1:
-                self._decryption.btn_dec_t.setStyleSheet(DEC_TEXT_DEPRESSED_QSS)
-                self._decryption.btn_dec_f.setStyleSheet(DEC_FILE_PRESSED_QSS)
+            #tab_dec = self._decryption.bottom_widget_dec.currentIndex()
+            #if tab_dec == 0:
+                #self._decryption.btn_dec_t.setStyleSheet(DEC_TEXT_PRESSED_QSS)
+                #self._decryption.btn_dec_f.setStyleSheet(DEC_FILE_DEPRESSED_QSS)
+            #elif tab_dec == 1:
+                #self._decryption.btn_dec_t.setStyleSheet(DEC_TEXT_DEPRESSED_QSS)
+                #self._decryption.btn_dec_f.setStyleSheet(DEC_FILE_PRESSED_QSS)
 
             write_used_mode(db_location, ("False",))
             with open("styles/style.qss", "r") as f:

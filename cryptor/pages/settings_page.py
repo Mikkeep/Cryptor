@@ -10,7 +10,7 @@ def settings(self):
     generate_keys = self.translations["prompts"]["generate_keys"]
 
     self.main_layout = QGridLayout()  # init layout
-    title_label = QLabel("Settings")
+    title_label = QLabel(self.translations["labels"]["settings"])
 
     title_label.setAlignment(Qt.AlignCenter)
     title_label.setObjectName("title_label")

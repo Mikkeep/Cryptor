@@ -9,7 +9,9 @@
     "encryption_key_label": "Salausavain:",
     "encryption_rsa_key_label": "RSA avaimen valinta:",
     "encryption_key_confirm_label": "Vahvista salausavain:",
-    "salt_label": "Syota suola:"
+    "salt_label": "Syota suola:",
+    "settings": "Asetukset",
+    "decryption_file": "Pura tiedoston salaus"
   },
   "buttons": {
     "encrypt_text": "Salaa tekstia",

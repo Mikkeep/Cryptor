@@ -20,63 +20,67 @@ class Decrypt_page:
         self.parent_win = mainwindow
 
     def button_dec_t(self):
-        self.bottom_widget_dec.setCurrentIndex(0)
+        #self.bottom_widget_dec.setCurrentIndex(0)
         if check_dark_mode(db_location) == "False":
-            self.btn_dec_t.setStyleSheet(DEC_TEXT_PRESSED_QSS)
-            self.btn_dec_f.setStyleSheet(DEC_FILE_DEPRESSED_QSS)
+            pass
+            #self.btn_dec_t.setStyleSheet(DEC_TEXT_PRESSED_QSS)
+            #self.btn_dec_f.setStyleSheet(DEC_FILE_DEPRESSED_QSS)
         else:
-            self.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_PRESSED_QSS)
-            self.btn_dec_f.setStyleSheet(DARK_DEC_FILE_DEPRESSED_QSS)
+            pass
+            #self.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_PRESSED_QSS)
+            #self.btn_dec_f.setStyleSheet(DARK_DEC_FILE_DEPRESSED_QSS)
 
     def button_dec_f(self):
         self.bottom_widget_dec.setCurrentIndex(1)
         if check_dark_mode(db_location) == "False":
-            self.btn_dec_t.setStyleSheet(DEC_TEXT_DEPRESSED_QSS)
-            self.btn_dec_f.setStyleSheet(DEC_FILE_PRESSED_QSS)
+            pass
+            #self.btn_dec_t.setStyleSheet(DEC_TEXT_DEPRESSED_QSS)
+            #self.btn_dec_f.setStyleSheet(DEC_FILE_PRESSED_QSS)
         else:
-            self.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_DEPRESSED_QSS)
-            self.btn_dec_f.setStyleSheet(DARK_DEC_FILE_PRESSED_QSS)
+            pass
+            #self.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_DEPRESSED_QSS)
+            #self.btn_dec_f.setStyleSheet(DARK_DEC_FILE_PRESSED_QSS)
 
     def decryption(self):
         """
         This method handles the frame for the entire decrypt tab
-        """
-        final_layout = QVBoxLayout()
+        
+        #final_layout = QVBoxLayout()
 
         # DEFINE TOP WIDGET (TABS AND SWITCHING BETWEEN THEM)
-        dec_button_text = self.translations["buttons"]["decrypt_text"]
-        dec_button_files = self.translations["buttons"]["decrypt_files"]
+        #dec_button_text = self.translations["buttons"]["decrypt_text"]
+        #dec_button_files = self.translations["buttons"]["decrypt_files"]
 
-        self.btn_dec_t = QPushButton(f"{dec_button_text}")
-        self.btn_dec_t.setObjectName("btn_dec_t")
-        self.btn_dec_t.clicked.connect(self.button_dec_t)
-        self.btn_dec_f = QPushButton(f"{dec_button_files}")
-        self.btn_dec_f.setObjectName("btn_dec_f")
-        self.btn_dec_f.clicked.connect(self.button_dec_f)
+        #self.btn_dec_t = QPushButton(f"{dec_button_text}")
+        #self.btn_dec_t.setObjectName("btn_dec_t")
+        #self.btn_dec_t.clicked.connect(self.button_dec_t)
+        #self.btn_dec_f = QPushButton(f"{dec_button_files}")
+        #self.btn_dec_f.setObjectName("btn_dec_f")
+        #self.btn_dec_f.clicked.connect(self.button_dec_f)
 
-        if check_dark_mode(db_location) == "False":
-            self.btn_dec_t.setStyleSheet(DEC_TEXT_PRESSED_QSS)
-        else:
-            self.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_PRESSED_QSS)
+        #if check_dark_mode(db_location) == "False":
+            #self.btn_dec_t.setStyleSheet(DEC_TEXT_PRESSED_QSS)
+        #else:
+            #self.btn_dec_t.setStyleSheet(DARK_DEC_TEXT_PRESSED_QSS)
 
         top_actions = QHBoxLayout()
         top_actions.setSpacing(0)
         top_actions.setContentsMargins(0, 16, 0, 0)
-        top_actions.addWidget(self.btn_dec_t)
-        top_actions.addWidget(self.btn_dec_f)
+        #top_actions.addWidget(self.btn_dec_t)
+        #top_actions.addWidget(self.btn_dec_f)
         self.top_widget_dec = QWidget()
         self.top_widget_dec.setLayout(top_actions)
 
         # DEFINE BOTTOM WIDGET (TAB CONTENTS)
-        self.tab_dec_t = self.tab_dec_text()
-        self.tab_dec_f = self.tab_dec_files()
+        #self.tab_dec_t = self.tab_dec_text()
+        #self.tab_dec_f = self.tab_dec_files()
         self.bottom_widget_dec = QTabWidget()
         self.bottom_widget_dec.tabBar().setObjectName("DecryptionTab")
 
-        self.bottom_widget_dec.addTab(self.tab_dec_t, "")
-        self.bottom_widget_dec.addTab(self.tab_dec_f, "")
+        #self.bottom_widget_dec.addTab(self.tab_dec_t, "")
+        #self.bottom_widget_dec.addTab(self.tab_dec_f, "")
 
-        self.bottom_widget_dec.setCurrentIndex(0)  # default to text decryption tab
+        self.bottom_widget_dec.setCurrentIndex(1)  # default to text decryption tab
 
         # add top and bottom widgets to layout
         final_layout.addWidget(self.top_widget_dec)
@@ -87,6 +91,82 @@ class Decrypt_page:
         main.setLayout(final_layout)
 
         return main
+        """
+        # init layout
+        self.layout = QGridLayout()
+        title_label = QLabel(self.translations["labels"]["decryption_file"])
+        title_label.setAlignment(Qt.AlignCenter)
+        title_label.setObjectName("title_label")
+        title_label.setSizePolicy(
+            QSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Fixed)
+        )
+        title_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.layout.addWidget(title_label, 0, 1, 1, 8)
+        pad = QLabel(" ")
+        self.layout.addWidget(pad, 1, 0, 1, 2)
+        self.layout.addWidget(pad, 1, 8, 1, 2)
+
+        # FILE BROWSE LABEL
+        open_file_label = QLabel(self.translations["labels"]["insert_file_dec"])
+        open_file_label.setObjectName("large_label")
+        open_file_label.setAlignment(Qt.AlignCenter)
+        self.layout.addWidget(open_file_label, 1, 2, 1, 3)
+        # FILE BROWSE
+        open_file_btn = QPushButton(self.translations["buttons"]["browse_files"])
+        open_file_btn.clicked.connect(self.filedialogopen)
+        self.layout.addWidget(open_file_btn, 1, 5, 1, 3)
+
+        # ALGORITHM LABEL
+        algo_label = QLabel(self.translations["labels"]["set_dec_algorithm"])
+        self.layout.addWidget(algo_label, 2, 2, 1, 3)
+        # ALGORITHM DROPDOWN MENU
+        self.algo_button = QPushButton(self.translations["buttons"]["algorithm"])
+        self.algo_dropdown = QMenu()
+        self.algo_dropdown.setObjectName("algo_menu_dec")
+        for algo in ENC_ALGORITHMS_FILES:
+            self.algo_dropdown.addAction(algo)
+            self.algo_dropdown.addSeparator()
+        self.algo_button.setMenu(self.algo_dropdown)
+        self.algo_dropdown.triggered.connect(self.algorithms)
+        self.layout.addWidget(self.algo_button, 2, 5, 1, 3)
+
+        # CUSTOM RSA KEY SELECTION LABEL
+        self.rsa_key_selection_label = QLabel(self.translations["labels"]["encryption_rsa_key_label"])
+        self.layout.addWidget(self.rsa_key_selection_label, 3, 3, 1, 1)
+        self.rsa_key_selection_label.setHidden(True)
+
+        # CUSTOM RSA KEY FILEOPEN PROMPT
+        self.rsa_selection_btn = QPushButton(self.translations["buttons"]["browse_files"])
+        self.rsa_selection_btn.setText("private.pem")
+        self.rsa_selection_btn.clicked.connect(self.filedialogopen_rsa)
+        self.layout.addWidget(self.rsa_selection_btn, 3, 5, 1, 3)
+        self.rsa_selection_btn.setHidden(True)
+
+        # ENCRYPTION KEY LABEL
+        self.enc_key_label = QLabel(self.translations["labels"]["encryption_key_label"])
+        self.enc_key_label.setAlignment(Qt.AlignCenter)
+        self.layout.addWidget(self.enc_key_label, 3, 2, 1, 2)
+        # ENCRYPTION KEY INPUT
+        self.text_box_dec_text = PasswordEdit()
+        self.layout.addWidget(self.text_box_dec_text, 3, 4, 1, 5)
+
+        # ENCRYPTION SALT LABEL
+        self.enc_salt_label = QLabel(self.translations["labels"]["salt_label"])
+        self.layout.addWidget(self.enc_salt_label, 4, 2, 1, 3)
+        # ENCRYPTION SALT INPUT
+        self.text_box_salt_text = PasswordEdit()
+        self.layout.addWidget(self.text_box_salt_text, 4, 4, 1, 5)
+
+        # DECRYPT BUTTON
+        decrypt_button = QPushButton(self.translations["buttons"]["final_decrypt"])
+        decrypt_button.clicked.connect(self.decrypt_file)
+        self.layout.addWidget(decrypt_button, 5, 2, 1, 6)
+
+        # finish layout
+        main = QWidget()
+        main.setLayout(self.layout)
+        return main
+
 
     def tab_dec_text(self):
         """

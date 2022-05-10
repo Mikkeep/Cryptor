@@ -282,7 +282,7 @@ QPushButton#btn_dec_f {
     border-style: outset;
     border-color: darkslategray;
     border-width: 3px;
-    border-top-left-radius: 1px;
+    border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 1px;
     border-bottom-right-radius: 1px; 

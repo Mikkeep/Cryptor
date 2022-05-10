@@ -9,7 +9,9 @@
     "encryption_key_label": "Krypteringsnyckel:",
     "encryption_rsa_key_label": "Välj RSA-nyckel:",
     "encryption_key_confirm_label": "Bekrafta krypteringsnyckeln:",
-    "salt_label": "Lagg i salt:"
+    "salt_label": "Lagg i salt:",
+    "settings": "Installningar",
+    "decryption_file": "dekryptera filen"
   },
   "buttons": {
     "encrypt_text": "Kryptera text",
