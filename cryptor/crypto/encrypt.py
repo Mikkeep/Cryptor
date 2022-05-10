@@ -25,12 +25,12 @@ class Encryption:
 
         data = self.read_file(filename)
 
-        cipher = AES.new(self.enc_key, AES.MODE_EAX)
+        mode = AES.new(self.enc_key, AES.MODE_EAX)
         # MAC tag is used for authentication of the encrypted file/text
-        ciphertext, tag = cipher.encrypt_and_digest(data)
+        encrypt_text, tag = mode.encrypt_and_digest(data)
 
         file_out = open("encrypted_" + fileout, "wb")
-        [file_out.write(x) for x in (cipher.nonce, tag, ciphertext)]
+        [file_out.write(x) for x in (mode.nonce, tag, encrypt_text)]
         file_out.close()
         print("File encrypted as " + "encrypted_" + fileout)
 
@@ -71,10 +71,10 @@ class Encryption:
 
         # Encrypt the data with the AES session key
         cipher_aes = AES.new(session_key, AES.MODE_EAX)
-        ciphertext, tag = cipher_aes.encrypt_and_digest(data)
+        secret_text, tag = cipher_aes.encrypt_and_digest(data)
         [
             file_out.write(x)
-            for x in (enc_session_key, cipher_aes.nonce, tag, ciphertext)
+            for x in (enc_session_key, cipher_aes.nonce, tag, secret_text)
         ]
         file_out.close()
         print("File encrypted as " + "encrypted_" + fileout)
@@ -86,10 +86,10 @@ class Encryption:
         # Used key must be 32 bytes long
         cipher = ChaCha20_Poly1305.new(key=self.enc_key)
 
-        ciphertext, tag = cipher.encrypt_and_digest(data)
+        secret, tag = cipher.encrypt_and_digest(data)
 
         file_out = open("encrypted_" + fileout, "wb")
-        [file_out.write(x) for x in (cipher.nonce, tag, ciphertext)]
+        [file_out.write(x) for x in (cipher.nonce, tag, secret)]
         file_out.close()
         print("File encrypted as " + "encrypted_" + fileout)
 
