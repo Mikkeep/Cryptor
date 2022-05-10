@@ -179,6 +179,8 @@ class Window(QMainWindow):
             self.btn_3.setStyleSheet(DARK_SETTINGS_PRESSED_QSS)
             self.btn_1.setStyleSheet(DARK_ENC_TAB_DEPRESSED_QSS)
             self.btn_2.setStyleSheet(DARK_DEC_TAB_DEPRESSED_QSS)
+            self.button_dark_mode.setText(self.translations["prompts"]["light_mode"])
+            self.main_layout.update()
             
             tab_enc = self._encryption.bottom_widget.currentIndex()
             if tab_enc == 0:
@@ -205,6 +207,8 @@ class Window(QMainWindow):
             self.btn_3.setStyleSheet(SETTINGS_PRESSED_QSS)
             self.btn_1.setStyleSheet(ENC_TAB_DEPRESSED_QSS)
             self.btn_2.setStyleSheet(DEC_TAB_DEPRESSED_QSS)
+            self.button_dark_mode.setText(self.translations["prompts"]["dark_mode"])
+            self.main_layout.update()
             
             tab_enc = self._encryption.bottom_widget.currentIndex()
             if tab_enc == 0:
