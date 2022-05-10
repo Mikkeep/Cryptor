@@ -31,7 +31,7 @@ class Decrypt_page:
             #self.btn_dec_f.setStyleSheet(DARK_DEC_FILE_DEPRESSED_QSS)
 
     def button_dec_f(self):
-        self.bottom_widget_dec.setCurrentIndex(1)
+        #self.bottom_widget_dec.setCurrentIndex(1)
         if check_dark_mode(db_location) == "False":
             pass
             #self.btn_dec_t.setStyleSheet(DEC_TEXT_DEPRESSED_QSS)
