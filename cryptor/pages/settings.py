@@ -97,6 +97,7 @@ class SettingsWindow(QWidget):
 
     def hashes(self, language):
         self.chosen_hash = language.text()
+        self.hash.setText(self.chosen_hash)
         print(language.text())
         return language
 
@@ -104,17 +105,21 @@ class SettingsWindow(QWidget):
         self.chosen_algo = language.text()
         print(language.text())
         print(self.chosen_salt)
+        self.algorithm.setText(self.chosen_algo)
         return language
 
     def choose_salt(self, salt_type):
         print("Chosen salt type: ", salt_type.text())
         if salt_type.text() == self.write_salt:
             self.text_box_salt.setFocus()
+            self.salt_selection.setText(self.write_salt)
             return
         if salt_type.text() == self.automatic_salt:
             salt_gen = generate_salt.salt_generator().generate_salt()
             self.text_box_salt.setText(salt_gen)
+            self.salt_selection.setText(self.automatic_salt)
             return
+        self.salt_selection.setText(self.click_salt)
         self.window = salt_generation.SaltWindow(self.settings_translate, self)
         self.window.show()
 
