@@ -202,7 +202,7 @@ class Encrypt_page:
             self.rsa_selection_btn.setText(fileout)
             return
         fileout = "public.pem"
-        self.rsa_selection_btn.setText(fileout)        
+        self.rsa_selection_btn.setText(fileout)
 
     def filedialogsave(self):
         """
@@ -237,11 +237,15 @@ class Encrypt_page:
         if self.chosen_algorithm == "RSA":
             if self.filepath_rsa == "":
                 encryptor = encrypt.Encryption(password=enc_key, salt=salt)
-                encryptor.encrypt_with_rsa(filename=filepath, fileout=fileout, pub_key=None)
+                encryptor.encrypt_with_rsa(
+                    filename=filepath, fileout=fileout, pub_key=None
+                )
             else:
                 encryptor = encrypt.Encryption(password=enc_key, salt=salt)
-                encryptor.encrypt_with_rsa(filename=filepath, fileout=fileout, pub_key=self.filepath_rsa)
-        if self.chosen_algorithm == "ChaCha20":
+                encryptor.encrypt_with_rsa(
+                    filename=filepath, fileout=fileout, pub_key=self.filepath_rsa
+                )
+        if self.chosen_algorithm == "Chacha":
             encryptor = encrypt.Encryption(password=enc_key, salt=salt)
             encryptor.encrypt_with_chacha(filepath, fileout)
         # Filepath is the path for the file
@@ -359,19 +363,25 @@ class Encrypt_page:
         self.layout.addWidget(self.algo_button, 1, 5, 1, 3)
 
         # CUSTOM RSA KEY SELECTION LABEL
-        self.rsa_key_selection_label = QLabel(self.translations["labels"]["encryption_rsa_key_label"])
+        self.rsa_key_selection_label = QLabel(
+            self.translations["labels"]["encryption_rsa_key_label"]
+        )
         self.layout.addWidget(self.rsa_key_selection_label, 2, 3, 1, 1)
         self.rsa_key_selection_label.setHidden(True)
 
         # CUSTOM RSA KEY FILEOPEN PROMPT
-        self.rsa_selection_btn = QPushButton(self.translations["buttons"]["browse_files"])
+        self.rsa_selection_btn = QPushButton(
+            self.translations["buttons"]["browse_files"]
+        )
         self.rsa_selection_btn.setText("public.pem")
         self.rsa_selection_btn.clicked.connect(self.filedialogopen_rsa)
         self.layout.addWidget(self.rsa_selection_btn, 2, 5, 1, 3)
         self.rsa_selection_btn.setHidden(True)
 
         # ENCRYPTION KEY INPUT AND CONFIRM LABELS
-        self.enc_text_label = QLabel(self.translations["labels"]["encryption_key_label"])
+        self.enc_text_label = QLabel(
+            self.translations["labels"]["encryption_key_label"]
+        )
         self.enc_conf_label = QLabel(
             self.translations["labels"]["encryption_key_confirm_label"]
         )
